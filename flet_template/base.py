@@ -5,9 +5,6 @@ The page is generated automatically when a user adds to the navigation list in t
 """
 
 
-from navigation.nav import container
-
-
 base_page = """import flet as ft
 import flet_material as fm
 
@@ -15,7 +12,7 @@ import flet_material as fm
 def page_view():
     return ft.View(
         route="%s",
-        controls=[f"{container}"]
+        controls=[%s]
         
     )
 

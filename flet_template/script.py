@@ -1,6 +1,12 @@
 import os
 import yaml
 from base import base_page
+import flet as ft
+
+
+class Container(ft.Container):
+    def __str__(self):
+        return "ft.Container(width=100, height=100, bgcolor='pink')"
 
 
 def run_template_script():
@@ -29,7 +35,7 @@ def run_template_script():
             if not os.path.exists(filepath):
                 with open(filepath, "w") as f:
                     filename = os.path.splitext(filename)[0]
-                    f.write(f"{base_page % filename}")
+                    f.write(f"{base_page % (filename, Container())}")
 
     # Loop over files in the pages directory and delete any files that are not listed in the nav
     for file in os.listdir("pages"):

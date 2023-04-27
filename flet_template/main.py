@@ -22,14 +22,37 @@ def main(page: ft.Page):
                     spacing=0,
                     controls=[
                         ft.Row(
-                            expand=2,
+                            expand=3,
                             height=80,
+                            spacing=5,
+                            alignment="center",
                             controls=[
-                                ft.Container(expand=True, bgcolor="white10"),
+                                ft.Container(
+                                    expand=1,
+                                    height=80,
+                                    bgcolor="white10",
+                                    alignment=ft.alignment.center_right,
+                                    content=ft.Text(
+                                        "Flet Web Materials",
+                                        size=22,
+                                    ),
+                                ),
+                                ft.Container(
+                                    expand=2,
+                                    height=80,
+                                    bgcolor="white10",
+                                    content=None,
+                                ),
+                                ft.Container(
+                                    expand=1,
+                                    height=80,
+                                    bgcolor="white10",
+                                    content=ft.Text("asda"),
+                                ),
                             ],
                         ),
                         ft.Row(
-                            expand=1,
+                            expand=2,
                             controls=[
                                 ft.Container(expand=True, bgcolor="blue"),
                             ],
