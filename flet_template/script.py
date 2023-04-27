@@ -1,9 +1,9 @@
 import os
 import yaml
-from basePage import base_page
+from base import base_page
 
 
-def run_temlate_script():
+def run_template_script():
     # Load the YAML file
     with open("fletDocs.yml", "r") as file:
         fletDocs = yaml.safe_load(file)
@@ -41,6 +41,3 @@ def run_temlate_script():
                     break
             if not found:
                 os.remove(os.path.join("pages", file))
-
-
-run_temlate_script()

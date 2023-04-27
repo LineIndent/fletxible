@@ -1,6 +1,8 @@
 # app theme
 theme:
   - bgcolor: "blue"
+  - primary: ""
+  - accent: ""
 
 # navigation tree
 nav:
