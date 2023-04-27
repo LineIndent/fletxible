@@ -71,8 +71,8 @@ def page_view():
                         ),
                     ],
                 ),
-                ft.Row(expand=12, controls=[ft.Container(expand=True, bgcolor=spec2)]),
-                ft.Row(expand=1, controls=[ft.Container(expand=True, bgcolor=spec1)]),
+                # ft.Row(expand=12, controls=[ft.Container(expand=True, bgcolor=spec2)]),
+                # ft.Row(expand=1, controls=[ft.Container(expand=True, bgcolor=spec1)]),
             ],
         )
         ]
