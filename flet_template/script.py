@@ -1,5 +1,6 @@
 import os
 import yaml
+from basePage import base_page
 
 
 def run_temlate_script():
@@ -27,7 +28,19 @@ def run_temlate_script():
 
             if not os.path.exists(filepath):
                 with open(filepath, "w") as f:
-                    f.write(f"This is the {page} page")
+                    filename = os.path.splitext(filename)[0]
+                    f.write(f"{base_page % filename}")
+
+    # Loop over files in the pages directory and delete any files that are not listed in the nav
+    for file in os.listdir("pages"):
+        if file.endswith(".py"):
+            found = False
+            for page in fletDocs["nav"]:
+                if page.get(next(iter(page))) == file:
+                    found = True
+                    break
+            if not found:
+                os.remove(os.path.join("pages", file))
 
 
 run_temlate_script()

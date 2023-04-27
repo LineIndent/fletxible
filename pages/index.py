@@ -1,1 +1,11 @@
-Welcome to the Home page!
+import flet as ft
+import flet_material as fm
+
+
+def page_view():
+    return ft.View(
+        route="index",
+        controls=[]
+        
+    )
+
