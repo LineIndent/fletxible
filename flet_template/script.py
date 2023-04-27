@@ -4,7 +4,7 @@ from base import base_page
 import flet as ft
 
 
-class Container(ft.Container):
+class ContainerTitle(ft.Container):
     def __str__(self):
         return "ft.Container(width=100, height=100, bgcolor='pink')"
 
@@ -13,6 +13,11 @@ def run_template_script():
     # Load the YAML file
     with open("fletDocs.yml", "r") as file:
         fletDocs = yaml.safe_load(file)
+
+    # Get user .yml file details
+    bgcolor = fletDocs["theme"][0]["bgcolor"]
+    site_name = fletDocs["site-name"]
+    repo_url = fletDocs["repo-url"]
 
     # Check if "pages" directory exists
     pages_dir = None
@@ -35,7 +40,7 @@ def run_template_script():
             if not os.path.exists(filepath):
                 with open(filepath, "w") as f:
                     filename = os.path.splitext(filename)[0]
-                    f.write(f"{base_page % (filename, Container())}")
+                    f.write(f"{base_page % (bgcolor, filename, site_name, repo_url)}")
 
     # Loop over files in the pages directory and delete any files that are not listed in the nav
     for file in os.listdir("pages"):

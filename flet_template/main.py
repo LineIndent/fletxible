@@ -30,7 +30,7 @@ def main(page: ft.Page):
                                 ft.Container(
                                     expand=1,
                                     height=80,
-                                    bgcolor="white10",
+                                    bgcolor=None,
                                     alignment=ft.alignment.center_right,
                                     content=ft.Text(
                                         "Flet Web Materials",
@@ -40,21 +40,30 @@ def main(page: ft.Page):
                                 ft.Container(
                                     expand=2,
                                     height=80,
-                                    bgcolor="white10",
-                                    content=None,
+                                    bgcolor=None,
+                                    alignment=ft.alignment.center_right,
+                                    padding=ft.padding.only(right=35),
+                                    content=ft.Container(
+                                        width=300, height=45, bgcolor="white10"
+                                    ),
                                 ),
                                 ft.Container(
                                     expand=1,
                                     height=80,
-                                    bgcolor="white10",
-                                    content=ft.Text("asda"),
+                                    bgcolor=None,
+                                    alignment=ft.alignment.center_left,
+                                    content=ft.Text("GitHub", size=15),
                                 ),
                             ],
                         ),
                         ft.Row(
                             expand=2,
                             controls=[
-                                ft.Container(expand=True, bgcolor="blue"),
+                                ft.Container(
+                                    expand=True,
+                                    bgcolor="blue",
+                                    content=ft.Row(expand=True),
+                                ),
                             ],
                         ),
                     ],

@@ -1,3 +1,7 @@
+# app detail
+site-name: "Flet Web Material"
+repo-url: "https://github.com/LineIndent"
+
 # app theme
 theme:
   - bgcolor: "blue"
