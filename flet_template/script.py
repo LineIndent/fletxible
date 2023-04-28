@@ -6,8 +6,8 @@ import pickle5 as pickle
 
 
 class RouteButton(ft.ElevatedButton):
-    def __str__(self):
-        return "ft.ElevatedButton(width=120, height=45, on_click=lambda e: e.page.go())"
+    def __str__(self, route):
+        return f"ft.ElevatedButton('{route}', width=120, height=45, on_click=lambda e: e.page.go('/{route}'))"
 
 
 def run_template_script():
@@ -40,8 +40,8 @@ def run_template_script():
         for page in fletDocs["nav"]:
             for key in page:
                 obj = RouteButton()
-                f.write(f"{obj.__str__()}," + "\n")
-                # nav_list.append(obj.__str__())
+                value = os.path.splitext(page[key])[0]
+                f.write(f"{obj.__str__(value)}," + "\n")
 
     # Loop over the nav list and create/update files
     for page in fletDocs["nav"]:
@@ -55,6 +55,7 @@ def run_template_script():
                     filename = os.path.splitext(filename)[0]
                     f.write(f"{base_page % content}")
 
+            filename = os.path.splitext(filename)[0]
             _modules["/" + filename] = importlib.util.spec_from_file_location(
                 filename, filepath
             )

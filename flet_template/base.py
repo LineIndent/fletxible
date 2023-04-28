@@ -9,6 +9,7 @@ base_page = """import flet as ft
 
 
 
+
 def page_view():
     return ft.View(
         vertical_alignment="center",

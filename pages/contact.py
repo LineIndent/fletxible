@@ -1,15 +1,24 @@
 import flet as ft
-
+from flet_template.route import router
 
 
 def page_view():
     return ft.View(
         vertical_alignment="center",
         horizontal_alignment="center",
-        controls=[ft.ElevatedButton(width=120, height=45, on_click=lambda e: e.page.go()),
-ft.ElevatedButton(width=120, height=45, on_click=lambda e: e.page.go()),
-ft.ElevatedButton(width=120, height=45, on_click=lambda e: e.page.go()),
-]
-        
-        )
-
+        bgcolor="pink",
+        controls=[
+            ft.ElevatedButton(
+                "index", width=120, height=45, on_click=lambda e: router(e, "/index")
+            ),
+            ft.ElevatedButton(
+                "about", width=120, height=45, on_click=lambda e: e.page.go("/about")
+            ),
+            ft.ElevatedButton(
+                "contact",
+                width=120,
+                height=45,
+                on_click=lambda e: router(e, "/contact"),
+            ),
+        ],
+    )
