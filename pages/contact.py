@@ -12,7 +12,7 @@ def page_view():
                 "index", width=120, height=45, on_click=lambda e: router(e, "/index")
             ),
             ft.ElevatedButton(
-                "about", width=120, height=45, on_click=lambda e: e.page.go("/about")
+                "about", width=120, height=45, on_click=lambda e: router(e, "/about")
             ),
             ft.ElevatedButton(
                 "contact",
