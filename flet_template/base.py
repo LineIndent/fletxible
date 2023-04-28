@@ -6,14 +6,14 @@ The page is generated automatically when a user adds to the navigation list in t
 
 
 base_page = """import flet as ft
-import flet_material as fm
+
 
 
 def page_view():
     return ft.View(
         vertical_alignment="center",
         horizontal_alignment="center",
-        controls=%s
+        controls=[%s]
         
         )
 

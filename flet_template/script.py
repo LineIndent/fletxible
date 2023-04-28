@@ -5,15 +5,7 @@ import flet as ft
 import pickle5 as pickle
 
 
-class ContainerTitle(ft.Container):
-    def __str__(self):
-        return "ft.Container(width=100, height=100, bgcolor='pink')"
-
-
 class RouteButton(ft.ElevatedButton):
-    def __init__(self):
-        super().__init__()
-
     def __str__(self):
         return "ft.ElevatedButton(width=120, height=45, on_click=lambda e: e.page.go())"
 
@@ -22,12 +14,6 @@ def run_template_script():
     # Load the YAML file
     with open("fletDocs.yml", "r") as file:
         fletDocs = yaml.safe_load(file)
-
-    # Get user .yml file details
-
-    bgcolor = fletDocs["theme"][0]["bgcolor"]
-    site_name = fletDocs["site-name"]
-    repo_url = fletDocs["repo-url"]
 
     # Check if "pages" directory exists
     pages_dir = None
@@ -50,12 +36,12 @@ def run_template_script():
 
     nav_list: list = []
     # Loop over name navigation
-    for page in fletDocs["nav"]:
-        for key in page:
-            obj = RouteButton()
-            nav_list.append(obj.__str__())
-
-    print(nav_list)
+    with open("class.txt", "w") as f:
+        for page in fletDocs["nav"]:
+            for key in page:
+                obj = RouteButton()
+                f.write(f"{obj.__str__()}," + "\n")
+                # nav_list.append(obj.__str__())
 
     # Loop over the nav list and create/update files
     for page in fletDocs["nav"]:
@@ -64,9 +50,10 @@ def run_template_script():
             filepath = os.path.join("pages", filename)
 
             if not os.path.exists(filepath):
-                with open(filepath, "w") as f:
+                with open("class.txt", "r") as z, open(filepath, "w") as f:
+                    content = z.read()
                     filename = os.path.splitext(filename)[0]
-                    f.write(f"{base_page % nav_list}")
+                    f.write(f"{base_page % content}")
 
             _modules["/" + filename] = importlib.util.spec_from_file_location(
                 filename, filepath

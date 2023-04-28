@@ -1,0 +1,3 @@
+ft.ElevatedButton(width=120, height=45, on_click=lambda e: e.page.go()),
+ft.ElevatedButton(width=120, height=45, on_click=lambda e: e.page.go()),
+ft.ElevatedButton(width=120, height=45, on_click=lambda e: e.page.go()),
