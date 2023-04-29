@@ -92,10 +92,10 @@ def run_template_script():
                     filename = os.path.splitext(filename)[0]
                     f.write(f"{base_page % (primary, bgcolor, site_name, content)}")
 
-                filename = os.path.splitext(filename)[0]
-                _modules["/" + filename] = importlib.util.spec_from_file_location(
-                    filename, filepath
-                )
+            filename = os.path.splitext(filename)[0]
+            _modules["/" + filename] = importlib.util.spec_from_file_location(
+                filename, filepath
+            )
 
     # Write the updated dictionary data back to the JSON file
     with open("./flet_template/routes.pickle", "wb") as f:

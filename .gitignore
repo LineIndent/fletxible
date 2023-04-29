@@ -1,1 +1,4 @@
 venv
+flet_web_template.egg-info
+dist
+build

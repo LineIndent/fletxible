@@ -1,0 +1,4 @@
+ft.Text(size=14, weight='bold', spans=[ft.TextSpan('index', on_click=lambda e: router(e, '/index'))]),
+ft.Text(size=14, weight='bold', spans=[ft.TextSpan('about', on_click=lambda e: router(e, '/about'))]),
+ft.Text(size=14, weight='bold', spans=[ft.TextSpan('contact', on_click=lambda e: router(e, '/contact'))]),
+ft.Text(size=14, weight='bold', spans=[ft.TextSpan('refresh', on_click=lambda e: router(e, '/refresh'))]),

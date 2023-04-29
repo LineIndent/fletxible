@@ -202,10 +202,10 @@ def run_template_script():
                     filename = os.path.splitext(filename)[0]
                     f.write(f"{base_page % (primary, bgcolor, site_name, content)}")
 
-                filename = os.path.splitext(filename)[0]
-                _modules["/" + filename] = importlib.util.spec_from_file_location(
-                    filename, filepath
-                )
+            filename = os.path.splitext(filename)[0]
+            _modules["/" + filename] = importlib.util.spec_from_file_location(
+                filename, filepath
+            )
 
     # Write the updated dictionary data back to the JSON file
     with open("./flet_template/routes.pickle", "wb") as f:
@@ -218,7 +218,7 @@ def run_template_script():
 @click.command()
 def init():
     # Create YAML file
-    with open("fletDocsDUMMY.yml", "w") as f:
+    with open("fletDocs.yml", "w") as f:
         f.write(
             """# Insert your web app details
     site-name: "Flet Web Material"
@@ -238,24 +238,24 @@ def init():
         )
 
     # Create templates directory if it doesn't exist
-    if not os.path.exists("templates"):
-        os.makedirs("templates")
+    if not os.path.exists("flet_template"):
+        os.makedirs("flet_template")
 
     # Define the list of files to be generated
     file_list = ["__init__.py", "main.py", "base.py", "route_base.py", "script.py"]
 
     # Generate each file in the templates directory
     for file_name in file_list:
-        file_path = os.path.join("templates", file_name)
+        file_path = os.path.join("flet_template", file_name)
         open(file_path, "a").close()
 
         # If it's the __init__.py file, write the import statements
         if file_name == "__init__.py":
             with open(file_path, "w") as f:
-                f.write("from templates.base import base_page\n")
-                f.write("from templates.main import main\n")
-                f.write("from templates.script import run_template_script\n")
-                f.write("from templates.route_base import route_page\n")
+                f.write("from flet_template.base import base_page\n")
+                f.write("from flet_template.main import main\n")
+                f.write("from flet_template.script import run_template_script\n")
+                f.write("from flet_template.route_base import route_page\n")
 
         # If it's the main.py file, write the main statements
         if file_name == "main.py":
@@ -278,6 +278,7 @@ def init():
                 f.write(script_thread)
 
     click.echo(f"Generated {len(file_list)} files in the 'templates' directory.")
+    click.echo(f"Get started by changing the fletDocs.yml file!")
 
 
 @click.group()

@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="flet-web-template",
-    version="0.1.0",
+    version="0.1.10",
     author="S. Ahmad P. Hakimi",
     author_email="pourhakimi@pm.me",
     description="Web Boilerplate for Flet Library",
@@ -10,14 +10,14 @@ setup(
     long_description_content_type="text/markdown",
     url="https://github.com/LineIndent/flet_boilerplate",
     packages=["flet_template", "command"],
-    install_requires=["click==8.1.3", "flet==0.5.2"],
+    install_requires=["click==8.1.3", "flet==0.6.2", " pickle5==0.0.11", "PyYAML==6.0"],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
     entry_points={
-        "console_scripts": ["flet_material_init=flet_template.command.cli:init"],
+        "console_scripts": ["flet-web-init=command.cli:init"],
     },
     keywords=["python web templates", "web application", "development"],
 )
