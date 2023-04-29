@@ -5,8 +5,8 @@ repo-url: "https://github.com/LineIndent"
 # app theme
 theme:
   - bgcolor: "blue"
-  - primary: ""
-  - accent: ""
+  - primary: "dark blue"
+  - accent: "light blue"
 
 # navigation tree
 nav:

@@ -28,15 +28,16 @@ def run_template_script():
         os.mkdir(pages_dir)
 
     # Load the dictionary data from the JSON file, or create an empty dictionary if the file is empty
+    # If the routes.pickle file is not available, it will create one in the ./flet_template directory.
     try:
-        with open("routes.pickle", "rb") as f:
+        with open("./flet_template/routes.pickle", "rb") as f:
             _modules = pickle.load(f)
     except FileNotFoundError as e:
         _modules = {}
 
-    nav_list: list = []
     # Loop over name navigation
-    with open("class.txt", "w") as f:
+    # If the base.txt file is not found, it will create one in the ./flet_template directory
+    with open("./flet_template/base.txt", "w") as f:
         for page in fletDocs["nav"]:
             for key in page:
                 obj = RouteButton()
@@ -50,7 +51,9 @@ def run_template_script():
             filepath = os.path.join("pages", filename)
 
             if not os.path.exists(filepath):
-                with open("class.txt", "r") as z, open(filepath, "w") as f:
+                with open("./flet_template/base.txt", "r") as z, open(
+                    filepath, "w"
+                ) as f:
                     content = z.read()
                     filename = os.path.splitext(filename)[0]
                     f.write(f"{base_page % content}")
@@ -61,7 +64,7 @@ def run_template_script():
             )
 
     # Write the updated dictionary data back to the JSON file
-    with open("routes.pickle", "wb") as f:
+    with open("./flet_template/routes.pickle", "wb") as f:
         pickle.dump(_modules, f)
 
     # Loop over files in the pages directory and delete any files that are not listed in the nav
