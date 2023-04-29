@@ -8,8 +8,8 @@ setup(
     description="Web Boilerplate for Flet Library",
     long_description="",
     long_description_content_type="text/markdown",
-    url="https://github.com/LineIndent/material_design_flet",
-    packages=["flet_material", "styles"],
+    url="https://github.com/LineIndent/flet_boilerplate",
+    packages=["flet_template", "command"],
     install_requires=["click==8.1.3", "flet==0.5.2"],
     classifiers=[
         "Programming Language :: Python :: 3",
@@ -21,5 +21,5 @@ setup(
             "flet_material_init=flet_material.command.new_project:init_code"
         ],
     },
-    keywords=["material design", "UI library", "Flet"],
+    keywords=["python web templates", "web application", "development"],
 )
