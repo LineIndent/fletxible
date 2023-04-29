@@ -2,7 +2,6 @@ import flet as ft
 from route import router
 
 
-
 def page_view():
     return ft.View(
         bgcolor="#2e2f3e",
@@ -11,10 +10,10 @@ def page_view():
         vertical_alignment="start",
         controls=[
             ft.Column(
-        expand=True,
-        spacing=0,
-        alignment="start",
-        controls=[
+                expand=True,
+                spacing=0,
+                alignment="start",
+                controls=[
                     ft.Row(
                         expand=2,
                         height=100,
@@ -38,13 +37,45 @@ def page_view():
                                 alignment=ft.alignment.center_right,
                                 padding=ft.padding.only(right=35),
                                 content=ft.Row(
-                                    alignment="end", 
-                                    spacing=10, 
+                                    alignment="end",
+                                    spacing=10,
                                     controls=[
-                                        ft.Text(size=14, weight='bold', spans=[ft.TextSpan('index', on_click=lambda e: router(e, '/index'))]),
-ft.Text(size=14, weight='bold', spans=[ft.TextSpan('about', on_click=lambda e: router(e, '/about'))]),
-ft.Text(size=14, weight='bold', spans=[ft.TextSpan('contact', on_click=lambda e: router(e, '/contact'))]),
-
+                                        ft.Text(
+                                            size=14,
+                                            weight="bold",
+                                            spans=[
+                                                ft.TextSpan(
+                                                    "index",
+                                                    on_click=lambda e: router(
+                                                        e, "/index"
+                                                    ),
+                                                )
+                                            ],
+                                        ),
+                                        ft.Text(
+                                            size=14,
+                                            weight="bold",
+                                            spans=[
+                                                ft.TextSpan(
+                                                    "about",
+                                                    on_click=lambda e: router(
+                                                        e, "/about"
+                                                    ),
+                                                )
+                                            ],
+                                        ),
+                                        ft.Text(
+                                            size=14,
+                                            weight="bold",
+                                            spans=[
+                                                ft.TextSpan(
+                                                    "contact",
+                                                    on_click=lambda e: router(
+                                                        e, "/contact"
+                                                    ),
+                                                )
+                                            ],
+                                        ),
                                     ],
                                 ),
                             ),
@@ -57,16 +88,11 @@ ft.Text(size=14, weight='bold', spans=[ft.TextSpan('contact', on_click=lambda e:
                             ),
                         ],
                     ),
-                                    ft.Row(
-                        expand=12, controls=[ft.Container(expand=True)]
-                    ),
+                    ft.Row(expand=12, controls=[ft.Container(expand=True)]),
                     ft.Row(
                         expand=1, controls=[ft.Container(expand=True, bgcolor="black")]
                     ),
-
+                ],
+            )
         ],
     )
-        ]
-        
-        )
-
