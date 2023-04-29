@@ -1,5 +1,5 @@
 import flet as ft
-
+from route import router
 
 
 
@@ -41,12 +41,14 @@ def page_view():
                                 alignment=ft.alignment.center_right,
                                 padding=ft.padding.only(right=35),
                                 content=ft.Row(
-                                    alignment="end", spacing=10, controls=[
-                                        ft.ElevatedButton('index', width=120, height=45, on_click=lambda e: e.page.go('/index')),
-ft.ElevatedButton('about', width=120, height=45, on_click=lambda e: e.page.go('/about')),
-ft.ElevatedButton('contact', width=120, height=45, on_click=lambda e: e.page.go('/contact')),
+                                    alignment="end", 
+                                    spacing=10, 
+                                    controls=[
+                                        ft.Text(size=14, weight='bold', spans=[ft.TextSpan('index', on_click=lambda e: router(e, '/index'))]),
+ft.Text(size=14, weight='bold', spans=[ft.TextSpan('about', on_click=lambda e: router(e, '/about'))]),
+ft.Text(size=14, weight='bold', spans=[ft.TextSpan('contact', on_click=lambda e: router(e, '/contact'))]),
 
-                                    ]
+                                    ],
                                 ),
                             ),
                             ft.Container(

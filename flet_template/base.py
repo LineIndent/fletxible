@@ -6,7 +6,7 @@ The page is generated automatically when a user adds to the navigation list in t
 
 
 base_page = """import flet as ft
-
+from route import router
 
 
 
@@ -48,9 +48,11 @@ def page_view():
                                 alignment=ft.alignment.center_right,
                                 padding=ft.padding.only(right=35),
                                 content=ft.Row(
-                                    alignment="end", spacing=10, controls=[
+                                    alignment="end", 
+                                    spacing=10, 
+                                    controls=[
                                         %s
-                                    ]
+                                    ],
                                 ),
                             ),
                             ft.Container(

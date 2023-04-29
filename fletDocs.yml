@@ -4,7 +4,7 @@ repo-url: "https://github.com/LineIndent"
 
 # app theme
 theme:
-  - bgcolor: "blue"
+  - bgcolor: "#2e2f3e"
   - primary: "dark blue"
   - accent: "light blue"
 

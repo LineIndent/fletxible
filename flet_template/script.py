@@ -7,13 +7,19 @@ import pickle5 as pickle
 
 class RouteButton(ft.ElevatedButton):
     def __str__(self, route):
-        return f"ft.ElevatedButton('{route}', width=120, height=45, on_click=lambda e: e.page.go('/{route}'))"
+        return f"ft.Text(size=14, weight='bold', spans=[ft.TextSpan('{route}', on_click=lambda e: router(e, '/{route}'))])"
+        # return f"ft.ElevatedButton('{route}', width=120, height=45, on_click=lambda e: e.page.go('/{route}'))"
+
+
+theme_template: list = []
 
 
 def run_template_script():
     # Load the YAML file
     with open("fletDocs.yml", "r") as file:
         fletDocs = yaml.safe_load(file)
+
+    theme_template.append(fletDocs["theme"][0]["bgcolor"])
 
     # Check if "pages" directory exists
     pages_dir = None
