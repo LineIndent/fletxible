@@ -10,7 +10,7 @@ from route import router
 
 
 
-def page_view():
+def page_view(nav_color: str="%s"):
     return ft.View(
         bgcolor="%s",
         spacing=0,
@@ -31,7 +31,7 @@ def page_view():
                             ft.Container(
                                 expand=1,
                                 height=80,
-                                bgcolor="%s",
+                                bgcolor=nav_color,
                                 alignment=ft.alignment.center_right,
                                 content=ft.Text(
                                     "%s",
@@ -41,7 +41,7 @@ def page_view():
                             ft.Container(
                                 expand=2,
                                 height=80,
-                                bgcolor="%s",
+                                bgcolor=nav_color,
                                 alignment=ft.alignment.center_right,
                                 padding=ft.padding.only(right=35),
                                 content=ft.Row(
@@ -55,7 +55,7 @@ def page_view():
                             ft.Container(
                                 expand=1,
                                 height=80,
-                                bgcolor="%s",
+                                bgcolor=nav_color,
                                 alignment=ft.alignment.center_left,
                                 content=ft.Text("GitHub", size=15),
                             ),

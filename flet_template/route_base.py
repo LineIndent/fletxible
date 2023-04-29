@@ -1,8 +1,3 @@
-"""
-
-"""
-
-
 route_page = """from script import run_template_script
 
 returned_modules, __ = run_template_script()

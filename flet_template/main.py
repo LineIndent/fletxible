@@ -1,11 +1,7 @@
 import flet as ft
 from script import run_template_script
-import os, sys
-
-ft.View()
 
 
-#
 def main(page: ft.Page):
     returned_modules, theme_template = run_template_script()
     page.padding = 10

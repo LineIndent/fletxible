@@ -1,11 +1,11 @@
 from setuptools import setup
 
 setup(
-    name="flet-material",
-    version="0.2.0",
+    name="flet-boilerplate",
+    version="0.1.0",
     author="S. Ahmad P. Hakimi",
     author_email="pourhakimi@pm.me",
-    description="Material UI Library for Flet",
+    description="Web Boilerplate for Flet Library",
     long_description="",
     long_description_content_type="text/markdown",
     url="https://github.com/LineIndent/material_design_flet",
