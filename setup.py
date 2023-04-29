@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(
-    name="flet-boilerplate",
+    name="flet-web-template",
     version="0.1.0",
     author="S. Ahmad P. Hakimi",
     author_email="pourhakimi@pm.me",
