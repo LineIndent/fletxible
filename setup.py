@@ -17,9 +17,7 @@ setup(
         "Operating System :: OS Independent",
     ],
     entry_points={
-        "console_scripts": [
-            "flet_material_init=flet_material.command.new_project:init_code"
-        ],
+        "console_scripts": ["flet_material_init=flet_template.command.cli:init"],
     },
     keywords=["python web templates", "web application", "development"],
 )
