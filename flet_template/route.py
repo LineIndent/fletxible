@@ -1,7 +1,7 @@
 """ """
 from script import run_template_script
 
-returned_modules: dict = run_template_script()
+returned_modules, __ = run_template_script()
 
 
 def router(e, route):

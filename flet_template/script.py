@@ -8,10 +8,10 @@ import pickle5 as pickle
 class RouteButton(ft.ElevatedButton):
     def __str__(self, route):
         return f"ft.Text(size=14, weight='bold', spans=[ft.TextSpan('{route}', on_click=lambda e: router(e, '/{route}'))])"
-        # return f"ft.ElevatedButton('{route}', width=120, height=45, on_click=lambda e: e.page.go('/{route}'))"
 
 
-theme_template: list = []
+theme_template: dict = {}
+_modules: dict = {}
 
 
 def run_template_script():
@@ -19,7 +19,10 @@ def run_template_script():
     with open("fletDocs.yml", "r") as file:
         fletDocs = yaml.safe_load(file)
 
-    theme_template.append(fletDocs["theme"][0]["bgcolor"])
+    theme_template["site-name"] = fletDocs["site-name"]
+    theme_template["bgcolor"] = fletDocs["theme"][0]["bgcolor"]
+    theme_template["primary"] = fletDocs["theme"][1]["primary"]
+    theme_template["accent"] = fletDocs["theme"][2]["accent"]
 
     # Check if "pages" directory exists
     pages_dir = None
@@ -32,14 +35,6 @@ def run_template_script():
         # Create "pages" directory in the root folder
         pages_dir = os.path.join(os.getcwd(), "pages")
         os.mkdir(pages_dir)
-
-    # Load the dictionary data from the JSON file, or create an empty dictionary if the file is empty
-    # If the routes.pickle file is not available, it will create one in the ./flet_template directory.
-    try:
-        with open("./flet_template/routes.pickle", "rb") as f:
-            _modules = pickle.load(f)
-    except FileNotFoundError as e:
-        _modules = {}
 
     # Loop over name navigation
     # If the base.txt file is not found, it will create one in the ./flet_template directory
@@ -61,8 +56,13 @@ def run_template_script():
                     filepath, "w"
                 ) as f:
                     content = z.read()
+                    site_name = theme_template["site-name"]
+                    bgcolor = theme_template["bgcolor"]
+                    primary = theme_template["primary"]
                     filename = os.path.splitext(filename)[0]
-                    f.write(f"{base_page % content}")
+                    f.write(
+                        f"{base_page % (bgcolor, primary, site_name, primary, content, primary)}"
+                    )
 
             filename = os.path.splitext(filename)[0]
             _modules["/" + filename] = importlib.util.spec_from_file_location(
@@ -84,4 +84,4 @@ def run_template_script():
             if not found:
                 os.remove(os.path.join("pages", file))
 
-    return _modules
+    return _modules, theme_template
