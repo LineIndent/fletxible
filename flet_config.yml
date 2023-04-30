@@ -12,5 +12,3 @@ theme:
 nav:
   - Home: "index.py"
   - About: "about.py"
-  - Contact: "contact.py"
-  - Refresh: "refresh.py"
