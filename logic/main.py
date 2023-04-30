@@ -12,7 +12,6 @@ def main(page: ft.Page):
     # for keys, __ in returned_modules.items():
     #     page.views.append(returned_modules[keys].loader.load_module().page_view())
 
-    # page.go("/index")
     page.update()
 
 
