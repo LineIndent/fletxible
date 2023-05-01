@@ -59,34 +59,26 @@ The ```logic``` directory will contain four files:
 3. ```script.py```
 4. ```utilities.py```
 
-<!-- ## 3. Code Breakdown
+## Current Algorithm Functions
 
-The script is similar to the basic Flet application setup, with some minor additions.
+This algorithm is a script that loads and processes data from a YAML file ```flet_config.yml``` that contains navigation information for a web application. The script then updates and creates various files and directories necessary for the application to function.
 
-At the top of the main file, you need to import the Flet Material library and all its components:
-```python
-import flet_material as fm
-```
+Here is a summary of what the algorithm does (v0.2.0):
 
-Below the imported modules is the Theme instance from Flet Material. It sets up the entire application theme so that all colors, primary and accent, are uniform, giving the applications being built a consistent look and feel. For a list of supported theme colors, you can visit the library's documentation online.
+    Import necessary libraries and functions
+    Define a dictionary variable to hold route keys
 
-For a list of supported theme colors, you can visit the library's documentation online.
+    Define several functions to perform various tasks:
+    a. open_yaml_script(): Loads data from the "flet_config.yml" file
+    b. check_pages_directory_script(): Checks if a "pages" directory exists and creates one if not
+    c. update_pages_directory_script(docs: dict): Loops over the files in the "pages" directory and deletes any files that are not listed in the navigation information
+    d. handle_navigation_routing_script(docs: dict): Loops over the navigation information and writes route strings to a temporary file
+    e. set_application_routing_script(docs: dict): Reads the temporary file created in the previous step, creates a route.py file with the appropriate routes, and deletes the temporary file
+    f. set_default_methods_script(docs: dict): Loops over the navigation information and creates default pages for each page listed, and creates a route.pickle file with information about the modules used in the application
+    g. map_yaml(yaml_file_path, output_file_path): Reads a YAML file and writes its contents to a Python file with a specified filename
+    h. script(page: ft.Page): Main function that calls the other functions to process the data and set up the application
 
-```python
-fm.Theme.set_theme(theme="teal")
-```
-
-Finally, within the main() method, you can use a new control called fm.Buttons(), which inherits its properties from several Flet classes and can be customized to your liking:
-
-```python
-button = fm.Buttons(
-    width=220,
-    height=55,
-    title="Give this repo a star!",
-)
-```
-
-That's it! You now have access to Flet Material library components! -->
+Overall, the script is part of a larger application development process that involves reading and processing data from a YAML file, creating and updating various files and directories, and setting up routing information for a web application.
 
 ## Contributing
 
