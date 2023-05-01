@@ -5,18 +5,7 @@
 
 <p align="center">
 
-[![Build Status](https://github.com/LineIndent/fletxible/actions/workflows/build.yml/badge.svg)](https://github.com/LineIndent/fletxible/actions/workflows/build.yml)
-
-
-[![Documentation](https://readthedocs.org/projects/fletxible/badge/?version=latest)](https://fletxible.readthedocs.io/en/latest/?badge=latest)
-
-
-[![Python version](https://img.shields.io/pypi/pyversions/fletxible.svg)](https://pypi.org/project/fletxible/)
-
-
-[![PyPI version](https://img.shields.io/pypi/v/Fletxible.svg)](https://pypi.org/project/Fletxible)
-
-[![PyPI downloads](https://img.shields.io/pypi/dm/Fletxible.svg)](https://pypi.org/project/Fletxible/)
+[![Build Status](https://github.com/LineIndent/fletxible/actions/workflows/build.yml/badge.svg)](https://github.com/LineIndent/fletxible/actions/workflows/build.yml) &nbsp;&nbsp;&nbsp;&nbsp; [![Documentation](https://readthedocs.org/projects/fletxible/badge/?version=latest)](https://fletxible.readthedocs.io/en/latest/?badge=latest) &nbsp;&nbsp;&nbsp;&nbsp; [![Python version](https://img.shields.io/pypi/pyversions/fletxible.svg)](https://pypi.org/project/fletxible/) &nbsp;&nbsp;&nbsp;&nbsp; [![PyPI version](https://img.shields.io/pypi/v/Fletxible.svg)](https://pypi.org/project/Fletxible) &nbsp;&nbsp;&nbsp;&nbsp; [![PyPI downloads](https://img.shields.io/pypi/dm/Fletxible.svg)](https://pypi.org/project/Fletxible/)
 
 </p>
 
