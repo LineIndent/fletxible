@@ -90,7 +90,7 @@ That's it! You now have access to Flet Material library components! -->
 
 ## Contributing
 
-Contributions are highly encouraged and welcomed. Check out the [contributon section](https://flet-material.vercel.app/contribute/) of the documentation for more details. 
+Contributions are highly encouraged and welcomed.
 
 
 ## License
