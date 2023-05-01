@@ -7,7 +7,7 @@
 </div>
 
 
-<h1 align="center" style="font-family: 'League Spartan', sans-serif;font-size: 4.5em; font-weight: 800; letter-spacing: 0.025rem;">fletxible.</h1>
+<h1 align="center" style="font-family: 'League Spartan', sans-serif; font-weight: 800; letter-spacing: 0.025rem;">fletxible.</h1>
 
 <div align="center">
   <a href="https://github.com/LineIndent/fletxible/actions/workflows/build.yml">
