@@ -1,0 +1,1 @@
+mapped_data = {'site-name': 'Flet Web Material', 'repo-url': 'https://github.com/LineIndent/flet_web_template', 'theme': [{'bgcolor': '#2e2f3e'}, {'primary': 'red'}, {'accent': 'blue300'}], 'nav': [{'Home': 'index.py'}, {'About': 'about.py'}]}

@@ -1,8 +1,17 @@
 import os, importlib.util
 import yaml
 import pickle5 as pickle
+import flet as ft
 
-from utilities import route_string_method, set_app_route_method, set_app_default_pages
+from utilities import (
+    route_string_method,
+    set_app_route_method,
+    set_app_default_pages,
+    navigation_example_method,
+)
+
+#
+route_keys: dict = {}
 
 
 def open_yaml_script() -> dict:
@@ -70,10 +79,10 @@ def set_default_methods_script(docs: dict):
     # Loop over the nav list and create/update files
     # 1. Temp. list to store the filepaths in + the modules dict
     file_list: list = []
-    route_keys: dict = {}
+    # route_keys: dict = {}
 
     # 2. Returned default page text
-    method = set_app_default_pages()
+    # method = set_app_default_pages()
 
     # 3. Loop through navigation tree and append the file_list with the filepaths
     for page in docs["nav"]:
@@ -83,22 +92,53 @@ def set_default_methods_script(docs: dict):
             file_list.append(filepath)
 
         filename = os.path.splitext(filename)[0]
+
         route_keys["/" + filename] = importlib.util.spec_from_file_location(
             filename, filepath
         )
 
-    # 4. Loop through the file_list and crate the corresponding pages
+    # 4. Loop through the file_list and create the corresponding pages
     for filepath in file_list:
+        method = set_app_default_pages()
         if not os.path.exists(filepath):
             with open(filepath, "w") as f:
                 f.write(f"{method}")
 
     # 5. Update/create the route.pickles file for modules setup
+    for file in os.listdir("pages"):
+        # Set the path of the file to loop over folders and only include files
+        path = os.path.join("pages", file)
+
+        # If the path is NOT a folder, continue ...
+        if not os.path.isdir(path):
+            # Get the list of routes from utilitites
+            navigation = navigation_example_method()
+
+            # Open the file and read it's content before seeking index points
+            with open(f"./pages/{file}", "r") as f:
+                code = f.read()
+
+            # Find the start and end index of the `<start>` and `<end>` marks
+            start_idx = code.index("# start #")
+            end_idx = code.index("# end #")
+
+            # Write your code to add between the `<start>` and `<end>` marks here
+            code_to_add = "\n".join(navigation)
+
+            # Modify the function string by inserting the new code between the start and end index
+            modified_string = (
+                code[:start_idx] + "# start #\n" + code_to_add + code[end_idx:]
+            )
+
+            with open(f"./pages/{file}", "w") as f:
+                f.write(modified_string)
+
+        else:
+            pass
+
     # the route.pickle file is a binary file!
     with open("./logic/route.pickle", "wb") as f:
         pickle.dump(route_keys, f)
-
-    # note!! Need to handle existing pags updates to content here ...
 
     # Finally, return the route_keys so we use itin the route.py logic
     return route_keys
@@ -116,7 +156,7 @@ def map_yaml(yaml_file_path, output_file_path):
         f.write(str(yaml_data))
 
 
-def script():
+def script(page: ft.Page):
     # Get the YAML file
     try:
         docs = open_yaml_script()
@@ -160,6 +200,11 @@ def script():
     try:
         route_keys: dict = set_default_methods_script(docs)
 
+        for keys, __ in route_keys.items():
+            page.views.append(route_keys[keys].loader.load_module().pageView())
+
+        page.go("/index")
+
     except Exception as e:
         print(e)
 
@@ -169,6 +214,3 @@ def script():
 
     except Exception as e:
         print(e)
-
-    # Finally, return the route_keys
-    return route_keys

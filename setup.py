@@ -2,14 +2,14 @@ from setuptools import setup
 
 setup(
     name="flet-web-template",
-    version="0.1.10",
+    version="0.1.11",
     author="S. Ahmad P. Hakimi",
     author_email="pourhakimi@pm.me",
     description="Web Boilerplate for Flet Library",
     long_description="",
     long_description_content_type="text/markdown",
     url="https://github.com/LineIndent/flet_boilerplate",
-    packages=["flet_template", "command"],
+    packages=["logic", "command"],
     install_requires=["click==8.1.3", "flet==0.6.2", " pickle5==0.0.11", "PyYAML==6.0"],
     classifiers=[
         "Programming Language :: Python :: 3",

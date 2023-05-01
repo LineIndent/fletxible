@@ -18,7 +18,7 @@ def init():
 
     # Generate each file in the templates directory
     for file_name in file_list:
-        file_path = os.path.join("flet_template", file_name)
+        file_path = os.path.join("logic", file_name)
         open(file_path, "a").close()
 
         # If it's the __init__.py file, write the import statements
