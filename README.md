@@ -1,9 +1,10 @@
 
-<div style="text-align: center">
+<div align="center>
 
 <span style="font-size:51px; font-family:League Spartan; font-weight:800; letter-spacing:0.025rem;">fletxible.</span>
 
 <p align="center">
+
 [![Build Status](https://github.com/LineIndent/fletxible/actions/workflows/build.yml/badge.svg)](https://github.com/LineIndent/fletxible/actions/workflows/build.yml)
 
 
