@@ -30,12 +30,12 @@ Fletxible is a Python web boilerplate project designed to provide a solid founda
 
 ## 1. Installation
 
-To use Flexible, you need to have the following installed:
+To use Fletxible, you need to have the following installed:
 
 -   Latest version of Flet
 -   Python 3.5+
 
-If you don't have Flet installed, installing Flexible automatically installs it for you. You can install Flexible using the following command:
+If you don't have Flet installed, installing Fletxible automatically installs it for you. You can install Fletxible using the following command:
 ```
 $ pip install Fletxible
 ```
@@ -87,7 +87,7 @@ Contributions are highly encouraged and welcomed.
 
 ## License
 
-Flexible is open-source and licensed under the [MIT License](LICENSE).
+Fletxible is open-source and licensed under the [MIT License](LICENSE).
 
 
 
