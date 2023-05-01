@@ -16,8 +16,8 @@
   <a href="https://pypi.org/project/Fletxible/">
     <img src="https://img.shields.io/pypi/v/Fletxible.svg" alt="PyPI version">
   </a>
-  <a href="https://pypi.org/project/Fletxible/">
-    <img src="https://img.shields.io/pypi/dm/Fletxible.svg" alt="PyPI downloads">
+  <a href="https://pypi.org/project/fletxible/">
+    <img src="https://img.shields.io/pypi/dm/fletxible.svg" alt="PyPI downloads">
   </a>
 </div>
 
