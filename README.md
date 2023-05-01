@@ -1,5 +1,5 @@
 
-<h1 align="center" style="font-size: 4rem;font-weight: 800; letter-spacing: 0.025rem;">fletxible.</h1>
+<h1 align="center" style="font-size: 4rem; font-weight: 800;">fletxible.</h1>
 
 <div align="center">
   <a href="https://github.com/LineIndent/fletxible/actions/workflows/build.yml">
