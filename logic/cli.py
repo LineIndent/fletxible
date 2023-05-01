@@ -1,13 +1,14 @@
 import click
 import os
+from utilities import set_up_yaml_file
 
 
 @click.command()
 def init():
     # First, create the flet_config.yml file
-    with open("flet_config.yml", "r") as f, open("flet_config.yml", "w") as j:
-        config = f.read()
-        j.write(config)
+    with open("flet_config.yml", "w") as f:
+        string = set_up_yaml_file()
+        f.write(string)
 
     # Create templates directory if it doesn't exist
     if not os.path.exists("logic"):
@@ -23,8 +24,11 @@ def init():
 
         # If it's the __init__.py file, write the import statements
         if file_name == "__init__.py":
+            with open("./logic/main.py", "r") as j:
+                init_thread = j.read()
+
             with open(file_path, "w") as f:
-                f.write()
+                f.write(init_thread)
 
         # If it's the main.py file, write the main statements
         if file_name == "main.py":

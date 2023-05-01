@@ -59,3 +59,26 @@ def pageView():
 """
 
     return string
+
+
+############################################
+######### Create config file YAML ##########
+############################################
+
+
+def set_up_yaml_file():
+    string = """
+site-name: ""
+repo-url: ""
+
+theme:
+  - bgcolor: "#2e2f3e"
+  - primary: "red"
+  - accent: "blue300"
+
+nav:
+  - Home: "index.py"
+  - About: "about.py"
+
+"""
+    return string

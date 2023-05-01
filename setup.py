@@ -1,12 +1,12 @@
 from setuptools import setup
 
 setup(
-    name="flet-web-template",
-    version="0.1.11",
+    name="Fletxible",
+    version="0.2.0",
     author="S. Ahmad P. Hakimi",
     author_email="pourhakimi@pm.me",
     description="Web Boilerplate for Flet Library",
-    long_description="",
+    long_description="Fletxible is a Python web boilerplate project designed to provide a solid foundation for building web applications with Python and Flet. The project comes pre-configured with a range of tools and features to make it easy for developers to get started building their applications, without the need to spend time setting up infrastructure or configuring tools.",
     long_description_content_type="text/markdown",
     url="https://github.com/LineIndent/flet_boilerplate",
     packages=["logic", "command"],
@@ -17,7 +17,7 @@ setup(
         "Operating System :: OS Independent",
     ],
     entry_points={
-        "console_scripts": ["flet-web-init=command.cli:init"],
+        "console_scripts": ["fletxible-init=command.cli:init"],
     },
-    keywords=["python web templates", "web application", "development"],
+    keywords=["python web template", "web application", "development"],
 )
