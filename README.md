@@ -3,33 +3,7 @@
 
 <span style="font-size:51px; font-family:League Spartan; font-weight:800; letter-spacing:0.025rem;">fletxible.</span>
 
-<!-- <p align="center">
-  <a href="https://github.com/LineIndent/material_design_flet/actions"><img
-    src="https://github.com/LineIndent/material_design_flet/actions/workflows/build.yml/badge.svg?branch=main"
-    alt="Build"
-  /></a> -->
-  <!-- <a href="https://pypistats.org/packages/Fletxible"><img
-    src="https://img.shields.io/pypi/dm/Fletxible.svg"
-    alt="Downloads"
-  /></a>
-  <a href="https://pypi.org/project/Fletxible"><img
-    src="https://img.shields.io/pypi/v/Fletxible.svg"
-    alt="Python Package Index"
-  /></a> -->
-
-<!-- <img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/Fletxible"> -->
-
-</p>
-
-<!-- <p align="center">
-  <a href="https://flet-material.vercel.app"><img
-    src="https://img.shields.io/badge/docs-available-brightgreen.svg"
-    alt="Docs"
-  /></a>
-
-  </p> -->
-
-
+<p align="center">
 [![Build Status](https://github.com/LineIndent/fletxible/actions/workflows/build.yml/badge.svg)](https://github.com/LineIndent/fletxible/actions/workflows/build.yml)
 
 
@@ -40,8 +14,10 @@
 
 
 [![PyPI version](https://img.shields.io/pypi/v/Fletxible.svg)](https://pypi.org/project/Fletxible)
+
 [![PyPI downloads](https://img.shields.io/pypi/dm/Fletxible.svg)](https://pypi.org/project/Fletxible/)
 
+</p>
 
 </div>
 
