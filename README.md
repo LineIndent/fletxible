@@ -1,8 +1,8 @@
-
 <div align="center>
 
 <span style="font-size:51px; font-family:League Spartan; font-weight:800; letter-spacing:0.025rem;">fletxible.</span>
 
+</div>
 
 <div align="center">
   <a href="https://github.com/LineIndent/fletxible/actions/workflows/build.yml">
@@ -22,10 +22,7 @@
   </a>
 </div>
 
-
 <br>
-<br>
-
 
 <p align="center">
 Fletxible is a Python web boilerplate project designed to provide a solid foundation for building web applications with Python and Flet. The project comes pre-configured with a range of tools and features to make it easy for developers to get started building their applications, without the need to spend time setting up infrastructure or configuring tools.</p>
