@@ -1,5 +1,5 @@
 
-<h1 align="center" style="font-size: 5em; font-weight: 800;">fletxible.</h1>
+<h1 align="center" style="font-size: 5em; font-weight: 100;">fletxible.</h1>
 
 
 
