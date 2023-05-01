@@ -1,6 +1,8 @@
 <div align="center">
 
-<span style="font-size:51px; font-family:League Spartan; font-weight:800; letter-spacing:0.025rem;">fletxible.</span>
+<div align="center">
+  <span style="font-family: 'League Spartan', sans-serif; font-size: 51px; font-weight: 800; letter-spacing: 0.025rem;">fletxible.</span>
+</div>
 
 </div>
 
