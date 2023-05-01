@@ -8,11 +8,9 @@
   <a href="https://github.com/LineIndent/fletxible/actions/workflows/build.yml">
     <img src="https://github.com/LineIndent/fletxible/actions/workflows/build.yml/badge.svg" alt="Build Status">
   </a>
-  <br>
   <a href="https://fletxible.readthedocs.io/en/latest/?badge=latest">
     <img src="https://readthedocs.org/projects/fletxible/badge/?version=latest" alt="Documentation">
   </a>
-  <br>
   <a href="https://pypi.org/project/fletxible/">
     <img src="https://img.shields.io/pypi/pyversions/fletxible.svg" alt="Python version">
   </a>
