@@ -30,7 +30,7 @@ Fletxible is a Python web boilerplate project designed to provide a solid founda
 
 ## 1. Installation
 
-To use Flet Material, you need to have the following installed:
+To use Flexible, you need to have the following installed:
 
 -   Latest version of Flet
 -   Python 3.5+
@@ -87,7 +87,7 @@ Contributions are highly encouraged and welcomed.
 
 ## License
 
-Flet Material Library is open-source and licensed under the [MIT License](LICENSE).
+Flexible is open-source and licensed under the [MIT License](LICENSE).
 
 
 
