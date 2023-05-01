@@ -59,24 +59,24 @@ The ```logic``` directory will contain four files:
 3. ```script.py```
 4. ```utilities.py```
 
-## Current Algorithm Functions
+## 3. Current Algorithm Functions
 
 This algorithm is a script that loads and processes data from a YAML file ```flet_config.yml``` that contains navigation information for a web application. The script then updates and creates various files and directories necessary for the application to function.
 
 Here is a summary of what the algorithm does (v0.2.0):
 
-    Import necessary libraries and functions
-    Define a dictionary variable to hold route keys
+1. Import necessary libraries and functions
+2. Define a dictionary variable to hold route keys
 
-    Define several functions to perform various tasks:
-    a. open_yaml_script(): Loads data from the "flet_config.yml" file
-    b. check_pages_directory_script(): Checks if a "pages" directory exists and creates one if not
-    c. update_pages_directory_script(docs: dict): Loops over the files in the "pages" directory and deletes any files that are not listed in the navigation information
-    d. handle_navigation_routing_script(docs: dict): Loops over the navigation information and writes route strings to a temporary file
-    e. set_application_routing_script(docs: dict): Reads the temporary file created in the previous step, creates a route.py file with the appropriate routes, and deletes the temporary file
-    f. set_default_methods_script(docs: dict): Loops over the navigation information and creates default pages for each page listed, and creates a route.pickle file with information about the modules used in the application
-    g. map_yaml(yaml_file_path, output_file_path): Reads a YAML file and writes its contents to a Python file with a specified filename
-    h. script(page: ft.Page): Main function that calls the other functions to process the data and set up the application
+3. Define several functions to perform various tasks:
+a. open_yaml_script(): Loads data from the "flet_config.yml" file
+b. check_pages_directory_script(): Checks if a "pages" directory exists and creates one if not
+c. update_pages_directory_script(docs: dict): Loops over the files in the "pages" directory and deletes any files that are not listed in the navigation information
+d. handle_navigation_routing_script(docs: dict): Loops over the navigation information and writes route strings to a temporary file
+e. set_application_routing_script(docs: dict): Reads the temporary file created in the previous step, creates a route.py file with the appropriate routes, and deletes the temporary file
+f. set_default_methods_script(docs: dict): Loops over the navigation information and creates default pages for each page listed, and creates a route.pickle file with information about the modules used in the application
+g. map_yaml(yaml_file_path, output_file_path): Reads a YAML file and writes its contents to a Python file with a specified filename
+h. script(page: ft.Page): Main function that calls the other functions to process the data and set up the application
 
 Overall, the script is part of a larger application development process that involves reading and processing data from a YAML file, creating and updating various files and directories, and setting up routing information for a web application.
 
