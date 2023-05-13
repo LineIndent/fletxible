@@ -1,6 +1,6 @@
 import os, importlib.util
 import yaml
-import pickle5 as pickle
+import pickle
 import flet as ft
 
 from utilities import (
