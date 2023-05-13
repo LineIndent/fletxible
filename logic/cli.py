@@ -1,7 +1,34 @@
 import click
 import os
-from logic.utilities import set_up_yaml_file
+from logic.utilities import set_up_yaml_file, set_up_main_method
 from pathlib import Path
+import subprocess
+
+
+def init_main_method():
+    target_dir = None
+    target_file = None
+
+    base = os.path.basename(os.getcwd())
+
+    for dir in os.listdir():
+        if dir == base:
+            target_dir = dir
+
+    if target_dir:
+        for file in os.listdir(target_dir):
+            file_path = os.path.join(target_dir, file)
+            if os.path.isfile(file_path) and file == "main.py":
+                target_file = file
+
+    if target_file:
+        target_file_path = os.path.join(target_dir, target_file)
+        string = set_up_main_method()
+        with open(target_file_path, "w") as f:
+            f.write(string)
+
+    else:
+        pass
 
 
 @click.command()
@@ -35,7 +62,13 @@ def init():
     click.echo(f"Generated {len(file_list)} files in the 'logic' directory:")
     for files in file_list:
         click.echo(f"● {files}")
+    click.echo("Status: OK")
     click.echo()
+
+    click.echo("Configuring main.py ...")
+    init_main_method()
+    subprocess.run(["flet", "-r", "logic/main.py"], capture_output=True, text=True)
+    click.echo("Status: OK")
 
 
 @click.group()
