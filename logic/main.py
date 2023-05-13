@@ -7,6 +7,11 @@ def main(page: ft.Page):
     script(page)
     page.update()
 
+    # playground
+    a = page.platform  # prints OS name: macos, ios, etc ...
+
+    # page.on_resize = delta_event
+
 
 if __name__ == "__main__":
     ft.flet.app(target=main)

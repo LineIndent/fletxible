@@ -69,11 +69,6 @@ def pageView():
     return string
 
 
-############################################
-######### Create config file YAML ##########
-############################################
-
-
 def set_up_yaml_file():
     string = """
 site-name: ""
