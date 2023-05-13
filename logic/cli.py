@@ -67,7 +67,7 @@ def init():
 
     click.echo("Configuring main.py ...")
     init_main_method()
-    subprocess.run(["flet", "-r", "logic/main.py"], capture_output=True, text=True)
+    subprocess.run(["python3", "logic/main.py"], capture_output=True, text=True)
     click.echo("Status: OK")
 
 

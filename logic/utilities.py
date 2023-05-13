@@ -73,7 +73,7 @@ repo-url: ""
 
 theme:
   - bgcolor: "#2e2f3e"
-  - primary: "red"
+  - primary: "teal"
   - accent: "blue300"
 
 nav:
