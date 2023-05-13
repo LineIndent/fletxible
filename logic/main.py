@@ -3,6 +3,7 @@ from script import script
 
 
 def main(page: ft.Page):
+    # Run main automation script ...
     script(page)
     page.update()
 

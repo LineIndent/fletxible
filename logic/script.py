@@ -81,10 +81,7 @@ def set_default_methods_script(docs: dict):
     file_list: list = []
     # route_keys: dict = {}
 
-    # 2. Returned default page text
-    # method = set_app_default_pages()
-
-    # 3. Loop through navigation tree and append the file_list with the filepaths
+    # 2. Loop through navigation tree and append the file_list with the filepaths
     for page in docs["nav"]:
         for key in page:
             filename = f"{page[key]}"
@@ -97,14 +94,14 @@ def set_default_methods_script(docs: dict):
             filename, filepath
         )
 
-    # 4. Loop through the file_list and create the corresponding pages
+    # 3. Loop through the file_list and create the corresponding pages
     for filepath in file_list:
         method = set_app_default_pages()
         if not os.path.exists(filepath):
             with open(filepath, "w") as f:
                 f.write(f"{method}")
 
-    # 5. Update/create the route.pickles file for modules setup
+    # 4. Update/create the route.pickles file for modules setup
     for file in os.listdir("pages"):
         # Set the path of the file to loop over folders and only include files
         path = os.path.join("pages", file)
@@ -136,11 +133,11 @@ def set_default_methods_script(docs: dict):
         else:
             pass
 
-    # the route.pickle file is a binary file!
+    # 5. The route.pickle file is a binary file!
     with open("./logic/route.pickle", "wb") as f:
         pickle.dump(route_keys, f)
 
-    # Finally, return the route_keys so we use itin the route.py logic
+    # 6. Finally, return the route_keys so we use itin the route.py logic
     return route_keys
 
 

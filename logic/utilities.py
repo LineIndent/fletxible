@@ -42,18 +42,26 @@ from route import route
 def pageView():
     return ft.View(
         horizontal_alignment="center",
-        vertical_alignment="center",
+        vertical_alignment="start",
         controls=[
-            ft.Row(
-                alignment="center",
-                controls=
-                    [
-                    # start #
-                    
-                    # end #       
+           ft.Row(
+                alignment="spaceAround",
+                controls=[
+                    ft.Row(
+                        alignment="start",
+                        controls=[ft.Text("fletxible.", size=21, weight="w700")],
+                    ),
+                ft.Row(
+                    alignment="center",
+                    controls=
+                        [
+                        # start #
+                        
+                        # end #       
+                    ],
+                ),
                 ],
             ),
-            ft.Text("Hello World!", size=21)
         ]
     )
 """
