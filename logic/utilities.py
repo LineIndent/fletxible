@@ -88,11 +88,13 @@ nav:
 
 
 def set_up_main_method():
-    string = """import flet as ft
+    string = """# Modules for Flet and Fletxible
+import flet as ft
 from script import script
 
 
 def main(page: ft.Page):
+    # Run main script ... 
     script(page)
     page.update()
 
