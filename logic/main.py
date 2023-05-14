@@ -8,7 +8,7 @@ def main(page: ft.Page):
     page.update()
 
     # playground
-    a = page.platform  # prints OS name: macos, ios, etc ...
+    page.platform  # prints OS name: macos, ios, etc ...
 
     # page.on_resize = delta_event
 
