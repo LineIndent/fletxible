@@ -108,7 +108,6 @@ def set_app_default_pages():
 import flet as ft
 from route import route
 
-
 class ViewControls(ft.UserControl):
     def __init__(self):
         #
@@ -147,14 +146,6 @@ class ViewControls(ft.UserControl):
                         alignment="center",
                         controls=[
                             # start #
-                            ft.Text(
-                                size=13,
-                                weight="bold",
-                                spans=[
-                                    ft.TextSpan(
-                                        "index",
-                                    )
-                                ],
                             ),  # end #
                         ],
                     ),
@@ -177,14 +168,13 @@ class ViewControls(ft.UserControl):
         #
         return self.stack
 
-
 class View(ft.View):
     def __init__(
         self,
         *args,
         bgcolor="#23262d",
         padding=0,
-        controls: list,
+        controls=[ViewControls()],
         **kwargs,
     ):
         super().__init__(

@@ -200,12 +200,7 @@ def script(page: ft.Page):
         route_keys: dict = set_default_methods_script(docs)
 
         for keys, __ in route_keys.items():
-            control_ui = ViewControls()
-            page.views.append(
-                route_keys[keys].loader.load_module().View(controls=[control_ui])
-            )
-
-            control_keys.append(control_ui)
+            page.views.append(route_keys[keys].loader.load_module().View())
 
         page.go("/index")
 

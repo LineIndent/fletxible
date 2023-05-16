@@ -1,0 +1,1 @@
+mapped_data = {'site-name': '', 'repo-url': '', 'theme': [{'bgcolor': '#2e2f3e'}, {'primary': 'teal'}, {'accent': 'blue300'}], 'nav': [{'Home': 'index.py'}, {'About': 'about.py'}, {'Contact': 'contact.py'}]}
