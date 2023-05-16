@@ -55,6 +55,14 @@ class ViewControls(ft.UserControl):
         #
         self.right_panel = ft.Container(expand=1, bgcolor="teal700")
 
+        self.nav = ft.Row(
+            alignment="center",
+            controls=[
+                # start #
+                # end #
+            ],
+        )
+
         #
         self.header = ft.Container(
             bgcolor="#34373e",
@@ -72,18 +80,22 @@ class ViewControls(ft.UserControl):
                         alignment="start",
                         controls=[ft.Text("fletxible.", size=21, weight="w700")],
                     ),
-                    ft.Row(
-                        alignment="center",
-                        controls=[
-                            # start #
-                            ),  # end #
-                        ],
-                    ),
+                    self.nav,
                 ],
             ),
         )
         super().__init__()
 
+    
+    def hide_navigation(self):
+        self.nav.visible = False
+        self.nav.update()
+    
+    
+    def show_navigation(self):
+        self.nav.visible = True
+        self.nav.update()
+    
     def build(self):
         #
         self.row.controls = [
