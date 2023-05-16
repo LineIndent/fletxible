@@ -104,7 +104,7 @@ class ViewControls(ft.UserControl):
         #
 
         #
-        self.stack.controls = [ft.Container(expand=True, content=self.row), self.header]
+        self.stack.controls = [self.row, self.header]
 
         #
         return self.stack
