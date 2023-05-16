@@ -119,7 +119,6 @@ class View(ft.View):
         controls: list,
         **kwargs,
     ):
-        kwargs.setdefault("expand", True)
         super().__init__(
             *args,
             bgcolor=bgcolor,
