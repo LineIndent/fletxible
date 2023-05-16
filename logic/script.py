@@ -4,6 +4,7 @@ import pickle
 import flet as ft
 
 from utilities import (
+    ViewControls,
     route_string_method,
     set_app_route_method,
     set_app_default_pages,
@@ -12,6 +13,7 @@ from utilities import (
 
 #
 route_keys: dict = {}
+control_keys: list = []
 
 
 def open_yaml_script() -> dict:
@@ -198,7 +200,12 @@ def script(page: ft.Page):
         route_keys: dict = set_default_methods_script(docs)
 
         for keys, __ in route_keys.items():
-            page.views.append(route_keys[keys].loader.load_module().View().pageView())
+            control_ui = ViewControls()
+            page.views.append(
+                route_keys[keys].loader.load_module().View(controls=[control_ui])
+            )
+
+            control_keys.append(control_ui)
 
         page.go("/index")
 
