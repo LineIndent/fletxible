@@ -62,11 +62,15 @@ class ViewControls(ft.UserControl):
                 # end #
             ],
         )
+        
+        # 
+        self.nav_mobile = ft.IconButton(icon=ft.icons.ADD, visible=False)
 
         #
         self.header = ft.Container(
             bgcolor="#34373e",
             height=60,
+            padding=ft.padding.only(left=20, right=20),
             shadow=ft.BoxShadow(
                 spread_radius=2,
                 blur_radius=4,
@@ -74,13 +78,14 @@ class ViewControls(ft.UserControl):
                 offset=ft.Offset(2, 2),
             ),
             content=ft.Row(
-                alignment="spaceAround",
+                alignment="spaceBetween",
                 controls=[
                     ft.Row(
                         alignment="start",
                         controls=[ft.Text("fletxible.", size=21, weight="w700")],
                     ),
                     self.nav,
+                    self.nav_mobile,
                 ],
             ),
         )
@@ -90,11 +95,17 @@ class ViewControls(ft.UserControl):
     def hide_navigation(self):
         self.nav.visible = False
         self.nav.update()
+        
+        self.nav_mobile.visible = True
+        self.nav_mobile.update()
     
     
     def show_navigation(self):
         self.nav.visible = True
         self.nav.update()
+    
+        self.nav_mobile.visible = False
+        self.nav_mobile.update()
     
     def build(self):
         #
