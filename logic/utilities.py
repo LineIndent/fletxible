@@ -1,78 +1,8 @@
 import os
-import flet as ft
-
-
-class ViewControls(ft.UserControl):
-    def __init__(self):
-        #
-        self.stack = ft.Stack(expand=True)
-
-        #
-        self.row = ft.Row()
-
-        #
-        self.left_panel = ft.Container(expand=1, bgcolor="teal700")
-
-        #
-        self.middle_panel = ft.Container(expand=4, bgcolor="teal700")
-
-        #
-        self.right_panel = ft.Container(expand=1, bgcolor="teal700")
-
-        #
-        self.header = ft.Container(
-            bgcolor="#34373e",
-            height=60,
-            shadow=ft.BoxShadow(
-                spread_radius=2,
-                blur_radius=4,
-                color=ft.colors.with_opacity(0.25, "black"),
-                offset=ft.Offset(2, 2),
-            ),
-            content=ft.Row(
-                alignment="spaceAround",
-                controls=[
-                    ft.Row(
-                        alignment="start",
-                        controls=[ft.Text("fletxible.", size=21, weight="w700")],
-                    ),
-                    ft.Row(
-                        alignment="center",
-                        controls=[
-                            # start #
-                            ft.Text(
-                                size=13,
-                                weight="bold",
-                                spans=[
-                                    ft.TextSpan(
-                                        "index",
-                                    )
-                                ],
-                            ),  # end #
-                        ],
-                    ),
-                ],
-            ),
-        )
-        super().__init__()
-
-    def build(self):
-        #
-        self.row.controls = [
-            self.left_panel,
-            self.middle_panel,
-            self.right_panel,
-        ]
-
-        #
-        self.stack.controls = [self.row, self.header]
-
-        #
-        return self.stack
 
 
 def route_string_method(route):
-    string = f"\tif route == '/{route}':\n\t\te.page.views.append(route_keys[route].loader.load_module().View().pageView())\n\t\te.page.go('/{route}')\n"
+    string = f"\tif route == '/{route}':\n\t\te.page.views.append(route_keys[route].loader.load_module().View())\n\t\te.page.go('/{route}')\n"
 
     string = string.expandtabs(4)
     return string
