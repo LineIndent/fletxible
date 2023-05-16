@@ -2,7 +2,7 @@ import os
 
 
 def route_string_method(route):
-    string = f"\tif route == '/{route}':\n\t\te.page.views.append(route_keys[route].loader.load_module().pageView())\n\t\te.page.go('/{route}')\n"
+    string = f"\tif route == '/{route}':\n\t\te.page.views.append(route_keys[route].loader.load_module().View().pageView())\n\t\te.page.go('/{route}')\n"
 
     string = string.expandtabs(4)
     return string
@@ -38,32 +38,36 @@ def set_app_default_pages():
 import flet as ft
 from route import route
 
-# main view
-def pageView():
-    return ft.View(
-        horizontal_alignment="center",
-        vertical_alignment="start",
-        controls=[
-           ft.Row(
-                alignment="spaceAround",
-                controls=[
+
+class View:
+    def __init__(self):
+        super().__init__()
+        
+    def pageView(self):
+        return ft.View(
+            horizontal_alignment="center",
+            vertical_alignment="start",
+            controls=[
+            ft.Row(
+                    alignment="spaceAround",
+                    controls=[
+                        ft.Row(
+                            alignment="start",
+                            controls=[ft.Text("fletxible.", size=21, weight="w700")],
+                        ),
                     ft.Row(
-                        alignment="start",
-                        controls=[ft.Text("fletxible.", size=21, weight="w700")],
+                        alignment="center",
+                        controls=
+                            [
+                            # start #
+                            
+                            # end #       
+                        ],
                     ),
-                ft.Row(
-                    alignment="center",
-                    controls=
-                        [
-                        # start #
-                        
-                        # end #       
                     ],
                 ),
-                ],
-            ),
-        ]
-    )
+            ]
+        )
 """
 
     return string

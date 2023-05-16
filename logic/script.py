@@ -198,7 +198,7 @@ def script(page: ft.Page):
         route_keys: dict = set_default_methods_script(docs)
 
         for keys, __ in route_keys.items():
-            page.views.append(route_keys[keys].loader.load_module().pageView())
+            page.views.append(route_keys[keys].loader.load_module().View().pageView())
 
         page.go("/index")
 
