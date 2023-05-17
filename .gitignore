@@ -4,3 +4,7 @@ build
 Fletxible.egg-info
 flet_config
 pages
+styles
+logic/mapped
+logic/route
+logic/route

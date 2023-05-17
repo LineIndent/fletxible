@@ -1,13 +1,14 @@
 import flet as ft
 import asyncio
+from styles import admonitions_color_scheme
 
 
 def title(title):
     return ft.Text(value=title, size=21, weight="bold")
 
 
-def subtitle(title):
-    return ft.Text(value=title, size=17, weight="w700")
+def subtitle(title, key=None):
+    return ft.Text(value=title, size=17, weight="w700", key=key)
 
 
 def text(title):
@@ -122,3 +123,107 @@ class CodeBlock(ft.UserControl):
                 )
             ],
         )
+
+
+class Admonitions(ft.Container):
+    def __init__(
+        self,
+        type_: str,
+        expanded_height: int,
+        expanded: bool,
+        icon_visible: bool,
+        controls_list: list,
+        *args,
+        **kwargs,
+    ):
+        #
+        self.type_ = type_
+        self.expanded_height = expanded_height
+        self.expanded = expanded
+        self.controls_list = controls_list
+
+        # define: control
+        self.column = ft.Column(
+            controls=self.controls_list,
+        )
+
+        # define admonition title properties
+        bgcolor = admonitions_color_scheme.get(self.type_, {}).get("bgcolor", "#20222c")
+        border_color = admonitions_color_scheme.get(self.type_, {}).get(
+            "border_color", "white24"
+        )
+        icon = admonitions_color_scheme.get(self.type_, {}).get("icon", "white24")
+
+        self.container = ft.Container(
+            height=45,
+            bgcolor=ft.colors.with_opacity(0.95, bgcolor),
+            border_radius=6,
+            padding=10,
+            content=ft.Row(
+                alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                controls=[
+                    ft.Row(
+                        vertical_alignment="center",
+                        alignment="start",
+                        spacing=10,
+                        controls=[
+                            ft.Icon(
+                                name=icon,
+                                color=border_color,
+                                size=18,
+                                visible=icon_visible,
+                            ),
+                            ft.Text(
+                                self.type_.capitalize(),
+                                size=11,
+                                weight="w700",
+                            ),
+                        ],
+                    ),
+                    ft.IconButton(
+                        icon=ft.icons.ADD,
+                        icon_size=15,
+                        icon_color=border_color,
+                        rotate=ft.Rotate(0, ft.alignment.center),
+                        animate_rotation=ft.Animation(400, "easeOutBack"),
+                        on_click=lambda e: self.resize_admonition(e),
+                    ),
+                ],
+            ),
+        )
+
+        kwargs.setdefault("border", ft.border.all(0.95, border_color))
+        kwargs.setdefault("clip_behavior", ft.ClipBehavior.HARD_EDGE)
+        kwargs.setdefault("animate", ft.Animation(250, "ease"))
+        kwargs.setdefault("expand", self.expanded)
+        kwargs.setdefault("border_radius", 6)
+        kwargs.setdefault("height", 48)
+        kwargs.setdefault("padding", 0)
+        kwargs.setdefault(
+            "content",
+            ft.Column(
+                alignment="start",
+                spacing=0,
+                controls=[
+                    self.container,
+                    self.column,
+                ],
+            ),
+        )
+
+        super().__init__(*args, **kwargs)
+
+    # method: expand and retract admonition control + animation set
+    def resize_admonition(self, e):
+        if self.height != self.expanded_height:
+            self.height = self.expanded_height
+            self.container.border_radius = ft.border_radius.only(
+                top_left=6, top_right=6
+            )
+            e.control.rotate = ft.Rotate(0.75, ft.alignment.center)
+        else:
+            self.height = 48
+            e.control.rotate = ft.Rotate(0, ft.alignment.center)
+            self.container.border_radius = 6
+
+        self.update()

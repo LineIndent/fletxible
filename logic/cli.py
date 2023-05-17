@@ -42,7 +42,14 @@ def init():
     Path("logic").mkdir(exist_ok=True)
 
     # Define the list of files to be generated
-    file_list = ["__init__.py", "main.py", "script.py", "utilities.py"]
+    file_list = [
+        "__init__.py",
+        "main.py",
+        "script.py",
+        "utilities.py",
+        "styles.py",
+        "controls.py",
+    ]
 
     # Generate each file in the templates directory
     for file_name in file_list:

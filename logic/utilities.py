@@ -59,7 +59,9 @@ class ViewControls(ft.UserControl):
 
         #
         self.middle_panel = ft.Container(
-            expand=4,
+            expand=5,
+            padding=ft.padding.only(top=65, right=15, left=15),
+            alignment=ft.alignment.top_center,
             content=ft.Column(
                 expand=True,
                 scroll="hidden",
@@ -89,7 +91,9 @@ class ViewControls(ft.UserControl):
         )
 
         #
-        self.nav_mobile = ft.IconButton(icon=ft.icons.ADD, visible=False)
+        self.nav_mobile = ft.IconButton(
+            icon=ft.icons.MENU_SHARP, visible=False, icon_size=14, icon_color="white"
+        )
 
         #
         self.header = ft.Container(

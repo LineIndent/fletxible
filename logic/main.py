@@ -6,7 +6,7 @@ def main(page: ft.Page):
     # Run main automation script ...
     script(page)
 
-    # Transition theme ...
+    # Web theme ...
     theme = ft.Theme(
         scrollbar_theme=ft.ScrollbarTheme(
             thickness=4,
@@ -20,7 +20,7 @@ def main(page: ft.Page):
 
     # Responsive navigation logic ...
     def resize_event(event):
-        if page.width <= 700:
+        if page.width <= 900:
             for nav in page.views[-1].controls[:]:
                 nav.content.hide_navigation()
 
