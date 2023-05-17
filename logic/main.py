@@ -15,11 +15,11 @@ def main(page: ft.Page):
     def resize_event(event):
         if page.width <= 700:
             for nav in page.views[-1].controls[:]:
-                nav.hide_navigation()
+                nav.content.hide_navigation()
 
         else:
             for nav in page.views[-1].controls[:]:
-                nav.show_navigation()
+                nav.content.show_navigation()
 
     # Page events ...
     page.on_resize = resize_event
