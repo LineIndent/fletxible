@@ -8,3 +8,7 @@ styles
 logic/mapped
 logic/route
 logic/route
+logic/__pycache__
+logic/mapped
+.DS_Store
+
