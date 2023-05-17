@@ -11,15 +11,6 @@ def main(page: ft.Page):
     theme.page_transitions.macos = ft.PageTransitionTheme.NONE
     page.theme = theme
 
-    # Responsive naivgation logic => set navigation for mobile/desktop
-    def get_mobile():
-        if page.platform == "ios":
-            for nav in page.views[-1].controls[:]:
-                nav.hide_navigation()
-
-            for nav in page.views[-1].controls[:]:
-                nav.show_navigation()
-
     # Responsive navigation logic ...
     def resize_event(event):
         if page.width <= 700:
@@ -30,12 +21,10 @@ def main(page: ft.Page):
             for nav in page.views[-1].controls[:]:
                 nav.show_navigation()
 
+    # Page events ...
     page.on_resize = resize_event
-
-    get_mobile()
-
     page.update()
 
 
 if __name__ == "__main__":
-    ft.flet.app(target=main, view="web_browser")
+    ft.flet.app(target=main)

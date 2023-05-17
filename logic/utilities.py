@@ -44,26 +44,51 @@ class ViewControls(ft.UserControl):
         self.stack = ft.Stack(expand=True)
 
         #
-        self.row = ft.Row()
+        self.row = ft.Row(expand=True, spacing=2)
 
         #
-        self.left_panel = ft.Container(expand=1, bgcolor="teal700")
+        self.left_panel = ft.Container(
+            expand=1,
+            padding=ft.padding.only(top=65),
+            content=ft.Column(
+                expand=True,
+                alignment="start",
+                controls=[],
+            ),
+        )
 
         #
-        self.middle_panel = ft.Container(expand=4, bgcolor="teal700")
+        self.middle_panel = ft.Container(
+            expand=4,
+            content=ft.Column(
+                expand=True,
+                scroll="hidden",
+                alignment="start",
+                controls=[],
+            ),
+        )
 
         #
-        self.right_panel = ft.Container(expand=1, bgcolor="teal700")
+        self.right_panel = ft.Container(
+            expand=1,
+            padding=ft.padding.only(top=65),
+            content=ft.Column(
+                expand=True,
+                alignment="start",
+                controls=[],
+            ),
+        )
 
         self.nav = ft.Row(
             alignment="center",
             controls=[
                 # start #
+                
                 # end #
             ],
         )
-        
-        # 
+
+        #
         self.nav_mobile = ft.IconButton(icon=ft.icons.ADD, visible=False)
 
         #
@@ -91,22 +116,20 @@ class ViewControls(ft.UserControl):
         )
         super().__init__()
 
-    
     def hide_navigation(self):
         self.nav.visible = False
         self.nav.update()
-        
+
         self.nav_mobile.visible = True
         self.nav_mobile.update()
-    
-    
+
     def show_navigation(self):
         self.nav.visible = True
         self.nav.update()
-    
+
         self.nav_mobile.visible = False
         self.nav_mobile.update()
-    
+
     def build(self):
         #
         self.row.controls = [
@@ -121,13 +144,14 @@ class ViewControls(ft.UserControl):
         #
         return self.stack
 
+
 class View(ft.View):
     def __init__(
         self,
         *args,
         bgcolor="#23262d",
         padding=0,
-        controls=[ViewControls()],
+        controls=[ft.Container(expand=True, content=ViewControls())],
         **kwargs,
     ):
         super().__init__(
@@ -137,6 +161,7 @@ class View(ft.View):
             controls=controls,
             **kwargs,
         )
+
 """
 
     return string
