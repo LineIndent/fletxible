@@ -7,7 +7,14 @@ def main(page: ft.Page):
     script(page)
 
     # Transition theme ...
-    theme = ft.Theme()
+    theme = ft.Theme(
+        scrollbar_theme=ft.ScrollbarTheme(
+            thickness=4,
+            radius=10,
+            main_axis_margin=5,
+            cross_axis_margin=-10,
+        )
+    )
     theme.page_transitions.macos = ft.PageTransitionTheme.NONE
     page.theme = theme
 
