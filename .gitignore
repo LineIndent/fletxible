@@ -11,4 +11,4 @@ logic/route
 logic/__pycache__
 logic/mapped
 .DS_Store
-
+.vscode

@@ -1,6 +1,0 @@
-{
-    "python.analysis.extraPaths": [
-        "./flet_template",
-        "./logic"
-    ]
-}
