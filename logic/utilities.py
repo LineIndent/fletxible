@@ -123,6 +123,12 @@ class ViewControls(ft.UserControl):
     def hide_navigation(self):
         self.nav.visible = False
         self.nav.update()
+        
+        self.left_panel.visible = False
+        self.left_panel.update()
+
+        self.right_panel.visible = False
+        self.right_panel.update()
 
         self.nav_mobile.visible = True
         self.nav_mobile.update()
@@ -130,6 +136,12 @@ class ViewControls(ft.UserControl):
     def show_navigation(self):
         self.nav.visible = True
         self.nav.update()
+        
+        self.left_panel.visible = True
+        self.left_panel.update()
+
+        self.right_panel.visible = True
+        self.right_panel.update()
 
         self.nav_mobile.visible = False
         self.nav_mobile.update()
