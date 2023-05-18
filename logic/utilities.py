@@ -46,6 +46,9 @@ class ViewControls(ft.UserControl):
         #
         self.row = ft.Row(expand=True, spacing=2)
 
+        # 
+        # self.drawer = 
+        
         #
         self.left_panel = ft.Container(
             expand=1,

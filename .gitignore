@@ -4,11 +4,9 @@ build
 Fletxible.egg-info
 flet_config
 pages
-styles
-logic/mapped
-logic/route
-logic/route
+logic/mapped.py
+logic/route.pickle
+logic/route.py
 logic/__pycache__
-logic/mapped
 .DS_Store
 .vscode

@@ -30,6 +30,7 @@ def main(page: ft.Page):
 
     # Page events ...
     page.on_resize = resize_event
+    resize_event(None)
     page.update()
 
 
