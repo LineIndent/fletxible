@@ -17,7 +17,7 @@ def navigation_example_method():
         # If the path is NOT a folder, continue ...
         if not os.path.isdir(path):
             filename = os.path.splitext(file)[0]
-            string = f"ft.Text(size=13, weight='bold', spans=[ft.TextSpan('{filename}', on_click=lambda e: route(e, '/{filename}'))]),"
+            string = f"ft.Text(size=13, weight='bold', spans=[ft.TextSpan('{filename.capitalize()}', on_click=lambda e: route(e, '/{filename}'))]),"
             route_list.append(string)
 
     return route_list
