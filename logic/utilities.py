@@ -46,8 +46,15 @@ class ViewControls(ft.UserControl):
         #
         self.row = ft.Row(expand=True, spacing=2)
 
-        # 
-        # self.drawer = 
+        #
+        self.drawer = ft.Container(
+            expand=True,
+            width=0,
+            bgcolor="#23262d",
+            animate=ft.Animation(550, "ease"),
+            content=ft.Column(expand=True),
+            shadow=None,
+        )
         
         #
         self.left_panel = ft.Container(
@@ -95,14 +102,16 @@ class ViewControls(ft.UserControl):
 
         #
         self.nav_mobile = ft.IconButton(
-            icon=ft.icons.MENU_SHARP, visible=False, icon_size=14, icon_color="white"
+            icon=ft.icons.MENU_SHARP, visible=False, icon_size=14, icon_color="white",
+            on_click=lambda e: self.show_drawer(e),
+
         )
 
         #
         self.header = ft.Container(
             bgcolor="#34373e",
             height=60,
-            padding=ft.padding.only(left=20, right=20),
+            padding=ft.padding.only(left=60, right=60),
             shadow=ft.BoxShadow(
                 spread_radius=2,
                 blur_radius=4,
@@ -123,6 +132,22 @@ class ViewControls(ft.UserControl):
         )
         super().__init__()
 
+    def show_drawer(self, e):
+        if self.drawer.width != 220:
+            self.drawer.width = 220
+            self.drawer.shadow = ft.BoxShadow(
+                blur_radius=15,
+                spread_radius=8,
+                color=ft.colors.with_opacity(0.25, "black"),
+                offset=(4, 4),
+            )
+
+        else:
+            self.drawer.width = 0
+            self.drawer.shadow = None
+
+        self.drawer.update()
+
     def hide_navigation(self):
         self.nav.visible = False
         self.nav.update()
@@ -137,6 +162,10 @@ class ViewControls(ft.UserControl):
         self.nav_mobile.update()
 
     def show_navigation(self):
+        self.drawer.width = 0
+        self.drawer.shadow = None
+        self.drawer.update()
+        
         self.nav.visible = True
         self.nav.update()
         
@@ -158,7 +187,7 @@ class ViewControls(ft.UserControl):
         ]
 
         #
-        self.stack.controls = [self.row, self.header]
+        self.stack.controls = [self.row, self.header, self.drawer]
 
         #
         return self.stack

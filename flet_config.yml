@@ -1,2 +1,3 @@
 nav:
   - Home: "index.py"
+  - About: "about.py"
