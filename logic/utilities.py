@@ -37,6 +37,198 @@ def set_app_default_pages():
     string = """# Flet module import
 import flet as ft
 from route import route
+from controls import generate_right_rail
+
+class Header(ft.Container):
+    def __init__(
+        self,
+        *args,
+        bgcolor="#34373e",
+        height=60,
+        padding=ft.padding.only(left=60, right=60),
+        shadow=ft.BoxShadow(
+            spread_radius=2,
+            blur_radius=4,
+            color=ft.colors.with_opacity(0.25, "black"),
+            offset=ft.Offset(2, 2),
+        ),
+        full_nav: ft.Row,
+        mobile_nav: ft.IconButton,
+        **kwargs,
+    ):
+        super().__init__(
+            *args,
+            bgcolor=bgcolor,
+            height=height,
+            padding=padding,
+            shadow=shadow,
+            **kwargs,
+        )
+
+        self.full_nav = full_nav
+        self.mobile_nav = mobile_nav
+
+        self.content = ft.Row(
+            alignment="spaceBetween",
+            controls=[
+                ft.Row(
+                    alignment="start",
+                    controls=[ft.Text("fletxible.", size=21, weight="w700")],
+                ),
+                self.full_nav,
+                self.mobile_nav,
+            ],
+        )
+
+
+class MobileNavigation(ft.IconButton):
+    def __init__(
+        self,
+        icon=ft.icons.MENU_SHARP,
+        visible=False,
+        icon_size=14,
+        icon_color="white",
+        on_click=callable,
+    ):
+        super().__init__(
+            icon=icon,
+            visible=visible,
+            icon_size=icon_size,
+            icon_color=icon_color,
+            on_click=on_click,
+        )
+
+
+class Navigation(ft.Row):
+    def __init__(
+        self,
+        *args,
+        alignment="center",
+        **kwargs,
+    ):
+        super().__init__(
+            *args,
+            alignment=alignment,
+            **kwargs,
+        )
+
+        self.controls = [
+            # start #
+            
+            # end #
+        ]
+
+
+class Drawer(ft.Container):
+    def __init__(
+        self,
+        *args,
+        expand=True,
+        width=0,
+        bgcolor="#23262d",
+        shadow=None,
+        animate=ft.Animation(550, "ease"),
+        content=ft.Column(
+            expand=True,
+            opacity=0,
+            animate_opacity=ft.Animation(200, "easeIn"),
+        ),
+        **kwargs,
+    ):
+        super().__init__(
+            *args,
+            expand=expand,
+            width=width,
+            bgcolor=bgcolor,
+            shadow=shadow,
+            animate=animate,
+            content=content,
+            **kwargs,
+        )
+
+        self.content.controls = [
+            ft.Container(
+                bgcolor="#34373e",
+                height=60,
+                content=ft.Row(
+                    alignment="center",
+                    controls=[
+                        ft.Text(
+                            "fletxible.",
+                            size=21,
+                            weight="w700",
+                        )
+                    ],
+                ),
+            )
+        ]
+
+
+class LeftPanel(ft.Container):
+    def __init__(
+        self,
+        *args,
+        expand=1,
+        padding=ft.padding.only(top=65),
+        content=ft.Column(expand=True, alignment="start"),
+        **kwargs,
+    ):
+        super().__init__(
+            *args,
+            expand=expand,
+            padding=padding,
+            content=content,
+            **kwargs,
+        )
+
+        self.content.controls = []
+
+
+class RightPanel(ft.Container):
+    def __init__(
+        self,
+        *args,
+        expand=1,
+        padding=ft.padding.only(top=65),
+        content=ft.Column(expand=True, alignment="start"),
+        middle_panel: ft.Container,
+        **kwargs,
+    ):
+        super().__init__(
+            *args,
+            expand=expand,
+            padding=padding,
+            content=content,
+        )
+
+        self.middle_panel = middle_panel
+
+        self.content.controls = generate_right_rail(
+            number=0,
+            title=[],
+            funcOne=[
+                (
+                    lambda i: lambda __: self.middle_panel.content.scroll_to(
+                        key=str(i), duration=500
+                    )
+                )(i)
+                # Change the range as needed ...
+                for i in range(0, 0)
+            ],
+            # Change the range as needed ...
+            funcTwo=[lambda e: self.rail_hover_color(e) for __ in range(0)],
+        )
+
+    def rail_hover_color(self, e):
+        if e.data == "true":
+            e.control.content.color = "white"
+
+        else:
+            e.control.content.color = ft.colors.with_opacity(0.55, "white10")
+
+        e.control.content.update()
+
+
 
 class ViewControls(ft.UserControl):
     def __init__(self):
@@ -47,45 +239,10 @@ class ViewControls(ft.UserControl):
         self.row = ft.Row(expand=True, spacing=2)
 
         #
-        self.drawer = ft.Container(
-            expand=True,
-            width=0,
-            bgcolor="#23262d",
-            animate=ft.Animation(550, "ease"),
-            shadow=None,
-            content=ft.Column(
-                expand=True,
-                opacity=0,
-                animate_opacity=ft.Animation(200, "easeIn"),
-                controls=[
-                    ft.Container(
-                        bgcolor="#34373e",
-                        height=60,
-                        content=ft.Row(
-                            alignment="center",
-                            controls=[
-                                ft.Text(
-                                    # site name here ...
-                                    size=21,
-                                    weight="w700",
-                                )
-                            ],
-                        ),
-                    )
-                ],
-            ),
-        )
+        self.drawer = Drawer()
         
         #
-        self.left_panel = ft.Container(
-            expand=1,
-            padding=ft.padding.only(top=65),
-            content=ft.Column(
-                expand=True,
-                alignment="start",
-                controls=[],
-            ),
-        )
+        self.left_panel = LeftPanel()
 
         #
         self.middle_panel = ft.Container(
@@ -101,55 +258,18 @@ class ViewControls(ft.UserControl):
         )
 
         #
-        self.right_panel = ft.Container(
-            expand=1,
-            padding=ft.padding.only(top=65),
-            content=ft.Column(
-                expand=True,
-                alignment="start",
-                controls=[],
-            ),
-        )
+        self.right_panel = RightPanel(middle_panel=self.middle_panel)
 
-        self.nav = ft.Row(
-            alignment="center",
-            controls=[
-            # start #
-            
-            # end #
-            ],
-        )
+        # 
+        self.nav = Navigation()
 
         #
-        self.nav_mobile = ft.IconButton(
-            icon=ft.icons.MENU_SHARP, visible=False, icon_size=14, icon_color="white",
-            on_click=lambda e: self.show_drawer(e),
-
-        )
+        self.nav_mobile = MobileNavigation(on_click=lambda e: self.show_drawer(e))
 
         #
-        self.header = ft.Container(
-            bgcolor="#34373e",
-            height=60,
-            padding=ft.padding.only(left=60, right=60),
-            shadow=ft.BoxShadow(
-                spread_radius=2,
-                blur_radius=4,
-                color=ft.colors.with_opacity(0.25, "black"),
-                offset=ft.Offset(2, 2),
-            ),
-            content=ft.Row(
-                alignment="spaceBetween",
-                controls=[
-                    ft.Row(
-                        alignment="start",
-                        controls=[ft.Text("fletxible.", size=21, weight="w700")],
-                    ),
-                    self.nav,
-                    self.nav_mobile,
-                ],
-            ),
-        )
+        self.header = Header(full_nav=self.nav, mobile_nav=self.nav_mobile)
+        
+        # 
         super().__init__()
 
     def show_drawer(self, e):
