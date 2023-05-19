@@ -2,7 +2,7 @@ venv
 dist
 build
 Fletxible.egg-info
-flet_config
+flet_config.yml
 pages
 logic/mapped.py
 logic/route.pickle
@@ -10,3 +10,4 @@ logic/route.py
 logic/__pycache__
 .DS_Store
 .vscode
+zNODELETE.py

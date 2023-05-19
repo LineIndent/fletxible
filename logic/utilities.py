@@ -52,8 +52,28 @@ class ViewControls(ft.UserControl):
             width=0,
             bgcolor="#23262d",
             animate=ft.Animation(550, "ease"),
-            content=ft.Column(expand=True),
             shadow=None,
+            content=ft.Column(
+                expand=True,
+                opacity=0,
+                animate_opacity=ft.Animation(200, "easeIn"),
+                controls=[
+                    ft.Container(
+                        bgcolor="#34373e",
+                        height=60,
+                        content=ft.Row(
+                            alignment="center",
+                            controls=[
+                                ft.Text(
+                                    # site name here ...
+                                    size=21,
+                                    weight="w700",
+                                )
+                            ],
+                        ),
+                    )
+                ],
+            ),
         )
         
         #
@@ -94,9 +114,9 @@ class ViewControls(ft.UserControl):
         self.nav = ft.Row(
             alignment="center",
             controls=[
-                # start #
-                
-                # end #
+            # start #
+            
+            # end #
             ],
         )
 
@@ -141,8 +161,14 @@ class ViewControls(ft.UserControl):
                 color=ft.colors.with_opacity(0.25, "black"),
                 offset=(4, 4),
             )
+            
+            self.drawer.content.opacity = 1
+            self.drawer.update()
 
         else:
+            self.drawer.content.opacity = 0
+            self.drawer.update()
+        
             self.drawer.width = 0
             self.drawer.shadow = None
 
