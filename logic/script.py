@@ -12,7 +12,6 @@ from utilities import (
 
 #
 route_keys: dict = {}
-control_keys: list = []
 
 
 def open_yaml_script() -> dict:
