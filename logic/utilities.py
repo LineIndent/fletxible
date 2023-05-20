@@ -37,7 +37,7 @@ def set_app_default_pages():
     string = """# Flet module import
 import flet as ft
 from route import route
-from controls import generate_right_rail
+from controls import *
 
 class Header(ft.Container):
     def __init__(
@@ -73,6 +73,7 @@ class Header(ft.Container):
             controls=[
                 ft.Row(
                     alignment="start",
+                    # Change the title here ...
                     controls=[ft.Text("fletxible.", size=21, weight="w700")],
                 ),
                 self.full_nav,
@@ -113,8 +114,9 @@ class Navigation(ft.Row):
         )
 
         self.controls = [
+            # The markers start/end should not be deleted ... they are updated automatically ...
             # start #
-            
+
             # end #
         ]
 
@@ -199,6 +201,7 @@ class RightPanel(ft.Container):
             expand=expand,
             padding=padding,
             content=content,
+            **kwargs,
         )
 
         self.middle_panel = middle_panel
@@ -229,6 +232,101 @@ class RightPanel(ft.Container):
         e.control.content.update()
 
 
+class MiddlePanel(ft.Container):
+    def __init__(
+        self,
+        *args,
+        expand=5,
+        padding=ft.padding.only(top=65, right=15, left=15),
+        alignment=ft.alignment.top_center,
+        content=ft.Column(expand=True, alignment="start", scroll="hidden"),
+        mobile_rail: any,
+        **kwargs,
+    ):
+        super().__init__(
+            *args,
+            expand=expand,
+            padding=padding,
+            alignment=alignment,
+            content=content,
+            **kwargs,
+        )
+
+        self.mobile_rail = mobile_rail
+
+        self.content.controls = [
+            ft.Divider(height=10, color="transparent"),
+            self.mobile_rail,
+            ft.Divider(height=10, color="transparent"),
+            # start writing your code here ...
+            
+            # end your code here ...
+            ft.Divider(height=40, color="transparent"),
+        ]
+
+
+class MobileDropDownNavigation(Admonitions):
+    def __init__(
+        self,
+        *args,
+        type_="On this page",
+        expanded_height=190,
+        expanded=False,
+        visible=False,
+        icon_visible=False,
+        controls_list=[
+            ft.Container(
+                padding=20,
+                alignment=ft.alignment.top_left,
+                content=ft.Column(
+                    alignment="start",
+                    horizontal_alignment="start",
+                ),
+            ),
+        ],
+        **kwargs,
+    ):
+        self.rail = []
+
+        super().__init__(
+            *args,
+            type_=type_,
+            expanded_height=expanded_height,
+            expanded=expanded,
+            visible=visible,
+            icon_visible=icon_visible,
+            controls_list=controls_list,
+            **kwargs,
+        )
+
+    def get_on_page_navigation(self, middle_panel):
+        self.rail = generate_right_rail(
+            number=0,
+            title=[],
+            funcOne=[
+                (
+                    lambda i: lambda __: middle_panel.content.scroll_to(
+                        key=str(i), duration=500
+                    )
+                )(i)
+                # Change the range as needed ...
+                for i in range(0, 0)
+            ],
+            # Change the range as needed ...
+            funcTwo=[lambda e: self.rail_hover_color(e) for __ in range(0)],
+        )
+
+        self.controls_list[0].content.controls = self.rail
+
+    def rail_hover_color(self, e):
+        if e.data == "true":
+            e.control.content.color = "white"
+
+        else:
+            e.control.content.color = ft.colors.with_opacity(0.55, "white10")
+
+        e.control.content.update()
+
 
 class ViewControls(ft.UserControl):
     def __init__(self):
@@ -240,27 +338,22 @@ class ViewControls(ft.UserControl):
 
         #
         self.drawer = Drawer()
-        
+
         #
         self.left_panel = LeftPanel()
 
         #
-        self.middle_panel = ft.Container(
-            expand=5,
-            padding=ft.padding.only(top=65, right=15, left=15),
-            alignment=ft.alignment.top_center,
-            content=ft.Column(
-                expand=True,
-                scroll="hidden",
-                alignment="start",
-                controls=[],
-            ),
-        )
+        self.drop = MobileDropDownNavigation()
+
+        #
+        self.middle_panel = MiddlePanel(mobile_rail=self.drop)
+        self.drop.get_on_page_navigation(middle_panel=self.middle_panel)
+        self.drop.rail.pop(0)
 
         #
         self.right_panel = RightPanel(middle_panel=self.middle_panel)
 
-        # 
+        #
         self.nav = Navigation()
 
         #
@@ -268,8 +361,7 @@ class ViewControls(ft.UserControl):
 
         #
         self.header = Header(full_nav=self.nav, mobile_nav=self.nav_mobile)
-        
-        # 
+
         super().__init__()
 
     def show_drawer(self, e):
@@ -281,28 +373,31 @@ class ViewControls(ft.UserControl):
                 color=ft.colors.with_opacity(0.25, "black"),
                 offset=(4, 4),
             )
-            
+            self.drawer.update()
+
             self.drawer.content.opacity = 1
             self.drawer.update()
 
         else:
             self.drawer.content.opacity = 0
             self.drawer.update()
-        
+
             self.drawer.width = 0
             self.drawer.shadow = None
-
-        self.drawer.update()
+            self.drawer.update()
 
     def hide_navigation(self):
         self.nav.visible = False
         self.nav.update()
-        
+
         self.left_panel.visible = False
         self.left_panel.update()
 
         self.right_panel.visible = False
         self.right_panel.update()
+
+        self.drop.visible = True
+        self.drop.update()
 
         self.nav_mobile.visible = True
         self.nav_mobile.update()
@@ -311,15 +406,18 @@ class ViewControls(ft.UserControl):
         self.drawer.width = 0
         self.drawer.shadow = None
         self.drawer.update()
-        
+
         self.nav.visible = True
         self.nav.update()
-        
+
         self.left_panel.visible = True
         self.left_panel.update()
 
         self.right_panel.visible = True
         self.right_panel.update()
+
+        self.drop.visible = False
+        self.drop.update()
 
         self.nav_mobile.visible = False
         self.nav_mobile.update()
@@ -333,7 +431,11 @@ class ViewControls(ft.UserControl):
         ]
 
         #
-        self.stack.controls = [self.row, self.header, self.drawer]
+        self.stack.controls = [
+            self.row,
+            self.header,
+            self.drawer,
+        ]
 
         #
         return self.stack
@@ -343,13 +445,17 @@ class View(ft.View):
     def __init__(
         self,
         *args,
+        route="/index",
         bgcolor="#23262d",
         padding=0,
-        controls=[ft.Container(expand=True, content=ViewControls())],
+        controls=[
+            ft.Container(expand=True, content=ViewControls()),
+        ],
         **kwargs,
     ):
         super().__init__(
             *args,
+            route=route,
             bgcolor=bgcolor,
             padding=padding,
             controls=controls,
