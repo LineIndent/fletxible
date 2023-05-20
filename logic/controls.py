@@ -1,6 +1,6 @@
 import flet as ft
 import asyncio
-from styles import admonitions_color_scheme
+from logic.styles import admonitions_color_scheme
 
 
 def title(title):
