@@ -80,14 +80,6 @@ def set_default_methods_script(docs: dict):
     # 1. Temp. list to store the filepaths in + the modules dict
     file_list: list = []
 
-    # 1.2  Temp. list to store user's YAML input data and use it inside the web application
-    name = f"'{docs['site-name']}',"
-    navigation = "\n".join(navigation_example_method())
-    user_data: list = [
-        name,
-        "\n".join(navigation_example_method()),
-    ]
-
     # 2. Loop through navigation tree and append the file_list with the filepaths
     for page in docs["nav"]:
         for key in page:

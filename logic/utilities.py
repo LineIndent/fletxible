@@ -5,7 +5,6 @@ def route_string_method(route):
     string = f"\tif route == '/{route}':\n\t\te.page.views[index], e.page.views[current] = e.page.views[current], e.page.views[index]\n\t\te.page.update()\n"
 
     string = string.expandtabs(4)
-    string = ""
     return string
 
 
@@ -27,28 +26,15 @@ def navigation_example_method():
 def set_app_route_method():
     string = """from script import route_keys
 
-#
 def route(e, route):
     current = -1
     index: int
-    
 
     for view in e.page.views[:]:
         if view.route == route:
             index = e.page.views.index(view)
-    
-    
-    if route == "/index":
-        e.page.views[index], e.page.views[current] = e.page.views[current], e.page.views[index]
-        e.page.update()
-    if route == "/about":
-        e.page.views[index], e.page.views[current] = e.page.views[current], e.page.views[index]
-        e.page.update()
-    
-    
-# def route(e, route):
-#     e.page.views.clear()
-# %s
+            
+%s
 """
 
     return string
