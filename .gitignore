@@ -12,4 +12,5 @@ logic/__pycache__
 .vscode
 zNODELETE.py
 zNotes.txt
-zAutomation.py
+git.py
+pypi.py
