@@ -1,11 +1,9 @@
 import click
 import os
-from logic.utilities import set_up_yaml_file, set_up_main_method
 from pathlib import Path
-import subprocess
 
 
-# @click.command()
+@click.command()
 def build():
     # Create 'web' directory if it doesn't exist
     Path("web").mkdir(exist_ok=True)
@@ -69,13 +67,12 @@ def build():
     # click.echo("Status: OK")
 
 
-# @click.group()
-# def flet_template():
-#     pass
+@click.group()
+def flet_template():
+    pass
 
 
-# flet_template.add_command(init)
+flet_template.add_command(build)
 
 if __name__ == "__main__":
-    # flet_template()
-    build()
+    flet_template()
