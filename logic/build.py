@@ -9,10 +9,13 @@ import subprocess
 def build():
     # Create 'web' directory if it doesn't exist
     Path("web").mkdir(exist_ok=True)
+    click.echo("Creating web directory...")
 
     # Define the list of files to be generated
     file_list = ["main.py", "styles.py", "controls.py", "route.py"]
+    click.echo()
 
+    click.echo("Generating files inside web directory...")
     # Generate each file in the templates directory
     for file_name in file_list:
         file_path = Path("web") / file_name
@@ -48,12 +51,17 @@ def build():
         with open(file_path, "w") as new_file:
             new_file.write(source_contents)
 
-    # click.echo()
-    # click.echo(f"Generated {len(file_list)} files in the 'logic' directory:")
-    # for files in file_list:
-    #     click.echo(f"● {files}")
-    # click.echo("Status: OK")
-    # click.echo()
+    click.echo()
+    click.echo(
+        f"Generated {len(file_list) + len(page_list)} files in the 'web' directory:"
+    )
+    for files in file_list:
+        click.echo(f"● {files}")
+    for files in page_list:
+        click.echo(f"● {files}")
+
+    click.echo("Status: OK")
+    click.echo()
 
     # click.echo("Configuring main.py ...")
     # init_main_method()
