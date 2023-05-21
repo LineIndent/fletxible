@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="Fletxible",
-    version="0.5.1",
+    version="0.5.2",
     author="S. Ahmad P. Hakimi",
     author_email="pourhakimi@pm.me",
     description="Web Boilerplate for Flet Library",
@@ -17,7 +17,10 @@ setup(
         "Operating System :: OS Independent",
     ],
     entry_points={
-        "console_scripts": ["fletxible-init=logic.cli:init"],
+        "console_scripts": [
+            "fletxible-init=logic.cli:init",
+            "fletxible-build=logic.build:build",
+        ],
     },
     keywords=["python web template", "web application", "development"],
 )
