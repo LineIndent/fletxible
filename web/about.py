@@ -1,64 +1,11 @@
-import os
-
-
-def route_string_method(route):
-    string = f"\tif route == '/{route}':\n\t\te.page.views[index], e.page.views[current] = e.page.views[current], e.page.views[index]\n\t\te.page.update()\n"
-
-    string = string.expandtabs(4)
-    string = ""
-    return string
-
-
-def navigation_example_method():
-    route_list: list = []
-    for file in os.listdir("pages"):
-        # Set the path of the file to loop over folders and only include files
-        path = os.path.join("pages", file)
-
-        # If the path is NOT a folder, continue ...
-        if not os.path.isdir(path):
-            filename = os.path.splitext(file)[0]
-            string = f"ft.Text(size=13, weight='bold', spans=[ft.TextSpan('{filename.capitalize()}', on_click=lambda e: route(e, '/{filename}'))]),"
-            route_list.append(string)
-
-    return route_list
-
-
-def set_app_route_method():
-    string = """from script import route_keys
-
-#
-def route(e, route):
-    current = -1
-    index: int
-    
-
-    for view in e.page.views[:]:
-        if view.route == route:
-            index = e.page.views.index(view)
-    
-    
-    if route == "/index":
-        e.page.views[index], e.page.views[current] = e.page.views[current], e.page.views[index]
-        e.page.update()
-    if route == "/about":
-        e.page.views[index], e.page.views[current] = e.page.views[current], e.page.views[index]
-        e.page.update()
-    
-    
-# def route(e, route):
-#     e.page.views.clear()
-# %s
-"""
-
-    return string
-
-
-def set_app_default_pages():
-    string = """# Flet module import
+# Flet module import
 import flet as ft
 from route import route
 from controls import *
+
+head1 = "Showcase Your Python Applications"
+subhead1 = "Flet is a lightweight and versatile Python web framework that is excellent for showcasing Python applications. With its simplicity and minimalistic design, Flet allows developers to quickly build and deploy web applications."
+
 
 class Header(ft.Container):
     def __init__(
@@ -137,8 +84,8 @@ class Navigation(ft.Row):
         self.controls = [
             # The markers start/end should not be deleted ... they are updated automatically ...
             # start #
-
-            # end #
+ft.Text(size=13, weight='bold', spans=[ft.TextSpan('Index', on_click=lambda e: route(e, '/index'))]),
+ft.Text(size=13, weight='bold', spans=[ft.TextSpan('About', on_click=lambda e: route(e, '/about'))]),# end #
         ]
 
 
@@ -280,7 +227,9 @@ class MiddlePanel(ft.Container):
             self.mobile_rail,
             ft.Divider(height=10, color="transparent"),
             # start writing your code here ...
-            
+            title(head1),
+            text(subhead1),
+            subtitle("Example #1: @#$@#$"),
             # end your code here ...
             ft.Divider(height=40, color="transparent"),
         ]
@@ -369,7 +318,9 @@ class ViewControls(ft.UserControl):
         #
         self.middle_panel = MiddlePanel(mobile_rail=self.drop)
         self.drop.get_on_page_navigation(middle_panel=self.middle_panel)
-        self.drop.rail.pop(0)
+
+        if self.drop.rail != None:
+            self.drop.rail.pop(0)
 
         #
         self.right_panel = RightPanel(middle_panel=self.middle_panel)
@@ -482,44 +433,3 @@ class View(ft.View):
             controls=controls,
             **kwargs,
         )
-
-"""
-
-    return string
-
-
-def set_up_yaml_file():
-    string = """
-site-name: ""
-repo-url: ""
-
-theme:
-  - bgcolor: "#2e2f3e"
-  - primary: "teal"
-  - accent: "blue300"
-
-nav:
-  - Home: "index.py"
-  - About: "about.py"
-
-"""
-    return string
-
-
-def set_up_main_method():
-    string = """# Modules for Flet and Fletxible
-import flet as ft
-from script import script
-
-
-def main(page: ft.Page):
-    # Run main script ... 
-    script(page)
-    page.update()
-
-
-if __name__ == "__main__":
-    ft.flet.app(target=main)  
-"""
-
-    return string

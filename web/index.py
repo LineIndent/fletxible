@@ -1,64 +1,81 @@
-import os
-
-
-def route_string_method(route):
-    string = f"\tif route == '/{route}':\n\t\te.page.views[index], e.page.views[current] = e.page.views[current], e.page.views[index]\n\t\te.page.update()\n"
-
-    string = string.expandtabs(4)
-    string = ""
-    return string
-
-
-def navigation_example_method():
-    route_list: list = []
-    for file in os.listdir("pages"):
-        # Set the path of the file to loop over folders and only include files
-        path = os.path.join("pages", file)
-
-        # If the path is NOT a folder, continue ...
-        if not os.path.isdir(path):
-            filename = os.path.splitext(file)[0]
-            string = f"ft.Text(size=13, weight='bold', spans=[ft.TextSpan('{filename.capitalize()}', on_click=lambda e: route(e, '/{filename}'))]),"
-            route_list.append(string)
-
-    return route_list
-
-
-def set_app_route_method():
-    string = """from script import route_keys
-
-#
-def route(e, route):
-    current = -1
-    index: int
-    
-
-    for view in e.page.views[:]:
-        if view.route == route:
-            index = e.page.views.index(view)
-    
-    
-    if route == "/index":
-        e.page.views[index], e.page.views[current] = e.page.views[current], e.page.views[index]
-        e.page.update()
-    if route == "/about":
-        e.page.views[index], e.page.views[current] = e.page.views[current], e.page.views[index]
-        e.page.update()
-    
-    
-# def route(e, route):
-#     e.page.views.clear()
-# %s
-"""
-
-    return string
-
-
-def set_app_default_pages():
-    string = """# Flet module import
+# Flet module import
 import flet as ft
 from route import route
 from controls import *
+
+
+code1 = """
+```python
+$ pip install Fletxible
+```
+"""
+code2 = """
+```python
+$ fletxible-init
+```
+"""
+code3 = """```python
+import flet as ft
+from script import script
+
+def main(page: ft.Page):
+    # Run main automation script ...
+    script(page)
+
+    # Transition theme ...
+    theme = ft.Theme(
+        scrollbar_theme=ft.ScrollbarTheme(
+            thickness=4,
+            radius=10,
+            main_axis_margin=5,
+            cross_axis_margin=-10,
+        )
+    )
+    theme.page_transitions.macos = ft.PageTransitionTheme.NONE
+    page.theme = theme
+
+    # Responsive navigation logic ...
+    def resize_event(event):
+        if page.width <= 700:
+            for nav in page.views[-1].controls[:]:
+                nav.content.hide_navigation()
+
+        else:
+            for nav in page.views[-1].controls[:]:
+                nav.content.show_navigation()
+
+    # Page events ...
+    page.on_resize = resize_event
+    page.update()
+
+if __name__ == "__main__":
+    ft.flet.app(target=main)
+```
+"""
+
+intro = "Fletxible is a Python web boilerplate project designed to provide a solid foundation for building web applications with Python and Flet. The project comes pre-configured with a range of tools and features to make it easy for developers to get started building their applications, without the need to spend time setting up infrastructure or configuring tools."
+
+algo = """
+
+
+1. open_yaml_script(): Loads data from the "flet_config.yml" file.
+
+2. check_pages_directory_script(): Checks if a "pages" directory exists and creates one if not.
+
+3. update_pages_directory_script(docs: dict): Loops over the files in the "pages" directory and deletes any files that are not listed in the navigation information.
+
+4. handle_navigation_routing_script(docs: dict): Loops over the navigation information and writes route strings to a temporary file.
+
+5. set_application_routing_script(docs: dict): Reads the temporary file created in the previous step, creates a route.py file with the appropriate routes, and deletes the temporary file.
+
+6. set_default_methods_script(docs: dict): Loops over the navigation information and creates default pages for each page listed, and creates a route.pickle file with information about the modules used in the application.
+
+7. map_yaml(yaml_file_path, output_file_path): Reads a YAML file and writes its contents to a Python file with a specified filename.
+
+8. script(page: ft.Page): Main function that calls the other functions to process the data and set up the application.
+
+"""
+
 
 class Header(ft.Container):
     def __init__(
@@ -94,7 +111,6 @@ class Header(ft.Container):
             controls=[
                 ft.Row(
                     alignment="start",
-                    # Change the title here ...
                     controls=[ft.Text("fletxible.", size=21, weight="w700")],
                 ),
                 self.full_nav,
@@ -135,10 +151,9 @@ class Navigation(ft.Row):
         )
 
         self.controls = [
-            # The markers start/end should not be deleted ... they are updated automatically ...
             # start #
-
-            # end #
+ft.Text(size=13, weight='bold', spans=[ft.TextSpan('Index', on_click=lambda e: route(e, '/index'))]),
+ft.Text(size=13, weight='bold', spans=[ft.TextSpan('About', on_click=lambda e: route(e, '/about'))]),# end #
         ]
 
 
@@ -228,19 +243,17 @@ class RightPanel(ft.Container):
         self.middle_panel = middle_panel
 
         self.content.controls = generate_right_rail(
-            number=0,
-            title=[],
+            number=4,
+            title=["Installation", "Application Setup", "Algorithm", "License"],
             funcOne=[
                 (
                     lambda i: lambda __: self.middle_panel.content.scroll_to(
                         key=str(i), duration=500
                     )
                 )(i)
-                # Change the range as needed ...
-                for i in range(0, 0)
+                for i in range(1, 5)
             ],
-            # Change the range as needed ...
-            funcTwo=[lambda e: self.rail_hover_color(e) for __ in range(0)],
+            funcTwo=[lambda e: self.rail_hover_color(e) for __ in range(4)],
         )
 
     def rail_hover_color(self, e):
@@ -279,9 +292,80 @@ class MiddlePanel(ft.Container):
             ft.Divider(height=10, color="transparent"),
             self.mobile_rail,
             ft.Divider(height=10, color="transparent"),
-            # start writing your code here ...
-            
-            # end your code here ...
+            title("Getting Started"),
+            text(intro),
+            ft.Divider(height=10, color="transparent"),
+            subtitle("1. Installation", key="1"),
+            text("To use Fletxible, you need to have the following installed:"),
+            text("- Latest version of Flet\n- Python 3.5+"),
+            text(
+                "If you don't have Flet installed, installing Fletxible automatically installs it for you. You can install Fletxible using the following command:"
+            ),
+            CodeBlock(code1),
+            ft.Divider(height=10, color="transparent"),
+            subtitle("2. Application Setup", key="2"),
+            text(
+                "After installing Fletxible, you can test if it's working properly by running the following command:"
+            ),
+            CodeBlock(code2),
+            text(
+                "If the package was installed correctly, a directory named logic along with a file called flet_config.yml will be generated inside the root directory."
+            ),
+            ft.Column(
+                alignment="center",
+                # spacing=20,
+                controls=[
+                    text("\t\t1. __init__.py"),
+                    text("\t\t2. main.py"),
+                    text("\t\t3. script.py"),
+                    text("\t\t4. utilities.py"),
+                ],
+            ),
+            ft.Text(
+                size=12,
+                weight="w400",
+                spans=[
+                    ft.TextSpan(
+                        text="The ",
+                    ),
+                    ft.TextSpan(
+                        text="main.py",
+                        style=ft.TextStyle(weight="bold"),
+                    ),
+                    ft.TextSpan(
+                        text=" should look like this:",
+                    ),
+                ],
+            ),
+            CodeBlock(code3),
+            ft.Divider(height=10, color="transparent"),
+            subtitle("3. Current Algorithm Functions", key="3"),
+            text(
+                "This algorithm is a script that loads and processes data from a YAML file flet_config.yml that contains navigation information for a web application. The script then updates and creates various files and directories necessary for the application to function."
+            ),
+            CodeBlock(algo),
+            text(
+                "Overall, the script is part of a larger application development process that involves reading and processing data from a YAML file, creating and updating various files and directories, and setting up routing information for a web application."
+            ),
+            ft.Divider(height=10, color="transparent"),
+            subtitle("4. License", key="4"),
+            ft.Text(
+                size=12,
+                weight="w400",
+                spans=[
+                    ft.TextSpan(
+                        text="Fletxible is open-source and licensed under the ",
+                    ),
+                    ft.TextSpan(
+                        text="MIT License ",
+                        style=ft.TextStyle(weight="bold", color="cyan"),
+                        url="https://github.com/LineIndent/fletxible/blob/main/LICENSE",
+                    ),
+                    ft.TextSpan(
+                        text=".",
+                    ),
+                ],
+            ),
             ft.Divider(height=40, color="transparent"),
         ]
 
@@ -322,19 +406,22 @@ class MobileDropDownNavigation(Admonitions):
 
     def get_on_page_navigation(self, middle_panel):
         self.rail = generate_right_rail(
-            number=0,
-            title=[],
+            number=4,
+            title=[
+                "Installation",
+                "Application Setup",
+                "Algorithm",
+                "License",
+            ],
             funcOne=[
                 (
                     lambda i: lambda __: middle_panel.content.scroll_to(
                         key=str(i), duration=500
                     )
                 )(i)
-                # Change the range as needed ...
-                for i in range(0, 0)
+                for i in range(1, 5)
             ],
-            # Change the range as needed ...
-            funcTwo=[lambda e: self.rail_hover_color(e) for __ in range(0)],
+            funcTwo=[lambda e: self.rail_hover_color(e) for __ in range(4)],
         )
 
         self.controls_list[0].content.controls = self.rail
@@ -482,44 +569,3 @@ class View(ft.View):
             controls=controls,
             **kwargs,
         )
-
-"""
-
-    return string
-
-
-def set_up_yaml_file():
-    string = """
-site-name: ""
-repo-url: ""
-
-theme:
-  - bgcolor: "#2e2f3e"
-  - primary: "teal"
-  - accent: "blue300"
-
-nav:
-  - Home: "index.py"
-  - About: "about.py"
-
-"""
-    return string
-
-
-def set_up_main_method():
-    string = """# Modules for Flet and Fletxible
-import flet as ft
-from script import script
-
-
-def main(page: ft.Page):
-    # Run main script ... 
-    script(page)
-    page.update()
-
-
-if __name__ == "__main__":
-    ft.flet.app(target=main)  
-"""
-
-    return string

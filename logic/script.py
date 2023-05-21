@@ -208,11 +208,10 @@ def script(page: ft.Page):
             page.views.append(route_keys[keys].loader.load_module().View())
 
         # Set's the index.py page as the first page.
-        # Nav section in YAML should be in order...
-        index = page.views[1]
-        page.views.clear()
-        page.views.insert(-1, index)
-        page.go("/index")
+        index = -1
+        current = 1
+        page.views[index], page.views[current] = page.views[current], page.views[index]
+        page.update()
 
     except Exception as e:
         print(e)
