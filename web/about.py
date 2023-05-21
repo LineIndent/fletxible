@@ -417,7 +417,7 @@ class View(ft.View):
     def __init__(
         self,
         *args,
-        route="/index",
+        route="/about",
         bgcolor="#23262d",
         padding=0,
         controls=[

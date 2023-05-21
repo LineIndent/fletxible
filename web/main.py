@@ -1,10 +1,30 @@
+import importlib.util
 import flet as ft
-from script import script
+import os
+
+
+def testRun(Page):
+    router: dict = {}
+    for page in os.listdir("web"):
+        if os.path.isfile(f"web/{page}") and page not in (
+            "main.py",
+            "styles.py",
+            "controls.py",
+            "route.py",
+        ):
+            filename = os.path.splitext(page)[0]
+            filepath = os.path.join("web", page)
+
+            router["/" + filename] = importlib.util.spec_from_file_location(
+                filename, filepath
+            )
+
+    for keys, __ in router.items():
+        Page.views.append(router[keys].loader.load_module().View())
 
 
 def main(page: ft.Page):
-    # Run main automation script ...
-    script(page)
+    testRun(page)
 
     # Web theme ...
     theme = ft.Theme(
@@ -27,6 +47,12 @@ def main(page: ft.Page):
         else:
             for nav in page.views[-1].controls[:]:
                 nav.content.show_navigation()
+
+    # Set's the index.py page as the first page.
+    index = -1
+    current = 1
+    page.views[index], page.views[current] = page.views[current], page.views[index]
+    page.update()
 
     # Page events ...
     page.on_resize = resize_event
