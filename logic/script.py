@@ -9,9 +9,6 @@ from utilities import (
     navigation_example_method,
 )
 
-#
-route_keys: dict = {}
-
 
 def open_yaml_script() -> dict:
     # Load the YAML file
