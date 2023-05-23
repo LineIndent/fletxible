@@ -1,6 +1,7 @@
 import os, importlib.util
 import yaml
-import pickle
+
+# import pickle
 import flet as ft
 
 from utilities import (
@@ -87,12 +88,6 @@ def set_default_methods_script(docs: dict):
             filepath = os.path.join("pages", filename)
             file_list.append(filepath)
 
-        filename = os.path.splitext(filename)[0]
-
-        route_keys["/" + filename] = importlib.util.spec_from_file_location(
-            filename, filepath
-        )
-
     # 3. Loop through the file_list and create the corresponding pages
     for filepath in file_list:
         method = set_app_default_pages()
@@ -132,25 +127,6 @@ def set_default_methods_script(docs: dict):
         else:
             pass
 
-    # 5. The route.pickle file is a binary file!
-    with open("./logic/route.pickle", "wb") as f:
-        pickle.dump(route_keys, f)
-
-    # 6. Finally, return the route_keys so we use itin the route.py logic
-    return route_keys
-
-
-def map_yaml(yaml_file_path, output_file_path):
-    # 1. open the flet_config.yml file and safe load the data
-    with open(yaml_file_path) as f:
-        yaml_data = yaml.safe_load(f)
-
-    # 2. Simply write the contents to a variable that will show up in the set location
-    # with the set filename: mapped.py
-    with open(output_file_path, "w") as f:
-        f.write("mapped_data = ")
-        f.write(str(yaml_data))
-
 
 def script(page: ft.Page):
     # Get the YAML file
@@ -187,30 +163,6 @@ def script(page: ft.Page):
     try:
         # Make sure to create a function that returns a list of the modules for routing!!!
         set_application_routing_script(docs)
-
-    except Exception as e:
-        print(e)
-
-    # Next, we have to handle the page logic, which requires
-    # several step. First, adding the default method into each page
-    try:
-        route_keys: dict = set_default_methods_script(docs)
-
-        for keys, __ in route_keys.items():
-            page.views.append(route_keys[keys].loader.load_module().View())
-
-        # Set's the index.py page as the first page.
-        index = -1
-        current = 1
-        page.views[index], page.views[current] = page.views[current], page.views[index]
-        page.update()
-
-    except Exception as e:
-        print(e)
-
-    # Map out the .yml file into a python dict
-    try:
-        map_yaml("flet_config.yml", "./logic/mapped.py")
 
     except Exception as e:
         print(e)

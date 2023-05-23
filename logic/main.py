@@ -1,8 +1,35 @@
+import importlib.util
 import flet as ft
 from script import script
+import os
+
+
+def router(Page):
+    router: dict = {}
+    for page in os.listdir("pages"):
+        if os.path.isfile(f"pages/{page}") and page not in (
+            "main.py",
+            "styles.py",
+            "controls.py",
+            "route.py",
+        ):
+            filename = os.path.splitext(page)[0]
+            filepath = os.path.join("pages", page)
+
+            router["/" + filename] = importlib.util.spec_from_file_location(
+                filename, filepath
+            )
+
+    for keys, __ in router.items():
+        Page.views.append(router[keys].loader.load_module().View())
+
+    print(Page.views)
 
 
 def main(page: ft.Page):
+    #
+    router(page)
+
     # Run main automation script ...
     script(page)
 
@@ -13,7 +40,7 @@ def main(page: ft.Page):
             radius=10,
             main_axis_margin=5,
             cross_axis_margin=-10,
-        )
+        ),
     )
     theme.page_transitions.macos = ft.PageTransitionTheme.NONE
     page.theme = theme
