@@ -31,7 +31,7 @@ def main(page: ft.Page):
     router(page)
 
     # Run main automation script ...
-    script(page)
+    script()
 
     # Web theme ...
     theme = ft.Theme(
