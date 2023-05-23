@@ -123,7 +123,7 @@ def set_default_methods_script(docs: dict):
             pass
 
 
-def script(page: ft.Page):
+def script():
     # Get the YAML file
     try:
         docs = open_yaml_script()

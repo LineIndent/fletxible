@@ -27,7 +27,7 @@ def router(Page):
 
 
 def main(page: ft.Page):
-    #
+    # Set the router and index page as first view ...
     router(page)
 
     # Run main automation script ...
