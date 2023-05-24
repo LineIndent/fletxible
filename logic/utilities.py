@@ -24,7 +24,7 @@ def navigation_example_method():
 
 
 def set_app_route_method():
-    string = """from script import route_keys
+    string = """
 
 def route(e, route):
     current = -1

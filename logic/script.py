@@ -81,6 +81,7 @@ def set_default_methods_script(docs: dict):
         for key in page:
             filename = f"{page[key]}"
             filepath = os.path.join("pages", filename)
+            print(filepath)
             file_list.append(filepath)
 
     # 3. Loop through the file_list and create the corresponding pages
@@ -158,6 +159,12 @@ def script():
     try:
         # Make sure to create a function that returns a list of the modules for routing!!!
         set_application_routing_script(docs)
+
+    except Exception as e:
+        print(e)
+
+    try:
+        set_default_methods_script(docs)
 
     except Exception as e:
         print(e)

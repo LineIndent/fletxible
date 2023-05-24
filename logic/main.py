@@ -23,15 +23,13 @@ def router(Page):
     for keys, __ in router.items():
         Page.views.append(router[keys].loader.load_module().View())
 
-    print(Page.views)
-
 
 def main(page: ft.Page):
-    # Set the router and index page as first view ...
-    router(page)
-
     # Run main automation script ...
     script()
+
+    # Set the router and index page as first view ...
+    router(page)
 
     # Web theme ...
     theme = ft.Theme(
