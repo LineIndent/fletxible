@@ -20,9 +20,9 @@ def check_fweb_directory_exists():
             _dir = os.path.join(root, "web")
             break
 
-    if not _dir:
-        _dir = os.path.join(os.getcwd(), "web")
-        os.mkdir(_dir)
+        if not _dir:
+            _dir = os.path.join(os.getcwd(), "web")
+            os.mkdir(_dir)
 
 
 def update_fweb_directory(docs: dict):
