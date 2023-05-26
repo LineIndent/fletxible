@@ -1,4 +1,3 @@
-from abc import abstractmethod
 import flet as ft
 
 
@@ -9,13 +8,14 @@ class MiddlePanel(ft.Container):
         expand=5,
         padding=ft.padding.only(top=65, right=15, left=15),
         alignment=ft.alignment.top_center,
-        content=ft.Column(expand=True, alignment="start", scroll="hidden"),
+        content=ft.Column(
+            expand=True,
+            alignment="start",
+            scroll="hidden",
+        ),
     ):
         super().__init__(
-            expand=expand,
-            padding=padding,
-            alignment=alignment,
-            content=content,
+            expand=expand, padding=padding, alignment=alignment, content=content
         )
 
         self.controls = controls
