@@ -18,8 +18,7 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "fletxible-init=logic.cli:init",
-            "fletxible-build=logic.build:build",
+            "fletxible-init=command:init",
         ],
     },
     keywords=["python web template", "web application", "development"],
