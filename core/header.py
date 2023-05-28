@@ -31,7 +31,14 @@ class Header(ft.Container):
             controls=[
                 ft.Row(
                     alignment="start",
-                    controls=[ft.Text("fletxible.", size=21, weight="w700")],
+                    controls=[
+                        ft.Text(
+                            # start #
+'fletxible.',# end #
+                            size=21,
+                            weight="w700",
+                        ),
+                    ],
                 ),
                 self.full_nav,
                 self.mobile_nav,

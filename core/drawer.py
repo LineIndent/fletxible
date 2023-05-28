@@ -32,7 +32,8 @@ class Drawer(ft.Container):
                     alignment="center",
                     controls=[
                         ft.Text(
-                            "fletxible.",
+                            # start #
+'fletxible.',# end #
                             size=21,
                             weight="w700",
                         )

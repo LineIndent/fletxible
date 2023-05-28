@@ -5,7 +5,6 @@ from utilities.links import fx_nav_links
 
 
 def open_yaml_script() -> dict:
-    # Load the YAML file
     with open("fx_config.yml", "r") as file:
         docs = yaml.safe_load(file)
 
@@ -13,7 +12,6 @@ def open_yaml_script() -> dict:
 
 
 def check_fweb_directory_exists():
-    # Check if "fWeb" directory exists
     _dir = None
     for root, dirs, files in os.walk("."):
         if "web" in dirs:
@@ -43,6 +41,36 @@ def temporary_file_for_routing(docs: dict):
             for key in page:
                 route = os.path.splitext(page[key])[0]
                 f.write(f"{fx_router(route)}")
+
+
+def set_site_name(docs: dict):
+    site_name = f"'{docs['site-name']}',"
+
+    with open("./core/header.py", "r") as fHeader:
+        header = fHeader.read()
+
+    with open("./core/drawer.py", "r") as fDrawer:
+        drawer = fDrawer.read()
+
+    header_start_idx = header.index("# start #")
+    header_end_idx = header.index("# end #")
+
+    drawer_start_idx = drawer.index("# start #")
+    drawer_end_idx = drawer.index("# end #")
+
+    header_modified_string = (
+        header[:header_start_idx] + "# start #\n" + site_name + header[header_end_idx:]
+    )
+
+    drawer_modified_string = (
+        drawer[:drawer_start_idx] + "# start #\n" + site_name + drawer[drawer_end_idx:]
+    )
+
+    with open("./core/header.py", "w") as w:
+        w.write(header_modified_string)
+
+    with open("./core/drawer.py", "w") as w:
+        w.write(drawer_modified_string)
 
 
 def create_router_file():
@@ -125,6 +153,12 @@ def script():
 
     except Exception as e:
         print(e)
+
+    try:
+        set_site_name(docs)
+
+    except Exception as e:
+        print("Site-name error: ", e)
 
     try:
         create_router_file()
