@@ -1,4 +1,11 @@
 import flet as ft
+import yaml
+
+with open("fx_config.yml", "r") as file:
+    docs = yaml.safe_load(file)
+
+
+background_color = docs["theme"][0]["bgcolor"]
 
 
 class Drawer(ft.Container):
@@ -26,14 +33,14 @@ class Drawer(ft.Container):
 
         self.content.controls = [
             ft.Container(
-                bgcolor="#34373e",
+                bgcolor=background_color,
                 height=60,
                 content=ft.Row(
                     alignment="center",
                     controls=[
                         ft.Text(
                             # start #
-'fletxible.',# end #
+                            "fletxible.",  # end #
                             size=21,
                             weight="w700",
                         )

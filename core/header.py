@@ -8,6 +8,7 @@ with open("fx_config.yml", "r") as file:
     docs = yaml.safe_load(file)
 
 repo = docs["repo-url"]
+background_color = docs["theme"][0]["bgcolor"]
 
 
 class Header(ft.Container):
@@ -15,7 +16,7 @@ class Header(ft.Container):
         self,
         full_nav: ft.Row,
         mobile_nav: ft.IconButton,
-        bgcolor="#34373e",
+        bgcolor=background_color,
         height=90,
         padding=ft.padding.only(left=60, right=60),
         shadow=ft.BoxShadow(
