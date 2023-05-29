@@ -64,6 +64,7 @@ class FxControls(ft.UserControl):
         self.set_header_repo_opacity(1, True)
         self.set_header_navigation_row(1, True)
 
+    # Method: sets the state of the header via nimations ...
     def set_header_navigation_row(self, value: int, state: bool):
         self.fx_header.navigation.opacity = value
         self.fx_header.navigation.visible = state

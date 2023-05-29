@@ -95,6 +95,7 @@ class Header(ft.Container):
             ],
         )
 
+    # Method: gets the repo details based on the input repo URL ...
     async def get_repo_data(self):
         await asyncio.sleep(2)
         controls_list: list = []
