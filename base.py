@@ -4,6 +4,7 @@ from core.middle_panel import MiddlePanel
 from core.right_panel import RightPanel
 from core.navigation import Navigation
 from core.left_panel import LeftPanel
+from core.repo import RepoData
 from core.header import Header
 from core.drawer import Drawer
 
@@ -22,8 +23,7 @@ class FxControls(ft.UserControl):
         self.fx_drawer = Drawer()
 
         # Bug: control is not being added to page ...
-        self.fx_drop_down = MobileDropDownNavigation(2890, [])
-        # self.fx_controls[1] = self.fx_drop_down
+        # self.fx_drop_down = MobileDropDownNavigation(120, self.page, [])
 
         self.fx_left = LeftPanel()
         self.fx_middle = MiddlePanel(controls=self.fx_controls)
@@ -47,6 +47,10 @@ class FxControls(ft.UserControl):
         self.set_fx_min_nav(True)
         # self.set_fx_drop_down(True)
 
+        self.set_fx_header(60)
+        self.set_header_repo_opacity(0, False)
+        self.set_header_navigation_row(0, False)
+
     # Method: Responsive method to set the UI for 'desktop' screens ...
     def set_application_to_desktop(self):
         self.set_fx_left(True)
@@ -55,6 +59,24 @@ class FxControls(ft.UserControl):
 
         self.set_fx_min_nav(False)
         # self.set_fx_drop_down(False)
+
+        self.set_fx_header(70)
+        self.set_header_repo_opacity(1, True)
+        self.set_header_navigation_row(1, True)
+
+    def set_header_navigation_row(self, value: int, state: bool):
+        self.fx_header.navigation.opacity = value
+        self.fx_header.navigation.visible = state
+        self.fx_header.navigation.update()
+
+    def set_header_repo_opacity(self, value: int, state: bool):
+        self.fx_header.repo.controls[1].opacity = value
+        self.fx_header.repo.controls[1].visible = state
+        self.fx_header.repo.update()
+
+    def set_fx_header(self, height: int):
+        self.fx_header.height = height
+        self.fx_header.update()
 
     def set_fx_drop_down(self, state: bool):
         self.fx_drop_down.visible = state
