@@ -27,7 +27,14 @@ class FxControls(ft.UserControl):
         # self.fx_drop_down = MobileDropDownNavigation(120, self.page, [])
 
         self.fx_left = LeftPanel()
-        self.fx_middle = MiddlePanel(controls=self.fx_controls)
+        self.fx_middle = MiddlePanel(
+            controls=self.fx_controls,
+            function=[
+                self.set_fx_header,
+                self.set_header_navigation_row,
+            ],
+            page=self.page,
+        )
         self.fx_right = RightPanel(middle_panel=self.fx_middle, fx_rail=self.fx_rail)
 
         self.fx_max_nav = Navigation(
@@ -65,7 +72,7 @@ class FxControls(ft.UserControl):
         self.set_header_repo_opacity(1, True)
         self.set_header_navigation_row(1, True)
 
-    # Method: sets the state of the header via nimations ...
+    # Method: sets the state of the header with animations ...
     def set_header_navigation_row(self, value: int, state: bool):
         self.fx_header.navigation.opacity = value
         self.fx_header.navigation.visible = state

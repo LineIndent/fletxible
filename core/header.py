@@ -26,6 +26,7 @@ class Header(ft.Container):
             offset=ft.Offset(2, 2),
         ),
         animate=ft.Animation(500, "ease"),
+        clip_behavior=ft.ClipBehavior.HARD_EDGE,
     ):
         self.full_nav = full_nav
         self.mobile_nav = mobile_nav
