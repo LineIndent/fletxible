@@ -1,3 +1,4 @@
+import asyncio
 from core.mobile_drop_down import MobileDropDownNavigation
 from core.mobile_navigation import MobileNavigation
 from core.middle_panel import MiddlePanel
@@ -40,7 +41,7 @@ class FxControls(ft.UserControl):
 
     # Method: Responsive method to set the UI for 'mobile/tablet' screens ...
     def set_application_to_mobile(self):
-        self.set_fx_max_nav(False)
+        self.set_fx_max_nav(0, False)
         self.set_fx_left(False)
         self.set_fx_right(False)
 
@@ -55,12 +56,12 @@ class FxControls(ft.UserControl):
     def set_application_to_desktop(self):
         self.set_fx_left(True)
         self.set_fx_right(True)
-        self.set_fx_max_nav(True)
+        self.set_fx_max_nav(1, True)
 
         self.set_fx_min_nav(False)
         # self.set_fx_drop_down(False)
 
-        self.set_fx_header(70)
+        self.set_fx_header(90)
         self.set_header_repo_opacity(1, True)
         self.set_header_navigation_row(1, True)
 
@@ -83,7 +84,10 @@ class FxControls(ft.UserControl):
         self.fx_drop_down.visible = state
         self.fx_drop_down.update()
 
-    def set_fx_max_nav(self, state: bool):
+    def set_fx_max_nav(self, value: int, state: bool):
+        self.fx_max_nav.opacity = value
+        self.fx_max_nav.update()
+
         self.fx_max_nav.visible = state
         self.fx_max_nav.update()
 

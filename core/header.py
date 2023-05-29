@@ -16,7 +16,7 @@ class Header(ft.Container):
         full_nav: ft.Row,
         mobile_nav: ft.IconButton,
         bgcolor="#34373e",
-        height=70,
+        height=90,
         padding=ft.padding.only(left=60, right=60),
         shadow=ft.BoxShadow(
             spread_radius=2,
@@ -50,7 +50,7 @@ class Header(ft.Container):
                     horizontal_alignment="start",
                     spacing=5,
                     controls=[
-                        ft.Text("LineIndent/fletxible", size=10, weight="bold"),
+                        ft.Text("LineIndent/fletxible", size=11, weight="bold"),
                         ft.Row(
                             alignment="center",
                             vertical_alignment="center",
@@ -69,35 +69,32 @@ class Header(ft.Container):
             animate=animate,
         )
 
-        self.content = ft.Row(
-            alignment="spaceBetween",
+        self.content = ft.Column(
+            alignment="center",
+            spacing=20,
             controls=[
-                ft.Column(
-                    spacing=10,
-                    alignment="center",
+                #
+                ft.Row(
+                    alignment="spaceBetween",
+                    vertical_alignment="center",
                     controls=[
-                        ft.Row(
-                            alignment="start",
-                            vertical_alignment="end",
-                            controls=[
-                                ft.Text(
-                                    # start #
-                                    "fletxible.",  # end #
-                                    size=21,
-                                    weight="w700",
-                                ),
-                            ],
+                        ft.Text(
+                            # start #
+                            "fletxible.",  # end #
+                            size=21,
+                            weight="w700",
                         ),
-                        self.navigation,
+                        self.repo,
                     ],
                 ),
-                self.repo,
+                #
+                self.navigation,
             ],
         )
 
     # Method: gets the repo details based on the input repo URL ...
     async def get_repo_data(self):
-        await asyncio.sleep(2)
+        # await asyncio.sleep(5)
         controls_list: list = []
 
         icon_elements = ["LABEL_OUTLINED", "STAR_BORDER_SHARP", "CALL_SPLIT_SHARP"]
@@ -121,13 +118,13 @@ class Header(ft.Container):
                 controls_list.append(
                     ft.Row(
                         alignment="center",
-                        spacing=1,
+                        spacing=0,
                         controls=[
-                            ft.Icon(name=icon_elements[i], size=8),
+                            ft.Icon(name=icon_elements[i], size=10),
                             ft.Text(
                                 text_content,
-                                size=8,
-                                weight="w400",
+                                size=10,
+                                weight="w200",
                             ),
                         ],
                     )
