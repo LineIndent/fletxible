@@ -31,9 +31,8 @@ def main(page: ft.Page):
     page.data = router
     page.update()
 
-    for view in page.views[:]:
-        if view.route:
-            view.fx_dynamics(event=None)
+    for view in page.views[1:]:
+        view.fx_dynamics(event=None)
 
     page.update()
 
