@@ -7,6 +7,7 @@ import asyncio
 with open("fx_config.yml", "r") as file:
     docs = yaml.safe_load(file)
 
+name = docs["site-name"]
 repo = docs["repo-url"]
 background_color = docs["theme"][0]["bgcolor"]
 
@@ -28,6 +29,7 @@ class Header(ft.Container):
         animate=ft.Animation(500, "ease"),
         clip_behavior=ft.ClipBehavior.HARD_EDGE,
     ):
+        self.name = name
         self.full_nav = full_nav
         self.mobile_nav = mobile_nav
         self.navigation = ft.Row(
@@ -69,6 +71,7 @@ class Header(ft.Container):
             padding=padding,
             shadow=shadow,
             animate=animate,
+            clip_behavior=clip_behavior,
         )
 
         self.content = ft.Column(
@@ -82,7 +85,7 @@ class Header(ft.Container):
                     controls=[
                         ft.Text(
                             # start #
-                            "fletxible.",  # end #
+                            self.name,  # end #
                             size=21,
                             weight="w700",
                         ),

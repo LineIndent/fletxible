@@ -3,7 +3,7 @@ import flet as ft
 
 def create_rail(number: int, title: list, funcOne: list, funcTwo: list):
     rail_list: list = [
-        ft.Divider(height=10, color="transparent"),
+        ft.Divider(height=35, color="transparent"),
     ]
 
     if number != 0:

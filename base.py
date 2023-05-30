@@ -1,11 +1,9 @@
-import asyncio
-from core.mobile_drop_down import MobileDropDownNavigation
+# from core.mobile_drop_down import MobileDropDownNavigation
 from core.mobile_navigation import MobileNavigation
 from core.middle_panel import MiddlePanel
 from core.right_panel import RightPanel
 from core.navigation import Navigation
 from core.left_panel import LeftPanel
-from core.repo import RepoData
 from core.header import Header
 from core.drawer import Drawer
 
@@ -23,6 +21,12 @@ class FxControls(ft.UserControl):
 
         self.fx_drawer = Drawer()
 
+        self.fx_max_nav = Navigation(
+            page=self.page, function=lambda e: self.set_app_router(e)
+        )
+        self.fx_min_nav = MobileNavigation(on_click=lambda e: self.set_fx_drawer(e))
+
+        self.fx_header = Header(full_nav=self.fx_max_nav, mobile_nav=self.fx_min_nav)
         # Bug: control is not being added to page ...
         # self.fx_drop_down = MobileDropDownNavigation(120, self.page, [])
 
@@ -36,13 +40,6 @@ class FxControls(ft.UserControl):
             page=self.page,
         )
         self.fx_right = RightPanel(middle_panel=self.fx_middle, fx_rail=self.fx_rail)
-
-        self.fx_max_nav = Navigation(
-            page=self.page, function=lambda e: self.set_app_router(e)
-        )
-        self.fx_min_nav = MobileNavigation(on_click=lambda e: self.set_fx_drawer(e))
-
-        self.fx_header = Header(full_nav=self.fx_max_nav, mobile_nav=self.fx_min_nav)
 
         super().__init__()
 

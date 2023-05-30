@@ -18,6 +18,7 @@ class FxView(ft.View):
         self,
         page: ft.Page,
         route="",  # set your routes here ...
+        # bgcolor="#2e303d",
         bgcolor="#23262d",
         padding=0,
     ) -> None:
