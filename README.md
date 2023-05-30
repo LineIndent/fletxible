@@ -28,7 +28,9 @@ Fletxible is a Python web boilerplate project designed to provide a solid founda
 
 
 
-## 1. Installation
+
+
+## Installation
 
 To use Fletxible, you need to have the following installed:
 
@@ -36,13 +38,13 @@ To use Fletxible, you need to have the following installed:
 -   Python 3.5+
 
 If you don't have Flet installed, installing Fletxible automatically installs it for you. You can install Fletxible using the following command:
-```
+```py
 $ pip install Fletxible
 ```
 
 
 
-## 2. Application Setup
+## Application Setup
 
 After installing Fletxible, you can test if it's working properly by running the following command:
 
@@ -50,16 +52,17 @@ After installing Fletxible, you can test if it's working properly by running the
 $ fletxible-init
 ```
 
-If the package was installed correctly, a directory named ```logic``` along with a file called ```flet_config.yml``` will be generated inside the root directory.
+If the package was installed correctly, a file called ```fx_config.yml``` will be generated inside the root directory. Other directories and files will also be generated.
 
-The ```logic``` directory will contain four files:
+## 3. Quick Start
 
-1. ```__init__.py```
-2. ```main.py```
-3. ```script.py```
-4. ```utilities.py```
+Open the  ```fx_config.yml``` file and configure the document as needed. Change the site name, repository link, as well as any theme related settings.
 
-## 3. Current Algorithm Functions
+When you're ready, run the following command to generate your files/pages:
+
+
+
+## Current Algorithm Functions
 
 This algorithm is a script that loads and processes data from a YAML file ```flet_config.yml``` that contains navigation information for a web application. The script then updates and creates various files and directories necessary for the application to function.
 
