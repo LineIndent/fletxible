@@ -7,14 +7,14 @@
   <a href="https://github.com/LineIndent/fletxible/actions/workflows/build.yml">
     <img src="https://github.com/LineIndent/fletxible/actions/workflows/build.yml/badge.svg" alt="Build Status">
   </a>
-  <a href="https://fletxible.readthedocs.io/en/latest/?badge=latest">
+  <!-- <a href="https://fletxible.readthedocs.io/en/latest/?badge=latest">
     <img src="https://readthedocs.org/projects/fletxible/badge/?version=latest" alt="Documentation">
-  </a>
-  <a href="https://pypi.org/project/fletxible/">
+  </a> -->
+  <!-- <a href="https://pypi.org/project/fletxible/">
     <img src="https://img.shields.io/pypi/pyversions/fletxible.svg" alt="Python version">
-  </a>
+  </a> -->
   <a href="https://pypi.org/project/Fletxible/">
-    <img src="https://img.shields.io/pypi/v/Fletxible.svg" alt="PyPI version">
+    <img src="https://img.shields.io/pypi/v/Fletxible.svg" alt="PyPI version", style="background-color: blue;">
   </a>
   <a href="https://pypi.org/project/fletxible/">
     <img src="https://img.shields.io/pypi/dm/fletxible.svg" alt="PyPI downloads">

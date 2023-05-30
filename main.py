@@ -1,6 +1,11 @@
 import importlib.util
 import flet as ft
 import os
+import yaml
+
+
+with open("fx_config.yml", "r") as file:
+    docs: dict = yaml.safe_load(file)
 
 
 def main(page: ft.Page):

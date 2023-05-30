@@ -85,7 +85,7 @@ class Header(ft.Container):
                     controls=[
                         ft.Text(
                             # start #
-                            self.name,  # end #
+'fletxible.',# end #
                             size=21,
                             weight="w700",
                         ),
