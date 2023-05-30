@@ -26,5 +26,5 @@ setup(
             "fletxible-init=fletxible.command:init",
         ],
     },
-    keywords=["python web template", "web application", "development"],
+    keywords=["python web template", "web application", "theme"],
 )

@@ -83,7 +83,7 @@ Here is a summary of what the algorithm does (v0.2.0):
 2. Define a dictionary variable to hold route keys
 
 3. Define several functions to perform various tasks:
-   1. open_yaml_script(): Loads data from the "flet_config.yml" file.
+   1. open_yaml_script(): Loads data from the "fx_config.yml" file.
    2. check_pages_directory_script(): Checks if a "pages" directory exists and creates one if not.
    3. update_pages_directory_script(docs: dict): Loops over the files in the "pages" directory and deletes any files that are not listed in the navigation information.
    4. handle_navigation_routing_script(docs: dict): Loops over the navigation information and writes route strings to a temporary file.
