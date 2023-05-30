@@ -48,7 +48,7 @@ $ pip install Fletxible
 
 After installing Fletxible, you can test if it's working properly by running the following command:
 
-```
+```py
 $ fletxible-init
 ```
 
@@ -59,7 +59,19 @@ If the package was installed correctly, a file called ```fx_config.yml``` will b
 Open the  ```fx_config.yml``` file and configure the document as needed. Change the site name, repository link, as well as any theme related settings.
 
 When you're ready, run the following command to generate your files/pages:
+```py
+python3 script.py
+```
 
+If successful, the script should generate files inside a directory named ```web``` corresponding to the names under the **navigation** header inside the ```fx_config.yml```. 
+
+You can then run the following command to see your application:
+
+```py
+python3 main.py
+```
+
+If the setup has no error, you can start customizing your pages by adding in your personal layout directly within the generated pages inside the ```web``` directory.
 
 
 ## Current Algorithm Functions
