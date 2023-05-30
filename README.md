@@ -26,9 +26,7 @@
 <p align="center">
 Fletxible is a Python web boilerplate project designed to provide a solid foundation for building web applications with Python and Flet. The project comes pre-configured with a range of tools and features to make it easy for developers to get started building their applications, without the need to spend time setting up infrastructure or configuring tools.</p>
 
-
 <img src="./assets/fletxible.png">
-
 
 
 ## Installation
