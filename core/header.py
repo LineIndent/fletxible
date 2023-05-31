@@ -3,6 +3,7 @@ import yaml
 from bs4 import BeautifulSoup
 import httpx
 import asyncio
+from math import pi
 
 with open("fx_config.yml", "r") as file:
     docs = yaml.safe_load(file)
@@ -85,7 +86,7 @@ class Header(ft.Container):
                     controls=[
                         ft.Text(
                             # start #
-'fletxible.',# end #
+                            "fletxible.",  # end #
                             size=21,
                             weight="w700",
                         ),
@@ -120,12 +121,20 @@ class Header(ft.Container):
             span_element = soup.find("span", span)
             if span_element is not None:
                 text_content = span_element.text.strip()
+
+                if i == 0:
+                    icon = ft.Icon(
+                        name=icon_elements[i], size=10, rotate=ft.Rotate(pi / 4)
+                    )
+                else:
+                    icon = ft.Icon(name=icon_elements[i], size=10)
+
                 controls_list.append(
                     ft.Row(
                         alignment="center",
                         spacing=0,
                         controls=[
-                            ft.Icon(name=icon_elements[i], size=10),
+                            icon,
                             ft.Text(
                                 text_content,
                                 size=10,
