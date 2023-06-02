@@ -28,7 +28,9 @@ class FxControls(ft.UserControl):
         )
         self.fx_min_nav = MobileNavigation(on_click=lambda e: self.set_fx_drawer(e))
 
-        self.fx_header = Header(full_nav=self.fx_max_nav, mobile_nav=self.fx_min_nav)
+        self.fx_header = Header(
+            docs=self.docs, full_nav=self.fx_max_nav, mobile_nav=self.fx_min_nav
+        )
         # Bug: control is not being added to page ...
         # self.fx_drop_down = MobileDropDownNavigation(120, self.page, [])
 

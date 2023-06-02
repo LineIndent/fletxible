@@ -1,24 +1,16 @@
 import flet as ft
-import yaml
 from bs4 import BeautifulSoup
 import httpx
 import asyncio
 from math import pi
 
-with open("fx_config.yml", "r") as file:
-    docs = yaml.safe_load(file)
-
-name = docs["site-name"]
-repo = docs["repo-url"]
-background_color = docs["theme"][0]["bgcolor"]
-
 
 class Header(ft.Container):
     def __init__(
         self,
+        docs: dict,
         full_nav: ft.Row,
         mobile_nav: ft.IconButton,
-        bgcolor=background_color,
         height=90,
         padding=ft.padding.only(left=60, right=60),
         shadow=ft.BoxShadow(
@@ -30,9 +22,15 @@ class Header(ft.Container):
         animate=ft.Animation(500, "ease"),
         clip_behavior=ft.ClipBehavior.HARD_EDGE,
     ):
-        self.name = name
+        self.docs = docs
+
+        self.repo = self.docs["repo-url"]
+        self.name = self.docs["site-name"]
+        self.background_color = self.docs["theme"][0]["bgcolor"]
+
         self.full_nav = full_nav
         self.mobile_nav = mobile_nav
+
         self.navigation = ft.Row(
             alignment="start",
             opacity=1,
@@ -67,13 +65,14 @@ class Header(ft.Container):
         )
 
         super().__init__(
-            bgcolor=bgcolor,
             height=height,
             padding=padding,
             shadow=shadow,
             animate=animate,
             clip_behavior=clip_behavior,
         )
+
+        self.bgcolor = self.background_color
 
         self.content = ft.Column(
             alignment="center",
@@ -112,7 +111,7 @@ class Header(ft.Container):
         ]
 
         async with httpx.AsyncClient() as client:
-            response = await client.get(repo)
+            response = await client.get(self.repo)
             data = response.content
 
         soup = BeautifulSoup(data, "html.parser")
