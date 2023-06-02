@@ -17,12 +17,14 @@ class FxView(ft.View):
     def __init__(
         self,
         page: ft.Page,
+        docs: dict,
         route="",  # set your routes here ...
         # bgcolor="#2e303d",
         bgcolor="#23262d",
         padding=0,
     ) -> None:
         self.page = page
+        self.docs = docs
         self.page.on_resize = self.fx_dynamics
         self.fx_view = FxControls(self.page, self.fx_controls(), self.fx_rail())
 

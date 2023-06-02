@@ -11,7 +11,7 @@ import flet as ft
 
 
 class FxControls(ft.UserControl):
-    def __init__(self, page: ft.Page, fx_controls, fx_rail):
+    def __init__(self, page: ft.Page, docs: dict, fx_controls, fx_rail):
         self.page = page
         self.fx_controls = fx_controls
         self.fx_rail = fx_rail

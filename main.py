@@ -31,7 +31,7 @@ def main(page: ft.Page):
             )
 
     for key, __ in router.items():
-        page.views.append(router[key].loader.load_module().FxView(page))
+        page.views.append(router[key].loader.load_module().FxView(page, docs))
 
     page.data = router
     page.update()
