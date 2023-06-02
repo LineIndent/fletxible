@@ -1,10 +1,4 @@
 import flet as ft
-import yaml
-
-with open("fx_config.yml", "r") as file:
-    docs = yaml.safe_load(file)
-
-name = docs["site-name"]
 
 
 class MiddlePanel(ft.Container):
