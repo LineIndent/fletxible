@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="Fletxible",
-    version="0.5.10",
+    version="0.5.11",
     author="S. Ahmad P. Hakimi",
     author_email="pourhakimi@pm.me",
     description="Web Boilerplate for Flet Library",
@@ -15,7 +15,12 @@ setup(
         "utilities",
         "fletxible",
     ],
-    install_requires=["click>=8.1.3", "flet>=0.7.4", "PyYAML>=6.0"],
+    install_requires=[
+        "click>=8.1.3",
+        "flet>=0.7.4",
+        "PyYAML>=6.0",
+        "beautifulsoup4>=4.12.2",
+    ],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
