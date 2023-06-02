@@ -21,7 +21,7 @@ class FxControls(ft.UserControl):
         self.fx_stack = ft.Stack(expand=True)
         self.fx_row = ft.Row(expand=True, spacing=2)
 
-        self.fx_drawer = Drawer()
+        self.fx_drawer = Drawer(docs=self.docs)
 
         self.fx_max_nav = Navigation(
             page=self.page, function=lambda e: self.set_app_router(e)
