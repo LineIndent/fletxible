@@ -46,8 +46,8 @@ class FxView(ft.View):
     def fx_controls(self, fx_drop_down_placeholder=ft.Container()) -> list:
         return [
             ft.Divider(height=45, color="transparent"),
-            # start your layout design here ...
             fx_drop_down_placeholder,  # DO NOT remove this placeholder ...
+            # start your layout design here ...
             fxType.heading(f"Hi! Welcome to Fletxible!!"),
             fxType.subtitle("Start building your website with fletxible!!"),
             ft.Divider(height=5, color="transparent"),
