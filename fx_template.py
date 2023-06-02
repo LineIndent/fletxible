@@ -25,8 +25,11 @@ class FxView(ft.View):
     ) -> None:
         self.page = page
         self.docs = docs
+
         self.page.on_resize = self.fx_dynamics
-        self.fx_view = FxControls(self.page, self.fx_controls(), self.fx_rail())
+        self.fx_view = FxControls(
+            self.page, self.docs, self.fx_controls(), self.fx_rail()
+        )
 
         super().__init__(route=route, bgcolor=bgcolor, padding=padding)
 
