@@ -22,6 +22,7 @@ class MiddlePanel(ft.Container):
         )
         self.page = page
         self.function = function
+
         self.controls = controls
         self.content.on_scroll = lambda e: self.get_scroll(e)
         self.content.controls = self.controls

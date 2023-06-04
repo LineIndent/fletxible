@@ -1,4 +1,4 @@
-# from core.mobile_drop_down import MobileDropDownNavigation
+from core.mobile_drop_down import MobileDropDownNavigation
 from core.mobile_navigation import MobileNavigation
 from core.middle_panel import MiddlePanel
 from core.right_panel import RightPanel
@@ -31,8 +31,8 @@ class FxControls(ft.UserControl):
         self.fx_header = Header(
             docs=self.docs, full_nav=self.fx_max_nav, mobile_nav=self.fx_min_nav
         )
-        # Bug: control is not being added to page ...
-        # self.fx_drop_down = MobileDropDownNavigation(120, self.page, [])
+        self.fx_drop_down = MobileDropDownNavigation()
+        self.fx_controls.insert(1, self.fx_drop_down)
 
         self.fx_left = LeftPanel()
         self.fx_middle = MiddlePanel(

@@ -4,85 +4,93 @@ import flet as ft
 class MobileDropDownNavigation(ft.Container):
     def __init__(
         self,
+        title: str,
         max_height: int,
-        controls_list: list,
-        title="On this page ...",
         #
-        border=ft.border.all(0.95, "white24"),
-        clip_behavior=ft.ClipBehavior.HARD_EDGE,
-        animate=ft.Animation(250, "ease"),
-        expand=True,
+        height=45,
+        bgcolor=ft.colors.with_opacity(0.95, "#20222c"),
+        border=ft.border.all(0.85, "white24"),
         border_radius=6,
-        padding=0,
-        height=48,
-        content=ft.Column(alignment="start", spacing=0),
+        clip_behavior=ft.ClipBehavior.HARD_EDGE,
+        animate=ft.Animation(300, "decelerate"),
+        shadow=ft.BoxShadow(
+            spread_radius=2,
+            blur_radius=4,
+            color=ft.colors.with_opacity(0.25, "black"),
+            offset=ft.Offset(4, 4),
+        ),
     ):
         self.title = title
         self.max_height = max_height
-        self.controls_list = controls_list
 
-        self.column = ft.Column(controls=[ft.Text("asdasd")])
+        super().__init__(
+            height=height,
+            bgcolor=bgcolor,
+            border=border,
+            border_radius=border_radius,
+            shadow=shadow,
+            clip_behavior=clip_behavior,
+            animate=animate,
+        )
 
-        self.container = ft.Container(
-            height=45,
-            bgcolor=ft.colors.with_opacity(0.95, "#20222c"),
-            border_radius=6,
-            padding=10,
-            content=ft.Row(
-                alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
-                controls=[
-                    ft.Row(
-                        vertical_alignment="center",
-                        alignment="start",
-                        spacing=10,
+        self.content = ft.Column(
+            expand=True,
+            alignment="start",
+            horizontal_alignment="start",
+            controls=[
+                ft.Container(
+                    bgcolor="#20222c",
+                    padding=ft.padding.only(left=20),
+                    content=ft.Row(
+                        height=42,
+                        alignment="spaceBetween",
                         controls=[
-                            ft.Text(
-                                self.title.capitalize(),
-                                size=11,
-                                weight="w700",
+                            ft.Row(
+                                vertical_alignment="center",
+                                alignment="start",
+                                spacing=10,
+                                controls=[
+                                    ft.Text(
+                                        self.title.capitalize(),
+                                        size=11,
+                                        weight="w700",
+                                    ),
+                                ],
+                            ),
+                            ft.IconButton(
+                                icon=ft.icons.ADD,
+                                icon_size=15,
+                                icon_color="white24",
+                                rotate=ft.Rotate(0, ft.alignment.center),
+                                animate_rotation=ft.Animation(400, "easeOutBack"),
+                                on_click=lambda e: self.resize_admonition(e),
                             ),
                         ],
                     ),
-                    ft.IconButton(
-                        icon=ft.icons.ADD,
-                        icon_size=15,
-                        icon_color="white24",
-                        rotate=ft.Rotate(0, ft.alignment.center),
-                        animate_rotation=ft.Animation(400, "easeOutBack"),
-                        # on_click=lambda e: self.resize_admonition(e),
-                    ),
-                ],
-            ),
+                ),
+                ft.Container(
+                    bgcolor="blue100",
+                    content=ft.Row(),
+                ),
+            ],
         )
-
-        super().__init__(
-            border=border,
-            clip_behavior=clip_behavior,
-            animate=animate,
-            expand=expand,
-            border_radius=border_radius,
-            padding=padding,
-            height=height,
-            content=content,
-        )
-
-        self.content.controls = [self.container, self.column]
+        # self.content.controls = [self.container, self.column]
 
         # method: expand and retract admonition control + animation set
 
-    # def resize_admonition(self, e):
-    #     if self.height != self.expanded_height:
-    #         self.height = self.expanded_height
-    #         self.container.border_radius = ft.border_radius.only(
-    #             top_left=6, top_right=6
-    #         )
-    #         e.control.rotate = ft.Rotate(0.75, ft.alignment.center)
-    #     else:
-    #         self.height = 48
-    #         e.control.rotate = ft.Rotate(0, ft.alignment.center)
-    #         self.container.border_radius = 6
+    def resize_admonition(self, e):
+        if self.height != self.max_height:
+            self.height = self.max_height
+            # self.container.border_radius = ft.border_radius.only(
+            #     top_left=6, top_right=6
+            # )
+            e.control.rotate = ft.Rotate(0.75, ft.alignment.center)
+        else:
+            self.height = 45
+            e.control.rotate = ft.Rotate(0, ft.alignment.center)
+            # self.container.border_radius = 6
 
-    #     self.update()
+        self.update()
 
 
 # import flet as ft
