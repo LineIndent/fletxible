@@ -7,6 +7,7 @@ class MobileDropDownNavigation(ft.Container):
         title: str,
         max_height: int,
         #
+        visible=False,
         height=45,
         bgcolor=ft.colors.with_opacity(0.95, "#20222c"),
         border=ft.border.all(0.85, "white24"),
@@ -21,9 +22,10 @@ class MobileDropDownNavigation(ft.Container):
         ),
     ):
         self.title = title
-        self.max_height = max_height
+        self.max_height = max_height * 50
 
         super().__init__(
+            visible=visible,
             height=height,
             bgcolor=bgcolor,
             border=border,

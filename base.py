@@ -20,7 +20,6 @@ class FxControls(ft.UserControl):
 
         self.fx_stack = ft.Stack(expand=True)
         self.fx_row = ft.Row(expand=True, spacing=2)
-
         self.fx_drawer = Drawer(docs=self.docs)
 
         self.fx_max_nav = Navigation(
@@ -31,7 +30,9 @@ class FxControls(ft.UserControl):
         self.fx_header = Header(
             docs=self.docs, full_nav=self.fx_max_nav, mobile_nav=self.fx_min_nav
         )
-        self.fx_drop_down = MobileDropDownNavigation()
+        self.fx_drop_down = MobileDropDownNavigation(
+            "On this page ...", len(self.fx_rail)
+        )
         self.fx_controls.insert(1, self.fx_drop_down)
 
         self.fx_left = LeftPanel()
@@ -54,11 +55,13 @@ class FxControls(ft.UserControl):
         self.set_fx_right(False)
 
         self.set_fx_min_nav(True)
-        # self.set_fx_drop_down(True)
+        self.set_fx_drop_down(True)
 
         self.set_fx_header(60)
         self.set_header_repo_opacity(0, False)
         self.set_header_navigation_row(0, False)
+
+        self.update()
 
     # Method: Responsive method to set the UI for 'desktop' screens ...
     def set_application_to_desktop(self):
@@ -67,11 +70,13 @@ class FxControls(ft.UserControl):
         self.set_fx_max_nav(1, True)
 
         self.set_fx_min_nav(False)
-        # self.set_fx_drop_down(False)
+        self.set_fx_drop_down(False)
 
         self.set_fx_header(90)
         self.set_header_repo_opacity(1, True)
         self.set_header_navigation_row(1, True)
+
+        self.update()
 
     # Method: sets the state of the header with animations ...
     def set_header_navigation_row(self, value: int, state: bool):
@@ -90,7 +95,7 @@ class FxControls(ft.UserControl):
 
     def set_fx_drop_down(self, state: bool):
         self.fx_drop_down.visible = state
-        self.fx_drop_down.update()
+        # self.fx_drop_down.update()
 
     def set_fx_max_nav(self, value: int, state: bool):
         self.fx_max_nav.opacity = value
