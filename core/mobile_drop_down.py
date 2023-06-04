@@ -28,12 +28,29 @@ class MobileDropDownNavigation(ft.Container):
     ):
         self.title = title
         self.middle_panel = middle_panel
+        self.drop_rail = drop_rail
 
         self.max_height = max_height
         if self.max_height != 0:
-            self.max_height = max_height * 40
+            self.max_height = (max_height * 30) + 60
 
-        self.drop_rail = drop_rail
+        drop_nav = create_rail(
+            number=len(self.drop_rail),
+            title=self.drop_rail,
+            funcOne=[
+                (
+                    lambda i: lambda __: self.middle_panel.content.scroll_to(
+                        key=str(i), duration=500
+                    )
+                )(i)
+                for i in range(1, (len(self.drop_rail) + 1))
+            ],
+            funcTwo=[
+                lambda e: self.rail_hover_color(e) for __ in range(len(self.drop_rail))
+            ],
+        )
+
+        del drop_nav[0]
 
         super().__init__(
             visible=visible,
@@ -83,25 +100,13 @@ class MobileDropDownNavigation(ft.Container):
                     ),
                 ),
                 ft.Container(
-                    padding=ft.padding.only(left=10, right=10, bottom=10),
+                    padding=ft.padding.only(left=20, right=20, bottom=10, top=15),
+                    expand=True,
                     content=ft.Column(
-                        alignment="start",
-                        controls=create_rail(
-                            number=len(self.drop_rail),
-                            title=self.drop_rail,
-                            funcOne=[
-                                (
-                                    lambda i: lambda __: self.middle_panel.content.scroll_to(
-                                        key=str(i), duration=500
-                                    )
-                                )(i)
-                                for i in range(1, 5)
-                            ],
-                            funcTwo=[
-                                lambda e: self.rail_hover_color(e)
-                                for __ in range(len(self.drop_rail))
-                            ],
-                        ),
+                        expand=True,
+                        alignment="spaceEven",
+                        horizontal_alignment="start",
+                        controls=drop_nav,
                     ),
                 ),
             ],

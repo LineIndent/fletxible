@@ -29,7 +29,7 @@ class RightPanel(ft.Container):
                         key=str(i), duration=500
                     )
                 )(i)
-                for i in range(1, 5)
+                for i in range(1, (len(self.fx_rail) + 1))
             ],
             funcTwo=[
                 lambda e: self.rail_hover_color(e) for __ in range(len(self.fx_rail))
