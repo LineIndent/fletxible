@@ -10,6 +10,7 @@ def create_rail(number: int, title: list, funcOne: list, funcTwo: list):
         for index in range(number):
             rail_list.append(
                 ft.Container(
+                    bgcolor="pink",
                     content=ft.Text(
                         title[index],
                         size=12,

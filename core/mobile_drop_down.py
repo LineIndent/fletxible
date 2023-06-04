@@ -1,12 +1,15 @@
 import flet as ft
 
+from utilities.rail import create_rail
+
 
 class MobileDropDownNavigation(ft.Container):
     def __init__(
         self,
         title: str,
         max_height: int,
-        # drop_rail: list,
+        drop_rail: list,
+        middle_panel: ft.Container,
         #
         visible=False,
         height=45,
@@ -15,6 +18,7 @@ class MobileDropDownNavigation(ft.Container):
         border_radius=6,
         clip_behavior=ft.ClipBehavior.HARD_EDGE,
         animate=ft.Animation(300, "decelerate"),
+        alignment=ft.alignment.top_left,
         shadow=ft.BoxShadow(
             spread_radius=2,
             blur_radius=4,
@@ -23,12 +27,13 @@ class MobileDropDownNavigation(ft.Container):
         ),
     ):
         self.title = title
+        self.middle_panel = middle_panel
 
         self.max_height = max_height
         if self.max_height != 0:
-            self.max_height = max_height * 50
+            self.max_height = max_height * 40
 
-        # self.drop_rail = drop_rail
+        self.drop_rail = drop_rail
 
         super().__init__(
             visible=visible,
@@ -39,12 +44,13 @@ class MobileDropDownNavigation(ft.Container):
             shadow=shadow,
             clip_behavior=clip_behavior,
             animate=animate,
+            alignment=alignment,
         )
 
         self.content = ft.Column(
             expand=True,
             alignment="start",
-            horizontal_alignment="start",
+            spacing=0,
             controls=[
                 ft.Container(
                     bgcolor="#20222c",
@@ -77,21 +83,25 @@ class MobileDropDownNavigation(ft.Container):
                     ),
                 ),
                 ft.Container(
-                    padding=15,
+                    padding=ft.padding.only(left=10, right=10, bottom=10),
                     content=ft.Column(
                         alignment="start",
-                        horizontal_alignment="start",
-                        controls=[
-                            ft.Text("Hello!"),
-                            ft.Text("Hello!"),
-                            ft.Text("Hello!"),
-                            ft.Text("Hello!"),
-                            ft.Text("Hello!"),
-                            ft.Text("Hello!"),
-                            ft.Text("Hello!"),
-                            ft.Text("Hello!"),
-                        ]
-                        # controls=self.drop_rail,
+                        controls=create_rail(
+                            number=len(self.drop_rail),
+                            title=self.drop_rail,
+                            funcOne=[
+                                (
+                                    lambda i: lambda __: self.middle_panel.content.scroll_to(
+                                        key=str(i), duration=500
+                                    )
+                                )(i)
+                                for i in range(1, 5)
+                            ],
+                            funcTwo=[
+                                lambda e: self.rail_hover_color(e)
+                                for __ in range(len(self.drop_rail))
+                            ],
+                        ),
                     ),
                 ),
             ],
@@ -106,3 +116,12 @@ class MobileDropDownNavigation(ft.Container):
             e.control.rotate = ft.Rotate(0, ft.alignment.center)
 
         self.update()
+
+    def rail_hover_color(self, e):
+        if e.data == "true":
+            e.control.content.color = "white"
+
+        else:
+            e.control.content.color = ft.colors.with_opacity(0.55, "white10")
+
+        e.control.content.update()

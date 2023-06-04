@@ -30,10 +30,6 @@ class FxControls(ft.UserControl):
         self.fx_header = Header(
             docs=self.docs, full_nav=self.fx_max_nav, mobile_nav=self.fx_min_nav
         )
-        self.fx_drop_down = MobileDropDownNavigation(
-            "On this page ...", len(self.fx_rail)
-        )
-        self.fx_controls.insert(1, self.fx_drop_down)
 
         self.fx_left = LeftPanel()
         self.fx_middle = MiddlePanel(
@@ -45,6 +41,11 @@ class FxControls(ft.UserControl):
             page=self.page,
         )
         self.fx_right = RightPanel(middle_panel=self.fx_middle, fx_rail=self.fx_rail)
+
+        self.fx_drop_down = MobileDropDownNavigation(
+            "On this page ...", len(self.fx_rail), self.fx_rail, self.fx_middle
+        )
+        self.fx_middle.controls.insert(1, self.fx_drop_down)
 
         super().__init__()
 
