@@ -11,7 +11,7 @@ import flet as ft
 
 
 class FxControls(ft.UserControl):
-    def __init__(self, page: ft.Page, docs: dict, fx_controls, fx_rail):
+    def __init__(self, page: ft.Page, docs: dict, fx_controls: list, fx_rail: list):
         self.page = page
         self.docs = docs
 
@@ -55,7 +55,11 @@ class FxControls(ft.UserControl):
         self.set_fx_right(False)
 
         self.set_fx_min_nav(True)
-        self.set_fx_drop_down(True)
+
+        if self.fx_drop_down.max_height != 0:
+            self.set_fx_drop_down(True)
+        else:
+            self.set_fx_drop_down(False)
 
         self.set_fx_header(60)
         self.set_header_repo_opacity(0, False)
