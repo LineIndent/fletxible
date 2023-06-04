@@ -13,8 +13,6 @@ def create_yaml_file():
     
   navigation:
     - Home: "index.py"
-    - About: "about.py"
-    - Docs: "docs.py"
   """
 
     return string
