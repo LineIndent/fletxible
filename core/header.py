@@ -1,5 +1,6 @@
 from core.repo_data import RepoData
 import flet as ft
+import time
 
 
 class Header(ft.Container):
@@ -67,6 +68,17 @@ class Header(ft.Container):
             ],
         )
 
+        self.title = ft.Text(
+            # start #
+            self.name,  # end #
+            size=21,
+            weight="w700",
+            opacity=1,
+            offset=ft.transform.Offset(0, 0),
+            animate_opacity=ft.Animation(300, "ease"),
+            animate_offset=ft.Animation(300, "ease"),
+        )
+
         super().__init__(
             height=height,
             padding=padding,
@@ -86,12 +98,7 @@ class Header(ft.Container):
                     alignment="spaceBetween",
                     vertical_alignment="center",
                     controls=[
-                        ft.Text(
-                            # start #
-                            "fletxible.",  # end #
-                            size=21,
-                            weight="w700",
-                        ),
+                        self.title,
                         self.repo,
                     ],
                 ),
@@ -99,3 +106,14 @@ class Header(ft.Container):
                 self.navigation,
             ],
         )
+
+    def set_header_name(self, name: str):
+        if name != self.title.value:
+            self.title.opacity = 0
+            self.title.offset = ft.transform.Offset(-0.25, 0)
+            self.title.update()
+            time.sleep(0.3)
+            self.title.value = name
+            self.title.offset = ft.transform.Offset(0, 0)
+            self.title.opacity = 1
+            self.title.update()

@@ -38,8 +38,10 @@ class FxControls(ft.UserControl):
             function=[
                 self.set_fx_header,
                 self.set_header_navigation_row,
+                self.fx_header.set_header_name,
             ],
             page=self.page,
+            header_name=self.fx_header,
         )
         self.fx_right = RightPanel(middle_panel=self.fx_middle, fx_rail=self.fx_rail)
 
