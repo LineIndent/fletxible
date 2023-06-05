@@ -6,6 +6,7 @@ class Drawer(ft.Container):
     def __init__(
         self,
         docs: dict,
+        page: ft.Page,
         expand=True,
         width=0,
         bgcolor="#23262d",
@@ -18,9 +19,11 @@ class Drawer(ft.Container):
             animate_opacity=ft.Animation(200, "easeIn"),
         ),
     ):
+        self.page = page
         self.docs = docs
         self.repo = RepoData(self.docs)
 
+        url = self.docs["repo-url"]
         background_color = self.docs["theme"][0]["bgcolor"]
         primary = self.docs["theme"][1]["primary"]
 
@@ -54,12 +57,13 @@ class Drawer(ft.Container):
                 padding=ft.padding.only(left=14),
                 bgcolor=primary,
                 height=45,
+                on_click=lambda __: self.page.launch_url(url=url),
                 content=ft.Tooltip(
                     padding=10,
-                    vertical_offset=20,
-                    message=self.annotations_msg,
+                    vertical_offset=30,
+                    message="Go to repository",
                     bgcolor="#20222c",
-                    text_style=ft.TextStyle(color="white"),
+                    text_style=ft.TextStyle(color="white", size=9),
                     content=self.repo,
                 ),
             ),
