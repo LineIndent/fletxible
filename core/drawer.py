@@ -54,6 +54,13 @@ class Drawer(ft.Container):
                 padding=ft.padding.only(left=14),
                 bgcolor=primary,
                 height=45,
-                content=self.repo,
+                content=ft.Tooltip(
+                    padding=10,
+                    vertical_offset=20,
+                    message=self.annotations_msg,
+                    bgcolor="#20222c",
+                    text_style=ft.TextStyle(color="white"),
+                    content=self.repo,
+                ),
             ),
         ]
