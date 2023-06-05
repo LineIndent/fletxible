@@ -1,4 +1,5 @@
 import flet as ft
+from core.repo_data import RepoData
 
 
 class Drawer(ft.Container):
@@ -13,11 +14,15 @@ class Drawer(ft.Container):
         content=ft.Column(
             expand=True,
             opacity=0,
+            spacing=0,
             animate_opacity=ft.Animation(200, "easeIn"),
         ),
     ):
         self.docs = docs
+        self.repo = RepoData(self.docs)
+
         background_color = self.docs["theme"][0]["bgcolor"]
+        primary = self.docs["theme"][1]["primary"]
 
         super().__init__(
             expand=expand,
@@ -32,16 +37,23 @@ class Drawer(ft.Container):
             ft.Container(
                 bgcolor=background_color,
                 height=60,
+                padding=ft.padding.only(left=14),
                 content=ft.Row(
-                    alignment="center",
+                    alignment="start",
                     controls=[
                         ft.Text(
                             # start #
-'fletxible.',# end #
-                            size=21,
+                            "fletxible.",  # end #
+                            size=19,
                             weight="w700",
                         )
                     ],
                 ),
-            )
+            ),
+            ft.Container(
+                padding=ft.padding.only(left=14),
+                bgcolor=primary,
+                height=45,
+                content=self.repo,
+            ),
         ]

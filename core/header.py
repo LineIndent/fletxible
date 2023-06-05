@@ -85,7 +85,7 @@ class Header(ft.Container):
                     controls=[
                         ft.Text(
                             # start #
-'fletxible.',# end #
+                            "fletxible.",  # end #
                             size=21,
                             weight="w700",
                         ),
@@ -99,7 +99,6 @@ class Header(ft.Container):
 
     # Method: gets the repo details based on the input repo URL ...
     async def get_repo_data(self):
-        # await asyncio.sleep(5)
         controls_list: list = []
 
         icon_elements = ["LABEL_OUTLINED", "STAR_BORDER_SHARP", "CALL_SPLIT_SHARP"]
