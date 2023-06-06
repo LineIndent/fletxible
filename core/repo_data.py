@@ -27,7 +27,7 @@ class RepoData(ft.Row):
                 horizontal_alignment="start",
                 spacing=2.5,
                 controls=[
-                    ft.Text("LineIndent/fletxible", size=11, weight="bold"),
+                    ft.Text("LineIndent/fletxible", size=11, weight="w700"),
                     ft.Row(
                         alignment="center",
                         vertical_alignment="center",

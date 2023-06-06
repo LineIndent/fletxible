@@ -27,17 +27,17 @@ class MiddlePanel(ft.Container):
         self.function = function
 
         self.controls = controls
-        self.content.on_scroll = lambda e: asyncio.run(self.get_scroll(e))
+        self.content.on_scroll = lambda e: self.get_scroll(e)
         self.content.controls = self.controls
 
-    async def get_scroll(self, e: ft.OnScrollEvent) -> None:
+    def get_scroll(self, e: ft.OnScrollEvent) -> None:
         if e.pixels >= float(2.0):
             self.function[0](60)
             self.function[1](0, False)
-            await self.function[2](self.page.route.replace("/", "").capitalize())
+            self.function[2](self.page.route.replace("/", "").capitalize())
 
         if e.pixels <= float(1.9):
-            await self.function[2](self.header_name.name)
+            self.function[2](self.header_name.name)
             if self.page.width >= 850:
                 self.function[1](1, True)
                 self.function[0](90)

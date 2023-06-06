@@ -1,4 +1,3 @@
-import asyncio
 from core.repo_data import RepoData
 import flet as ft
 import time
@@ -71,13 +70,13 @@ class Header(ft.Container):
 
         self.title = ft.Text(
             # start #
-            self.name,  # end #
+            "fletxible.",  # end #
             size=21,
             weight="w700",
             opacity=1,
             offset=ft.transform.Offset(0, 0),
-            animate_opacity=ft.Animation(300, "ease"),
-            animate_offset=ft.Animation(300, "ease"),
+            animate_opacity=ft.Animation(100, "ease"),
+            animate_offset=ft.Animation(100, "ease"),
         )
 
         super().__init__(
@@ -108,12 +107,12 @@ class Header(ft.Container):
             ],
         )
 
-    async def set_header_name(self, name: str):
+    def set_header_name(self, name: str):
         if name != self.title.value:
             self.title.opacity = 0
             self.title.offset = ft.transform.Offset(-0.25, 0)
             self.title.update()
-            await asyncio.sleep(0.3)
+            time.sleep(0.1)
             self.title.value = name
             self.title.offset = ft.transform.Offset(0, 0)
             self.title.opacity = 1
