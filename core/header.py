@@ -1,3 +1,4 @@
+import asyncio
 from core.repo_data import RepoData
 import flet as ft
 import time
@@ -107,12 +108,12 @@ class Header(ft.Container):
             ],
         )
 
-    def set_header_name(self, name: str):
+    async def set_header_name(self, name: str):
         if name != self.title.value:
             self.title.opacity = 0
             self.title.offset = ft.transform.Offset(-0.25, 0)
             self.title.update()
-            time.sleep(0.3)
+            await asyncio.sleep(0.3)
             self.title.value = name
             self.title.offset = ft.transform.Offset(0, 0)
             self.title.opacity = 1
