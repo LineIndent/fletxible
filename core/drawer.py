@@ -9,7 +9,7 @@ class Drawer(ft.Container):
         page: ft.Page,
         expand=True,
         width=0,
-        bgcolor="#2e303d",
+        bgcolor="#23262d",
         shadow=None,
         animate=ft.Animation(550, "ease"),
         content=ft.Column(
