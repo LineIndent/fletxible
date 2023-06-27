@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="Fletxible",
-    version="0.5.15",
+    version="0.5.16",
     author="S. Ahmad P. Hakimi",
     author_email="pourhakimi@pm.me",
     description="Web Boilerplate for Flet Library",
