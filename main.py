@@ -32,21 +32,22 @@ def main(page: ft.Page):
                 filename, filepath
             )
 
-    # Load application views ...
-    for key, __ in router.items():
-        page.views.append(router[key].loader.load_module().FxView(page, docs))
+    def route_change(route):
+        page.views.clear()
+        page.views.append(router[page.route].loader.load_module().FxView(page, docs))
+        page.update()
 
     page.data = router
-    page.update()
+
 
     # Set page responsive layout based on page width ...
     for view in page.views[1:]:
         view.fx_dynamics(event=None)
 
-    # PLACEHOLDER VIEW ROUTE >>>>
-    page.go("/installation")
+    page.on_route_change = route_change
+    page.views.append(router["/installation"].loader.load_module().FxView(page, docs))
     page.update()
 
 
 if __name__ == "__main__":
-    ft.flet.app(target=main)
+    ft.app(target=main)

@@ -25,20 +25,48 @@ class Navigation(ft.Row):
         self.controls = [
             # DO NOT REMOVE 'start' and 'end' markers!!
             # start #
-ft.Text(size=11, weight='bold', spans=[ft.TextSpan('Installation', data='/installation', on_click=lambda e: self.set_app_router(e))]),
-ft.Text(size=11, weight='bold', spans=[ft.TextSpan('About', data='/about', on_click=lambda e: self.set_app_router(e))]),# end #
+            ft.Text(
+                size=11,
+                weight="bold",
+                spans=[
+                    ft.TextSpan(
+                        "Installation",
+                        data="/installation",
+                        on_click=lambda e: self.page.go("/installation"),
+                    )
+                ],
+            ),
+            ft.Text(
+                size=11,
+                weight="bold",
+                spans=[
+                    ft.TextSpan(
+                        "About",
+                        data="/about",
+                        on_click=lambda e: self.page.go("/about"),
+                    )
+                ],
+            ),  # end #
         ]
 
     def set_app_router(self, route):
         self.page.views.clear()
         # begin #
-        if route.control.data == '/installation':
-                self.page.views.append(self.page.data[route.control.data].loader.load_module().FxView(self.page, self.docs))
-                self.page.go(route.control.data)
+        if route.control.data == "/installation":
+            self.page.views.append(
+                self.page.data[route.control.data]
+                .loader.load_module()
+                .FxView(self.page, self.docs)
+            )
+            # self.page.go(route.control.data)
 
-        if route.control.data == '/about':
-                self.page.views.append(self.page.data[route.control.data].loader.load_module().FxView(self.page, self.docs))
-                self.page.go(route.control.data)
+        if route.control.data == "/about":
+            self.page.views.append(
+                self.page.data[route.control.data]
+                .loader.load_module()
+                .FxView(self.page, self.docs)
+            )
+            # self.page.go(route.control.data)
 
-# finish #
+        # finish #
         self.page.update()
