@@ -12,7 +12,6 @@ class Navigation(ft.Row):
         self.page = page
         self.docs = docs
 
-        # self.page.on_route_change = self.set_app_router
         self.function = function
 
         self.index: int
@@ -31,7 +30,6 @@ class Navigation(ft.Row):
                 spans=[
                     ft.TextSpan(
                         "Installation",
-                        data="/installation",
                         on_click=lambda e: self.page.go("/installation"),
                     )
                 ],
@@ -42,31 +40,9 @@ class Navigation(ft.Row):
                 spans=[
                     ft.TextSpan(
                         "About",
-                        data="/about",
                         on_click=lambda e: self.page.go("/about"),
                     )
                 ],
             ),  # end #
         ]
 
-    def set_app_router(self, route):
-        self.page.views.clear()
-        # begin #
-        if route.control.data == "/installation":
-            self.page.views.append(
-                self.page.data[route.control.data]
-                .loader.load_module()
-                .FxView(self.page, self.docs)
-            )
-            # self.page.go(route.control.data)
-
-        if route.control.data == "/about":
-            self.page.views.append(
-                self.page.data[route.control.data]
-                .loader.load_module()
-                .FxView(self.page, self.docs)
-            )
-            # self.page.go(route.control.data)
-
-        # finish #
-        self.page.update()
