@@ -13,7 +13,7 @@ class RepoData(ft.Row):
         vertical_alignment="center",
     ):
         self.docs = docs
-        self.repo = self.docs["repo-url"]
+        self.repo = self.docs.get("repo-url", "")
 
         self.repo_data = asyncio.run(self.get_repo_data())
 

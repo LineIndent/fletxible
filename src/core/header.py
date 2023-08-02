@@ -23,11 +23,10 @@ class Header(ft.Container):
         self.docs = docs
         self.repo_data = RepoData(self.docs)
 
-        self.repo = self.docs["repo-url"]
-        url = self.docs["repo-url"]
+        url = self.docs.get("repo-url", "")
 
-        self.name = self.docs["site-name"]
-        self.background_color = self.docs["theme"][0]["bgcolor"]
+        self.name = self.docs.get("site-name", "")
+        self.background_color = self.docs.get("theme", "").get("bgcolor", "")
 
         self.full_nav = full_nav
         self.mobile_nav = mobile_nav

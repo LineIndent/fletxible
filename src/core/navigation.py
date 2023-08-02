@@ -9,7 +9,6 @@ class Navigation(ft.Row):
         function: callable,
         alignment="center",
     ):
-        self.page = page
         self.docs = docs
 
         self.function = function
@@ -21,6 +20,7 @@ class Navigation(ft.Row):
             alignment=alignment,
         )
 
+        self.page = page
         self.controls = [
             # DO NOT REMOVE 'start' and 'end' markers!!
             # start #
@@ -29,8 +29,9 @@ class Navigation(ft.Row):
                 weight="bold",
                 spans=[
                     ft.TextSpan(
-                        "Installation",
-                        on_click=lambda e: self.page.go("/installation"),
+                        "Index",
+                        data="/index",
+                        on_click=lambda __: self.page.go("/index"),
                     )
                 ],
             ),
@@ -40,9 +41,9 @@ class Navigation(ft.Row):
                 spans=[
                     ft.TextSpan(
                         "About",
-                        on_click=lambda e: self.page.go("/about"),
+                        data="/about",
+                        on_click=lambda __: self.page.go("/about"),
                     )
                 ],
             ),  # end #
         ]
-

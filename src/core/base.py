@@ -1,22 +1,29 @@
-from core.mobile_drop_down import MobileDropDownNavigation
-from core.mobile_navigation import MobileNavigation
-from core.middle_panel import MiddlePanel
-from core.right_panel import RightPanel
-from core.navigation import Navigation
-from core.left_panel import LeftPanel
-from core.header import Header
-from core.drawer import Drawer
+from core.mobile_drop_down import MobileDropDownNavigation  # noqa: F401
+from core.mobile_navigation import MobileNavigation  # noqa: F401
+from core.middle_panel import MiddlePanel  # noqa: F401
+from core.right_panel import RightPanel  # noqa: F401
+from core.navigation import Navigation  # noqa: F401
+from core.left_panel import LeftPanel  # noqa: F401
+from core.header import Header  # noqa: F401
+from core.drawer import Drawer  # noqa: F401
 
 import flet as ft
 
 
-class FxControls(ft.UserControl):
-    def __init__(self, page: ft.Page, docs: dict, fx_controls: list, fx_rail: list):
+class FxBaseView(ft.View):
+    def __init__(
+        self,
+        page: ft.Page,
+        docs: dict,
+        components: list,
+        nav_rail: list,
+        route: str,
+        padding=0,
+    ):
         self.page = page
         self.docs = docs
-
-        self.fx_controls = fx_controls
-        self.fx_rail = fx_rail
+        self.components = components
+        self.nav_rail = nav_rail
 
         self.fx_stack = ft.Stack(expand=True)
         self.fx_row = ft.Row(expand=True, spacing=2)
@@ -34,7 +41,7 @@ class FxControls(ft.UserControl):
 
         self.fx_left = LeftPanel()
         self.fx_middle = MiddlePanel(
-            controls=self.fx_controls,
+            components=self.components,
             function=[
                 self.set_fx_header,
                 self.set_header_navigation_row,
@@ -43,14 +50,22 @@ class FxControls(ft.UserControl):
             page=self.page,
             header_name=self.fx_header,
         )
-        self.fx_right = RightPanel(middle_panel=self.fx_middle, fx_rail=self.fx_rail)
+        self.fx_right = RightPanel(middle_panel=self.fx_middle, fx_rail=self.nav_rail)
 
         self.fx_drop_down = MobileDropDownNavigation(
-            "On this page ...", len(self.fx_rail), self.fx_rail, self.fx_middle
+            "On this page ...", len(self.nav_rail), self.nav_rail, self.fx_middle
         )
-        self.fx_middle.controls.insert(1, self.fx_drop_down)
+        self.fx_middle.components.insert(1, self.fx_drop_down)
 
-        super().__init__()
+        super().__init__(
+            padding=padding,
+            route=route,
+        )
+
+        self.fx_row.controls = [self.fx_left, self.fx_middle, self.fx_right]
+        self.fx_stack.controls = [self.fx_row, self.fx_header, self.fx_drawer]
+
+        self.controls = [self.fx_stack]
 
     # Method: Responsive method to set the UI for 'mobile/tablet' screens ...
     def set_application_to_mobile(self):
@@ -149,9 +164,3 @@ class FxControls(ft.UserControl):
         self.fx_drawer.width = 0
         self.fx_drawer.shadow = None
         self.fx_drawer.update()
-
-    def build(self):
-        self.fx_row.controls = [self.fx_left, self.fx_middle, self.fx_right]
-        self.fx_stack.controls = [self.fx_row, self.fx_header, self.fx_drawer]
-
-        return self.fx_stack

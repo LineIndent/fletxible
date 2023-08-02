@@ -23,9 +23,9 @@ class Drawer(ft.Container):
         self.docs = docs
         self.repo = RepoData(self.docs)
 
-        url = self.docs["repo-url"]
-        background_color = self.docs["theme"][0]["bgcolor"]
-        primary = self.docs["theme"][1]["primary"]
+        url = self.docs.get("repo-url", "")
+        background_color = self.docs.get("theme", "").get("bgcolor", "")
+        primary = self.docs.get("theme", "").get("primary", "")
 
         super().__init__(
             expand=expand,

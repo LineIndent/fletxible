@@ -63,7 +63,7 @@ class CodeBlock(ft.UserControl):
 
             break
 
-        if self._hovered == True:
+        if self._hovered is True:
             self.copy_box.content.opacity = 1
 
         else:

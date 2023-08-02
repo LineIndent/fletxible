@@ -1,34 +1,29 @@
 import flet as ft
-import asyncio
 
 
 class MiddlePanel(ft.Container):
     def __init__(
         self,
-        controls: list,
+        components: list,
         function: list[callable],
         page: ft.Page,
         header_name: str,
         expand=5,
         padding=ft.padding.only(top=65, right=15, left=15),
         alignment=ft.alignment.top_center,
-        content=ft.Column(
-            expand=True,
-            alignment="start",
-            scroll="hidden",
-            spacing=0,
-        ),
     ):
-        super().__init__(
-            expand=expand, padding=padding, alignment=alignment, content=content
-        )
-        self.header_name = header_name
         self.page = page
+        self.components = components
+        self.header_name = header_name
         self.function = function
 
-        self.controls = controls
-        self.content.on_scroll = lambda e: self.get_scroll(e)
-        self.content.controls = self.controls
+        self.main_column = ft.Column(
+            expand=True, alignment="start", scroll="hidden", spacing=0
+        )
+        self.main_column.controls = self.components
+        self.main_column.on_scroll = lambda e: self.get_scroll(e)
+        super().__init__(expand=expand, padding=padding, alignment=alignment)
+        self.content = self.main_column
 
     def get_scroll(self, e: ft.OnScrollEvent) -> None:
         if e.pixels >= float(2.0):
