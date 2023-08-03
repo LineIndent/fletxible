@@ -1,8 +1,8 @@
 import flet as ft
 from config import config
-
+from scripts.build import get_list_of_pages_from_directory
+from pages._error import Error404
 import importlib
-import os
 import psutil
 import gc
 
@@ -22,18 +22,19 @@ def main(page: ft.Page):
 
     docs: dict = config
 
+    __, list_of_pages = get_list_of_pages_from_directory()
+
     def generate_view_as_instance(route):
-        for file in os.listdir("pages"):
-            if os.path.isfile(f"pages/{file}"):
-                filename = os.path.splitext(file)[0]
-                if "/" + filename == route:
-                    filepath = os.path.join("pages", file)
-                    module_spec = importlib.util.spec_from_file_location(
-                        filename, filepath
-                    )
-                    module = importlib.util.module_from_spec(module_spec)
-                    module_spec.loader.exec_module(module)
-                    return module.FxView(page, docs)
+        for file in list_of_pages:
+            filename = file.split("/")[-1].split(".")[0]
+            filepath = file
+            if "/" + filename == route:
+                module_spec = importlib.util.spec_from_file_location(filename, filepath)
+                module = importlib.util.module_from_spec(module_spec)
+                module_spec.loader.exec_module(module)
+                return module.FxView(page, docs)
+
+        return Error404(page, docs)
 
     def change_route(route):
         page.views.clear()
@@ -42,7 +43,8 @@ def main(page: ft.Page):
         page.views.append(view)
 
         page.update()
-        print(f"After: {process.memory_info().rss / 1024 / 1024} MB")
+
+        # print(f"After: {process.memory_info().rss / 1024 / 1024} MB")
 
     def resize_applications(event):
         for view in page.views[:]:
@@ -55,15 +57,15 @@ def main(page: ft.Page):
     index = generate_view_as_instance("/index")
     page.views.append(index)
 
-    process = psutil.Process()
-    print(f"Initial Memory used: {process.memory_info().rss / 1024 / 1024} MB")
+    psutil.Process()
+    # print(f"Initial Memory used: {process.memory_info().rss / 1024 / 1024} MB")
 
     page.on_route_change = change_route
     page.on_resize = resize_applications
 
     page.update()
 
-    print(f"Memory after initial update: {process.memory_info().rss / 1024 / 1024} MB")
+    # print(f"Memory after initial update: {process.memory_info().rss / 1024 / 1024} MB")
 
 
-ft.app(target=main)
+ft.app(target=main, view="web_browser")

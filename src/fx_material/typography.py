@@ -10,4 +10,4 @@ def subtitle(title, key=None):
 
 
 def paragraph(title):
-    return Text(value=title, size=12, weight="w400")
+    return Text(value=title, size=15, weight="w500")

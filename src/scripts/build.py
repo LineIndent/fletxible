@@ -94,9 +94,36 @@ def synchronize_directories(docs: dict):
             open(file, "w").close()
 
 
+def create_navigation_links_from_keys(docs: dict):
+    routes: list = []
+    nav_list: list = []
+
+    for key in docs.get("navigation").keys():
+        routes.append(key)
+
+    for route in routes:
+        nav_list.append(f"self.route('{route.capitalize()}', '/{route}'),")
+
+    with open("core/navigation.py", "r") as file:
+        data = file.read()
+
+    start_index = data.index("# start #")
+    stop_index = data.index("# end #")
+
+    new_nav_list = "\n".join(nav_list)
+
+    new_data = data[:start_index] + "# start #\n" + new_nav_list + data[stop_index:]
+
+    with open("core/navigation.py", "w") as file:
+        file.write(new_data)
+
+
 def build(docs: dict):
-    check_if_pages_directory_exists()
-    synchronize_directories(docs)
+    # check_if_pages_directory_exists()
+    # synchronize_directories(docs)
+    # create_navigation_links_from_keys(docs)
+
+    ...
 
 
 if __name__ == "__main__":

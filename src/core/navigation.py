@@ -23,12 +23,12 @@ class Navigation(ft.Row):
         self.page = page
         self.controls = [
             # start #
-            self.router("Home", "/index"),
-            self.router("About", "/about"),
-            # end #
+            self.route("Index", "/index"),
+            self.route("About", "/about"),
+            self.route("Contact", "/contact"),  # end #
         ]
 
-    def router(self, title: str, route_to: str):
+    def route(self, title: str, route_to: str):
         return ft.Text(
             size=11,
             weight="bold",
