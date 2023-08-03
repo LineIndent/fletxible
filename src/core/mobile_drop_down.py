@@ -1,7 +1,5 @@
 import flet as ft
 
-from utilities.rail import create_rail
-
 
 class MobileDropDownNavigation(ft.Container):
     def __init__(
@@ -34,23 +32,7 @@ class MobileDropDownNavigation(ft.Container):
         if self.max_height != 0:
             self.max_height = (max_height * 30) + 60
 
-        drop_nav = create_rail(
-            number=len(self.drop_rail),
-            title=self.drop_rail,
-            funcOne=[
-                (
-                    lambda i: lambda __: self.middle_panel.content.scroll_to(
-                        key=str(i), duration=500
-                    )
-                )(i)
-                for i in range(1, (len(self.drop_rail) + 1))
-            ],
-            funcTwo=[
-                lambda e: self.rail_hover_color(e) for __ in range(len(self.drop_rail))
-            ],
-        )
-
-        del drop_nav[0]
+        self.drop_rail = self.generate_right_rail_logic(self.drop_rail)
 
         super().__init__(
             visible=visible,
@@ -106,7 +88,7 @@ class MobileDropDownNavigation(ft.Container):
                         expand=True,
                         alignment="spaceEven",
                         horizontal_alignment="start",
-                        controls=drop_nav,
+                        controls=self.drop_rail,
                     ),
                 ),
             ],
@@ -130,3 +112,26 @@ class MobileDropDownNavigation(ft.Container):
             e.control.content.color = ft.colors.with_opacity(0.55, "white10")
 
         e.control.content.update()
+
+    def generate_right_rail_logic(self, fx_rail_list):
+        nav_rail = []
+
+        if len(fx_rail_list) != 0:
+            for item in fx_rail_list:
+                key = item[0]
+                nav_rail.append(
+                    ft.Container(
+                        content=ft.Text(
+                            item[1],
+                            size=12,
+                            color=ft.colors.with_opacity(0.55, "white10"),
+                        ),
+                        on_hover=lambda e,: self.rail_hover_color(e),
+                        on_click=lambda _, key=key: self.scroll_to_key(key),
+                    )
+                )
+
+        return nav_rail
+
+    def scroll_to_key(self, key):
+        self.middle_panel.main_column.scroll_to(key=str(key), duration=500)
