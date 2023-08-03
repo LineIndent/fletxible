@@ -22,30 +22,16 @@ class Navigation(ft.Row):
 
         self.page = page
         self.controls = [
-            # DO NOT REMOVE 'start' and 'end' markers!!
             # start #
-            ft.Text(
-                size=11,
-                weight="bold",
-                color="white",
-                spans=[
-                    ft.TextSpan(
-                        "Index",
-                        data="/index",
-                        on_click=lambda __: self.page.go("/index"),
-                    )
-                ],
-            ),
-            ft.Text(
-                size=11,
-                weight="bold",
-                color="white",
-                spans=[
-                    ft.TextSpan(
-                        "About",
-                        data="/about",
-                        on_click=lambda __: self.page.go("/about"),
-                    )
-                ],
-            ),  # end #
+            self.router("Home", "/index"),
+            self.router("About", "/about"),
+            # end #
         ]
+
+    def router(self, title: str, route_to: str):
+        return ft.Text(
+            size=11,
+            weight="bold",
+            color="white",
+            spans=[ft.TextSpan(title, on_click=lambda __: self.page.go(route_to))],
+        )

@@ -14,7 +14,7 @@ class Drawer(ft.Container):
         animate=ft.Animation(550, "ease"),
         content=ft.Column(
             expand=True,
-            opacity=0,
+            # opacity=0,
             spacing=0,
             animate_opacity=ft.Animation(100, "ease"),
         ),
@@ -23,6 +23,7 @@ class Drawer(ft.Container):
         self.docs = docs
         self.repo = RepoData(self.docs)
 
+        name = self.docs.get("repo-name", "")
         url = self.docs.get("repo-url", "")
         background_color = self.docs.get("theme", "").get("bgcolor", "")
         primary = self.docs.get("theme", "").get("primary", "")
@@ -46,9 +47,10 @@ class Drawer(ft.Container):
                     controls=[
                         ft.Text(
                             # start #
-                            "fletxible.",  # end #
+                            name,  # end #
                             size=19,
                             weight="w700",
+                            color="white",
                         )
                     ],
                 ),

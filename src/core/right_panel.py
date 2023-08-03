@@ -4,12 +4,17 @@ import flet as ft
 class RightPanel(ft.Container):
     def __init__(
         self,
+        docs: dict,
         middle_panel: ft.Container,
         fx_rail: list,
         expand=1,
         padding=ft.padding.only(top=65),
     ):
+        self.docs = docs
+        self.highlight = self.docs.get("theme", "").get("bgcolor", "")
+
         self.middle_panel = middle_panel
+
         self.fx_rail = fx_rail
         self.adjusted_nav_rail = self.generate_right_rail_logic(self.fx_rail)
 
@@ -33,7 +38,7 @@ class RightPanel(ft.Container):
                         content=ft.Text(
                             item[1],
                             size=12,
-                            color=ft.colors.with_opacity(0.55, "white10"),
+                            weight="w500",
                         ),
                         on_hover=lambda e,: self.rail_hover_color(e),
                         on_click=lambda _, key=key: self.scroll_to_key(key),
@@ -47,9 +52,9 @@ class RightPanel(ft.Container):
 
     def rail_hover_color(self, e):
         if e.data == "true":
-            e.control.content.color = "white"
+            e.control.content.color = self.highlight
 
         else:
-            e.control.content.color = ft.colors.with_opacity(0.55, "white10")
+            e.control.content.color = ""
 
         e.control.content.update()

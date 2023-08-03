@@ -20,7 +20,7 @@ def main(page: ft.Page):
     theme.page_transitions.macos = ft.PageTransitionTheme.NONE
     page.theme = theme
 
-    docs: dict = config  # noqa: F841
+    docs: dict = config
 
     def generate_view_as_instance(route):
         for file in os.listdir("pages"):

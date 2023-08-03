@@ -53,7 +53,9 @@ class FxBaseView(ft.View):
             page=self.page,
             header_name=self.fx_header,
         )
-        self.fx_right = RightPanel(middle_panel=self.fx_middle, fx_rail=self.nav_rail)
+        self.fx_right = RightPanel(
+            docs=self.docs, middle_panel=self.fx_middle, fx_rail=self.nav_rail
+        )
 
         self.fx_drop_down = MobileDropDownNavigation(
             "On this page ...", len(self.nav_rail), self.nav_rail, self.fx_middle
@@ -151,7 +153,7 @@ class FxBaseView(ft.View):
         self.fx_drawer.width = 220
         self.fx_drawer.shadow = ft.BoxShadow(
             blur_radius=15,
-            spread_radius=8,
+            spread_radius=10,
             color=ft.colors.with_opacity(0.25, "black"),
             offset=(4, 4),
         )
