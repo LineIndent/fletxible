@@ -13,6 +13,7 @@ class RepoData(ft.Row):
         vertical_alignment="center",
     ):
         self.docs = docs
+        self.repo_name = self.docs.get("repo-name", "")
         self.repo = self.docs.get("repo-url", "")
 
         self.repo_data = asyncio.run(self.get_repo_data())
@@ -27,7 +28,12 @@ class RepoData(ft.Row):
                 horizontal_alignment="start",
                 spacing=2.5,
                 controls=[
-                    ft.Text("LineIndent/fletxible", size=11, weight="w700"),
+                    ft.Text(
+                        self.repo_name,
+                        size=11,
+                        color="white",
+                        weight="w700",
+                    ),
                     ft.Row(
                         alignment="center",
                         vertical_alignment="center",
@@ -62,10 +68,17 @@ class RepoData(ft.Row):
 
                 if i == 0:
                     icon = ft.Icon(
-                        name=icon_elements[i], size=10, rotate=ft.Rotate(pi / 4)
+                        name=icon_elements[i],
+                        size=10,
+                        rotate=ft.Rotate(pi / 4),
+                        color="white",
                     )
                 else:
-                    icon = ft.Icon(name=icon_elements[i], size=10)
+                    icon = ft.Icon(
+                        name=icon_elements[i],
+                        size=10,
+                        color="white",
+                    )
 
                 controls_list.append(
                     ft.Row(
@@ -77,6 +90,7 @@ class RepoData(ft.Row):
                                 text_content,
                                 size=10,
                                 weight="w200",
+                                color="white",
                             ),
                         ],
                     )

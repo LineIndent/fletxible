@@ -8,6 +8,7 @@ import gc
 
 
 def main(page: ft.Page):
+    page.theme_mode = ft.ThemeMode.LIGHT
     theme = ft.Theme(
         scrollbar_theme=ft.ScrollbarTheme(
             thickness=4,

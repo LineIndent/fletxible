@@ -8,7 +8,6 @@ class MobileDropDownNavigation(ft.Container):
         max_height: int,
         drop_rail: list,
         middle_panel: ft.Container,
-        #
         visible=False,
         height=45,
         bgcolor=ft.colors.with_opacity(0.95, "#20222c"),

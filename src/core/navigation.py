@@ -27,6 +27,7 @@ class Navigation(ft.Row):
             ft.Text(
                 size=11,
                 weight="bold",
+                color="white",
                 spans=[
                     ft.TextSpan(
                         "Index",
@@ -38,6 +39,7 @@ class Navigation(ft.Row):
             ft.Text(
                 size=11,
                 weight="bold",
+                color="white",
                 spans=[
                     ft.TextSpan(
                         "About",

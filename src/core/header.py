@@ -15,7 +15,7 @@ class Header(ft.Container):
             spread_radius=2,
             blur_radius=4,
             color=ft.colors.with_opacity(0.25, "black"),
-            offset=ft.Offset(2, 2),
+            offset=ft.Offset(3, 3),
         ),
         animate=ft.Animation(500, "ease"),
         clip_behavior=ft.ClipBehavior.HARD_EDGE,
@@ -71,6 +71,7 @@ class Header(ft.Container):
             # start #
             "fletxible.",  # end #
             size=21,
+            color="white",
             weight="w700",
             opacity=1,
             offset=ft.transform.Offset(0, 0),
