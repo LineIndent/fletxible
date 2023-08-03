@@ -66,6 +66,7 @@ class MobileDropDownNavigation(ft.Container):
                                         self.title.capitalize(),
                                         size=11,
                                         weight="w700",
+                                        color="white",
                                     ),
                                 ],
                             ),

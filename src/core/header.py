@@ -6,6 +6,7 @@ import time
 class Header(ft.Container):
     def __init__(
         self,
+        page: ft.Page,
         docs: dict,
         full_nav: ft.Row,
         mobile_nav: ft.IconButton,
@@ -20,6 +21,7 @@ class Header(ft.Container):
         animate=ft.Animation(500, "ease"),
         clip_behavior=ft.ClipBehavior.HARD_EDGE,
     ):
+        self.page = page
         self.docs = docs
         self.repo_data = RepoData(self.docs)
 
@@ -99,10 +101,22 @@ class Header(ft.Container):
                     vertical_alignment="center",
                     controls=[
                         self.title,
-                        self.repo,
+                        ft.Row(
+                            spacing=1,
+                            alignment="end",
+                            vertical_alignment="center",
+                            controls=[
+                                ft.IconButton(
+                                    icon_size=14,
+                                    icon=ft.icons.DARK_MODE_ROUNDED,
+                                    icon_color="white",
+                                    on_click=lambda e: self.toggle_theme(e),
+                                ),
+                                self.repo,
+                            ],
+                        ),
                     ],
                 ),
-                #
                 self.navigation,
             ],
         )
@@ -117,3 +131,14 @@ class Header(ft.Container):
             self.title.offset = ft.transform.Offset(0, 0)
             self.title.opacity = 1
             self.title.update()
+
+    def toggle_theme(self, e):
+        if e.control.icon == ft.icons.LIGHT_MODE_ROUNDED:
+            self.page.theme_mode = ft.ThemeMode.DARK
+            e.control.icon = ft.icons.DARK_MODE_ROUNDED
+
+        else:
+            self.page.theme_mode = ft.ThemeMode.LIGHT
+            e.control.icon = ft.icons.LIGHT_MODE_ROUNDED
+
+        self.page.update()
