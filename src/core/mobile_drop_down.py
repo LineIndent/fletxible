@@ -6,7 +6,7 @@ class MobileDropDownNavigation(ft.Container):
         self,
         title: str,
         max_height: int,
-        drop_rail: list,
+        drop_rail: list[list],
         middle_panel: ft.Container,
         visible=False,
         height=45,
@@ -115,7 +115,6 @@ class MobileDropDownNavigation(ft.Container):
 
     def generate_right_rail_logic(self, fx_rail_list):
         nav_rail = []
-
         if len(fx_rail_list) != 0:
             for item in fx_rail_list:
                 key = item[0]

@@ -89,11 +89,38 @@ def synchronize_directories(docs: dict):
         except:  # noqa: E722
             pass
 
+    with open("utilities/fx_template.py", "r") as file:
+        view = file.read()
+
+    with open("utilities/fx_sub_template.py", "r") as file:
+        sub_view = file.read()
+
     for file in dict_files:
         if not os.path.exists(file):
-            open(file, "w").close()
+            file_length = len(file.split("/"))
+            with open(file, "w") as file:
+                if file_length >= 3:
+                    file.write(sub_view)
+                else:
+                    file.write(view)
 
 
+def set_sub_directory_router_file():
+    sub_dirs, __ = get_list_of_pages_from_directory()
+
+    with open("utilities/fx_sub_router.py", "r") as file:
+        router = file.read()
+
+    for sub_dir in sub_dirs:
+        router_path = os.path.join(sub_dir + "/router.py")
+        if not os.path.exists(router_path):
+            with open(router_path, "w") as file:
+                file.write(router)
+        else:
+            continue
+
+
+# NOT USE #
 def create_navigation_links_from_keys():
     nav_list: list = []
 
@@ -105,12 +132,6 @@ def create_navigation_links_from_keys():
         if filename == "/_error":
             continue
         nav_list.append(f"self.route('{title.capitalize()}', '{filename}'),")
-
-    # for key in docs.get("navigation").keys():
-    #     routes.append(key)
-
-    # for route in routes:
-    #     nav_list.append(f"self.route('{route.capitalize()}', '/{route}'),")
 
     with open("core/navigation.py", "r") as file:
         data = file.read()
@@ -131,9 +152,7 @@ def create_navigation_links_from_keys():
 def build(docs: dict):
     check_if_pages_directory_exists()
     synchronize_directories(docs)
-    create_navigation_links_from_keys()
-
-    ...
+    set_sub_directory_router_file()
 
 
 if __name__ == "__main__":

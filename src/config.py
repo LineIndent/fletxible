@@ -9,5 +9,9 @@ config: dict = {
     "navigation": {
         "index": "index.py",
         "about": "about.py",
+        "contact": {
+            "index": "index.py",
+            "about": "about.py",
+        },
     },
 }

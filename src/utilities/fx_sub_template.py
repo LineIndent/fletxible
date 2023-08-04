@@ -1,9 +1,10 @@
 import flet as ft
 from core.base import FxBaseView
 import fx_material as fx  # noqa: F401
+from router import sub_navigation
 
 
-class FxView(FxBaseView):
+class FxSubView(FxBaseView):
     def __init__(
         self,
         page: ft.Page,
@@ -12,14 +13,19 @@ class FxView(FxBaseView):
     ):
         self.components = self.fx_controls()
         self.nav_rail = self.fx_rail()
+        self.sub_nav = self.fx_sub_navigation()
 
         super().__init__(
             page=page,
             docs=docs,
             components=self.components,
             nav_rail=self.nav_rail,
+            sub_nav=self.sub_nav,
             route=route,
         )
+
+    def fx_sub_navigation(self) -> list:
+        return sub_navigation()
 
     def fx_rail(self) -> list[list]:
         return [[]]  # page navigation here ...

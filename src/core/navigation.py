@@ -13,6 +13,7 @@ class Navigation(ft.Row):
         self.controls = [
             self.route("Home", "/index"),
             self.route("About", "/about"),
+            self.route("Contact", "/contact/index"),
         ]
 
     def route(self, title: str, route_to: str) -> ft.Control:

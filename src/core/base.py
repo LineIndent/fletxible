@@ -16,14 +16,16 @@ class FxBaseView(ft.View):
         page: ft.Page,
         docs: dict,
         components: list,
-        nav_rail: list,
+        nav_rail: list[list],
         route: str,
+        sub_nav=None,
         padding=0,
     ):
         self.page = page
         self.docs = docs
         self.components = components
         self.nav_rail = nav_rail
+        self.sub_nav = sub_nav
 
         self.fx_stack = ft.Stack(expand=True)
         self.fx_row = ft.Row(expand=True, spacing=2)
@@ -40,7 +42,10 @@ class FxBaseView(ft.View):
             mobile_nav=self.fx_min_nav,
         )
 
-        self.fx_left = LeftPanel()
+        self.fx_left = LeftPanel(
+            page=self.page,
+            routes=self.sub_nav,
+        )
         self.fx_middle = MiddlePanel(
             components=self.components,
             function=[
