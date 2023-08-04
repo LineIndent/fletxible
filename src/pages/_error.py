@@ -1,0 +1,37 @@
+import flet as ft
+from core.base import FxBaseView
+import fx_material as fx
+
+
+class Error404(FxBaseView):
+    def __init__(
+        self,
+        page: ft.Page,
+        docs: dict,
+        route="/error_404",
+    ):
+        self.components = self.fx_controls()
+        self.nav_rail = self.fx_rail()
+
+        super().__init__(
+            page=page,
+            docs=docs,
+            components=self.components,
+            nav_rail=self.nav_rail,
+            route=route,
+        )
+
+    def fx_rail(self) -> list[list]:
+        return []
+
+    def fx_controls(self) -> list:
+        return [
+            ft.Divider(height=35, color="transparent"),
+            ft.Divider(height=25, color="transparent"),
+            # start your layout design here ...
+            fx.heading("404 - Page Not Found!"),
+            ft.Divider(height=25, color="transparent"),
+            fx.paragraph("Demo 404 page for bad URLs."),
+            # end your layout design here ...
+            ft.Divider(height=15, color="transparent"),
+        ]

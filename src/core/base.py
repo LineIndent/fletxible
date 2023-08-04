@@ -30,9 +30,7 @@ class FxBaseView(ft.View):
 
         self.fx_drawer = Drawer(docs=self.docs, page=self.page)
 
-        self.fx_max_nav = Navigation(
-            page=self.page, docs=self.docs, function=lambda e: self.set_app_router(e)
-        )
+        self.fx_max_nav = Navigation(page=self.page)
         self.fx_min_nav = MobileNavigation(on_click=lambda e: self.set_fx_drawer(e))
 
         self.fx_header = Header(

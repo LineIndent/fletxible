@@ -1,10 +1,37 @@
 import flet as ft
 from config import config
-from scripts.build import get_list_of_pages_from_directory
+
 from pages._error import Error404
 import importlib
 import psutil
 import gc
+import os
+
+
+def get_list_of_pages_from_directory() -> list:
+    pages_list = set()
+
+    def loop_over_sub_folders(path: str):
+        for item in os.listdir(path):
+            item_path = os.path.join(path, item)
+            if item == "__pycache__":
+                continue
+            if os.path.isfile(item_path) and item_path.endswith(".py"):
+                pages_list.add(item_path)
+            elif os.path.isdir(item_path):
+                loop_over_sub_folders(item_path)
+
+    for root, folders, files in os.walk("pages"):
+        for folder in folders:
+            path = os.path.join(root, folder)
+            loop_over_sub_folders(path)
+
+        for file in files:
+            item_path = os.path.join(root, file)
+            if os.path.isfile(item_path) and item_path.endswith(".py"):
+                pages_list.add(item_path)
+
+    return pages_list
 
 
 def main(page: ft.Page):
@@ -21,18 +48,23 @@ def main(page: ft.Page):
     page.theme = theme
 
     docs: dict = config
-
-    __, list_of_pages = get_list_of_pages_from_directory()
+    list_of_pages = get_list_of_pages_from_directory()
 
     def generate_view_as_instance(route):
         for file in list_of_pages:
-            filename = file.split("/")[-1].split(".")[0]
+            # filename = file.split("/")[-1].split(".")[0]
+            filename = file.split("pages", 1)[1].split(".")[0]
             filepath = file
-            if "/" + filename == route:
+            # if "/" + filename == route:
+            if filename == route:
                 module_spec = importlib.util.spec_from_file_location(filename, filepath)
                 module = importlib.util.module_from_spec(module_spec)
                 module_spec.loader.exec_module(module)
-                return module.FxView(page, docs)
+                try:
+                    return module.FxView(page, docs)
+
+                except AttributeError:
+                    return Error404(page, docs)
 
         return Error404(page, docs)
 
@@ -68,4 +100,4 @@ def main(page: ft.Page):
     # print(f"Memory after initial update: {process.memory_info().rss / 1024 / 1024} MB")
 
 
-ft.app(target=main, view="web_browser")
+ft.app(target=main)

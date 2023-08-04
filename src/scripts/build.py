@@ -84,7 +84,7 @@ def synchronize_directories(docs: dict):
 
     for file_path in pages_files:
         try:
-            if file_path not in dict_files:
+            if file_path not in dict_files and file_path == "pages/_error":
                 os.remove(file_path)
         except:  # noqa: E722
             pass
@@ -94,15 +94,23 @@ def synchronize_directories(docs: dict):
             open(file, "w").close()
 
 
-def create_navigation_links_from_keys(docs: dict):
-    routes: list = []
+def create_navigation_links_from_keys():
     nav_list: list = []
 
-    for key in docs.get("navigation").keys():
-        routes.append(key)
+    __, list_of_pages = get_list_of_pages_from_directory()
 
-    for route in routes:
-        nav_list.append(f"self.route('{route.capitalize()}', '/{route}'),")
+    for file in list_of_pages:
+        filename = file.split("pages", 1)[1].split(".")[0]
+        title = file.split("/")[-1].split(".")[0]
+        if filename == "/_error":
+            continue
+        nav_list.append(f"self.route('{title.capitalize()}', '{filename}'),")
+
+    # for key in docs.get("navigation").keys():
+    #     routes.append(key)
+
+    # for route in routes:
+    #     nav_list.append(f"self.route('{route.capitalize()}', '/{route}'),")
 
     with open("core/navigation.py", "r") as file:
         data = file.read()
@@ -112,16 +120,18 @@ def create_navigation_links_from_keys(docs: dict):
 
     new_nav_list = "\n".join(nav_list)
 
-    new_data = data[:start_index] + "# start #\n" + new_nav_list + data[stop_index:]
+    new_data = (
+        data[:start_index] + "# start #\n" + new_nav_list + "\n" + data[stop_index:]
+    )
 
     with open("core/navigation.py", "w") as file:
         file.write(new_data)
 
 
 def build(docs: dict):
-    # check_if_pages_directory_exists()
-    # synchronize_directories(docs)
-    # create_navigation_links_from_keys(docs)
+    check_if_pages_directory_exists()
+    synchronize_directories(docs)
+    create_navigation_links_from_keys()
 
     ...
 

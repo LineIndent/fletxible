@@ -10,9 +10,11 @@ config: dict = {
         "index": "index.py",
         "about": "about.py",
         "contact": {
-            "index": "index.py",
-            "inner1": "inner.py",
-            "inner2": "inner2.py",
+            "con_index": "index.py",
+            "con_about": "index.py",
+            "inner": {
+                "inner": "inner.py",
+            },
         },
     },
 }

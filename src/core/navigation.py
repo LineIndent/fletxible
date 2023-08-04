@@ -5,30 +5,17 @@ class Navigation(ft.Row):
     def __init__(
         self,
         page: ft.Page,
-        docs: dict,
-        function: callable,
         alignment="center",
     ):
-        self.docs = docs
-
-        self.function = function
-
-        self.index: int
-        self.current = -1
-
-        super().__init__(
-            alignment=alignment,
-        )
-
         self.page = page
+
+        super().__init__(alignment=alignment)
         self.controls = [
-            # start #
-            self.route("Index", "/index"),
+            self.route("Home", "/index"),
             self.route("About", "/about"),
-            self.route("Contact", "/contact"),  # end #
         ]
 
-    def route(self, title: str, route_to: str):
+    def route(self, title: str, route_to: str) -> ft.Control:
         return ft.Text(
             size=11,
             weight="bold",
