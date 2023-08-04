@@ -9,12 +9,5 @@ config: dict = {
     "navigation": {
         "index": "index.py",
         "about": "about.py",
-        "contact": {
-            "con_index": "index.py",
-            "con_about": "index.py",
-            "inner": {
-                "inner": "inner.py",
-            },
-        },
     },
 }
