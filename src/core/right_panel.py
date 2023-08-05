@@ -8,7 +8,7 @@ class RightPanel(ft.Container):
         middle_panel: ft.Container,
         fx_rail: list,
         expand=1,
-        padding=ft.padding.only(top=65),
+        padding=ft.padding.only(top=65, left=10),
     ):
         self.docs = docs
         self.highlight = self.docs.get("theme", "").get("bgcolor", "")
@@ -27,6 +27,7 @@ class RightPanel(ft.Container):
 
     def generate_right_rail_logic(self, fx_rail_list):
         nav_rail = [
+            ft.Divider(height=35, color="transparent"),
             ft.Divider(height=25, color="transparent"),
         ]
 

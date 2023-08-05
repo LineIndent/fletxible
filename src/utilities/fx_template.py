@@ -22,7 +22,7 @@ class FxView(FxBaseView):
         )
 
     def fx_rail(self) -> list[list]:
-        return [[]]  # page navigation here ...
+        return []  # page navigation here ...
 
     def fx_controls(self) -> list:
         return [

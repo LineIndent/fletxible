@@ -106,21 +106,24 @@ def synchronize_directories(docs: dict):
 
 
 def set_sub_directory_router_file():
-    sub_dirs, __ = get_list_of_pages_from_directory()
-
     with open("utilities/fx_sub_router.py", "r") as file:
         router = file.read()
 
-    for sub_dir in sub_dirs:
-        router_path = os.path.join(sub_dir + "/router.py")
-        if not os.path.exists(router_path):
-            with open(router_path, "w") as file:
-                file.write(router)
-        else:
-            continue
+    with open("utilities/fx_error.py", "r") as file:
+        error = file.read()
+
+    router_path = os.path.join("pages" + "/router.py")
+    if not os.path.exists(router_path):
+        with open(router_path, "w") as file:
+            file.write(router)
+
+    error_path = os.path.join("pages" + "/_error.py")
+    if not os.path.exists(error_path):
+        with open(error_path, "w") as file:
+            file.write(error)
 
 
-# NOT USE #
+# NOT USED #
 def create_navigation_links_from_keys():
     nav_list: list = []
 

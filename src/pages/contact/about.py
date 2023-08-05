@@ -1,6 +1,7 @@
 import flet as ft
 from core.base import FxBaseView
 import fx_material as fx  # noqa: F401
+from pages.router import contact_navigation
 
 
 class FxSubView(FxBaseView):
@@ -24,13 +25,10 @@ class FxSubView(FxBaseView):
         )
 
     def fx_sub_navigation(self) -> list[list]:
-        return [
-            ["Contact/Index", "/contact/about"],
-            ["Contact/About", "/contact/index"],
-        ]
+        return contact_navigation()
 
     def fx_rail(self) -> list[list]:
-        return [[]]  # page navigation here ...
+        return []  # page navigation here ...
 
     def fx_controls(self) -> list:
         return [

@@ -8,7 +8,9 @@ class LeftPanel(ft.Container):
         routes: list[list],
         expand=1,
         padding=ft.padding.only(top=65),
-        content=ft.Column(expand=True, alignment="start"),
+        content=ft.Column(
+            expand=True, alignment="start", horizontal_alignment="center"
+        ),
     ):
         self.page = page
         self.routes = routes
@@ -18,12 +20,15 @@ class LeftPanel(ft.Container):
         self.content.controls = self.route_links
 
     def generate_sub_routes(self, route_list: list[list]):
-        route_links = []
+        route_links = [
+            ft.Divider(height=35, color="transparent"),
+            ft.Divider(height=25, color="transparent"),
+        ]
         if route_list is not None:
             for route in route_list:
                 route_links.append(self.route(title=route[0], route_to=route[1]))
 
-        return route_links
+            return route_links
 
     def route(self, title: str, route_to: str) -> ft.Control:
         return ft.Text(
