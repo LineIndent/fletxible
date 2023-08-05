@@ -3,10 +3,10 @@ dist
 build
 dev
 Fletxible.egg-info
-fx_config.yml
 .DS_Store
 __pycache__
 web
 command.py
 src/__pycache__
-src/pages
+src/pages/about.py
+src/pages/__pycache__
