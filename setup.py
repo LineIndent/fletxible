@@ -24,7 +24,7 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "fletxible-init=fletxible.command:create",
+            "fx-init=scripts.create:create",
         ],
     },
     keywords=["python web template", "web application", "theme"],
