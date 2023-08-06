@@ -29,7 +29,6 @@ file_structure = {
         "fx_sub_template.py",
         "fx_template.py",
     ],
-    "__init__.py": None,
     "config.py": None,
     "main.py": None,
 }
@@ -37,15 +36,16 @@ file_structure = {
 
 def create_src_directory():
     for __ in os.listdir("."):
-        if not os.path.exists("./" + "t_src"):
-            os.makedirs("t_src")
+        if not os.path.exists("./" + "src"):
+            os.makedirs("src")
         else:
             continue
 
 
 def create_src_file_structure():
     source = Path(__file__).parent.parent
-    dublicate = Path("./t_src")
+    dublicate = Path("./src")
+    fx_file_src = Path("./src/utilities")
 
     def create_dir_file_structure(dir_path: str, key: str, file: str):
         source_path = os.path.join(source, key, file)
@@ -62,9 +62,8 @@ def create_src_file_structure():
                 for file in value:
                     create_dir_file_structure(dir_path, key, file)
         else:
-            source_path = os.path.join(source, key)
+            source_path = os.path.join(fx_file_src, "fx_" + key)
             dublicate_path = os.path.join(dublicate, key)
-
             with open(source_path, "r") as src_file, open(
                 dublicate_path, "w"
             ) as dst_file:
