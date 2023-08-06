@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 
 setup(
     name="Fletxible",
-    version="0.6.5",
+    version="0.7.0",
     author="S. Ahmad P. Hakimi",
     author_email="pourhakimi@pm.me",
     description="Web Boilerplate for Flet Library",

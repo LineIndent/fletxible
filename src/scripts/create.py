@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+import subprocess
 import click
 
 
@@ -45,7 +46,7 @@ def create_src_directory():
 def create_src_file_structure():
     source = Path(__file__).parent.parent
     dublicate = Path("./src")
-    fx_file_src = Path("./src/utilities")
+    fx_file_src = Path(source, "utilities")
 
     def create_dir_file_structure(dir_path: str, key: str, file: str):
         source_path = os.path.join(source, key, file)
@@ -72,8 +73,20 @@ def create_src_file_structure():
 
 @click.command()
 def create():
+    click.echo("Creating source directory...")
     create_src_directory()
     create_src_file_structure()
+    click.echo("Source directory created successfully.")
+
+    os.chdir("src")
+
+    click.echo("Running build scripts...")
+    if os.path.basename(os.getcwd()) == "src":
+        # Run twine upload *
+        subprocess.run(
+            ["python3", "scripts/build.py"], capture_output=True, text=True, bufsize=0
+        )
+    click.echo("Build ran successfully.")
 
 
 @click.group()
