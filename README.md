@@ -48,21 +48,21 @@ $ pip install Fletxible
 After installing Fletxible, you can test if it's working properly by running the following command:
 
 ```py
-$ fletxible-init
+$ fx-init
 ```
 
-If the package was installed correctly, a file called ```fx_config.yml``` will be generated inside the root directory. Other directories and files will also be generated.
+If the package was installed correctly, a folder called ```src``` will be generated inside the root directory. Other directories and files will also be generated.
 
 ## 3. Quick Start
 
-Open the  ```fx_config.yml``` file and configure the document as needed. Change the site name, repository link, as well as any theme related settings.
+Open the  ```config.py``` file inside the ```src``` folder and configure the document as needed. Change the site name, repository link, as well as any theme-related settings. You can also add/remove the navigation section as needed.
 
-When you're ready, run the following command to generate your files/pages:
+When you're ready, change directories to the source folder, ```cd src```, and then run the following command to generate your files/pages:
 ```py
-python3 script.py
+python3 scripts/build.py
 ```
 
-If successful, the script should generate files inside a directory named ```web``` corresponding to the names under the **navigation** header inside the ```fx_config.yml```. 
+If successful, the script should generate the files inside the ```pages``` folder that correspond to the ```config.py``` navigation map. 
 
 You can then run the following command to see your application:
 
@@ -70,7 +70,7 @@ You can then run the following command to see your application:
 python3 main.py
 ```
 
-If the setup has no error, you can start customizing your pages by adding in your personal layout directly within the generated pages inside the ```web``` directory.
+If the setup has no error, you can start customizing your pages by adding in your personal layout directly within the generated pages inside the ```pages``` directory.
 
 
 ## Current Algorithm Functions

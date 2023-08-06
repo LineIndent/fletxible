@@ -106,21 +106,23 @@ def synchronize_directories(docs: dict):
 
 
 def set_sub_directory_router_file():
-    with open("utilities/fx_sub_router.py", "r") as file:
-        router = file.read()
-
     with open("utilities/fx_error.py", "r") as file:
         error = file.read()
-
-    router_path = os.path.join("pages" + "/router.py")
-    if not os.path.exists(router_path):
-        with open(router_path, "w") as file:
-            file.write(router)
 
     error_path = os.path.join("pages" + "/_error.py")
     if not os.path.exists(error_path):
         with open(error_path, "w") as file:
             file.write(error)
+
+    with open("utilities/fx_sub_router.py", "r") as file:
+        router = file.read()
+
+    for root, dirs, __ in os.walk("pages"):
+        for dir in dirs:
+            router_path = os.path.join(root + "/" + dir + "/" + "router.py")
+            if not os.path.exists(router_path):
+                with open(router_path, "w") as file:
+                    file.write(router)
 
 
 # NOT USED #
